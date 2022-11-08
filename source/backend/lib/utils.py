@@ -1,5 +1,5 @@
 from sympy.abc import x
-from sympy import Poly, Matrix
+from sympy import Poly, Matrix, GF, Matrix, oo, sqrt
 
 def mod(X, m):
 	"""modulo operation extended to negative numbers and sympy structures"""
