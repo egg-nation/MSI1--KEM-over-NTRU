@@ -1,0 +1,26 @@
+version: '3'
+services:
+  envoy:
+    image: envoyproxy/envoy-dev:e368c3e5e6dcbcb893364dda99b71ff9d68f3158
+    ports:
+      - 5000:5000
+    volumes:
+      - ./docker_configs/envoy.yml:/etc/envoy/envoy.yaml
+    depends_on:
+      - "backend-server"
+
+  backend-server:
+    image: kem-backend:latest
+    ports:
+      - 5001:5000 #for debugging purposes
+    depends_on:
+      - "mongo"
+
+  mongo:
+    image: mongo
+    volumes:
+      - kem-backend-db:/data/db #we need an external volume, not a mountpoint because windows and mac don't support memory mapped files
+
+volumes:
+  kem-backend-db:
+    external: true
