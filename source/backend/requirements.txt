@@ -1,2 +1,7 @@
+protobuf
 grpcio
 grpcio-tools
+pymongo
+pydantic
+pycryptodome
+bcrypt
