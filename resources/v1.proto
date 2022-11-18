@@ -1,0 +1,154 @@
+syntax = "proto2";
+
+// <user service>
+message LoginCredentials{
+	required string username = 1;
+	required string password = 2;
+}
+
+message RegisterCredentials{
+	required string username = 1;
+	required string emailAddress = 2;
+	required string password = 3;
+}
+
+message AuthToken{
+	required string userId = 1;
+	required int64 generatedAt = 2;
+	required int64 expiresAt = 3;
+	required bytes signature = 4; 
+}
+
+message User{
+	required string username = 1;
+	required string emailAddress = 2;
+	required string userId = 3;
+	optional AuthToken token = 4;
+}
+
+service UserService{
+	rpc login(LoginCredentials) returns (User){};
+	rpc register(RegisterCredentials) returns (User){};
+	rpc delete(AuthToken) returns (User){};
+}
+//</user service>
+
+//<entry service>
+message Entry{
+	// optional fields will be added only by the backend
+	optional string id = 1;
+	optional string userId = 2;
+	required string algorithmName = 3;
+	required string functionName = 4;
+	map<string, uint64> inputParameters = 5;
+	required string keyId = 6;
+	required int64 executionTime = 7;
+}
+
+message EntryID{
+	required AuthToken token = 1;
+	required string entryId = 2;
+}
+
+service EntryService{
+	rpc getById(EntryID) returns (Entry){};
+	rpc getEntryHistory(AuthToken) returns (stream Entry){};
+	rpc deleteEntry(EntryID) returns (EntryID){};
+}
+
+//</entry service>
+
+
+//<BAT service>
+
+message BATParameters{
+	required int64 n = 1;
+	required int64 b = 2;
+	required int64 k = 3;
+	required int64 q = 4;
+}
+
+message BATKeys{
+	optional string keyId = 1;
+	required BATParameters parameters = 2;
+	required string pk = 3;
+	required string sk = 4;
+}
+
+message BATKeygenResult{
+	required BATKeys keys = 1;
+	required Entry entry = 2;
+}
+
+message BATKeygenParameters{
+	required AuthToken token = 1;
+	required BATParameters parameters = 2;
+}
+
+message BATExecution{
+	required BATKeys keys = 1;
+	required AuthToken token = 2;
+	required int64 iterations = 3;
+}
+
+message BATKeyImport{
+	required BATKeys keys = 1;
+	required AuthToken token = 2;
+}
+
+service BATService{
+	rpc keygen(BATKeygenParameters) returns (BATKeygenResult){};
+	rpc getKeys(AuthToken) returns (stream BATKeys){};
+	rpc addKeys(BATKeyImport) returns (BATKeys){};
+	rpc runEncaps(BATExecution) returns (stream Entry){}; 
+	rpc runDecaps(BATExecution) returns (stream Entry){}; 
+}
+
+//</BAT service>
+
+//<CTRU service>
+
+message CTRUParameters{
+	required int64 n = 1;
+	required int64 q = 2;
+	required int64 q2 = 3;
+	required int64 eta = 4;
+}
+
+message CTRUKeys{
+	optional string keyId = 1;
+	required CTRUParameters parameters = 2;
+	required string pk = 3;
+	required string sk = 4;
+}
+
+message CTRUKeygenResult{
+	required CTRUKeys keys = 1;
+	required Entry entry = 2;
+}
+
+message CTRUKeygenParameters{
+	required AuthToken token = 1;
+	required CTRUParameters parameters = 2;
+}
+
+message CTRUExecution{
+	required CTRUKeys keys = 1;
+	required AuthToken token = 2;
+	required int64 iterations = 3;
+}
+
+message CTRUKeyImport{
+	required CTRUKeys keys = 1;
+	required AuthToken token = 2;
+}
+
+service CTRUService{
+	rpc keygen(CTRUKeygenParameters) returns (CTRUKeygenResult){};
+	rpc getKeys(AuthToken) returns (stream CTRUKeys){};
+	rpc addKeys(CTRUKeyImport) returns (CTRUKeys){};
+	rpc runEncaps(CTRUExecution) returns (stream Entry){}; 
+	rpc runDecaps(CTRUExecution) returns (stream Entry){}; 
+}
+
+//</CTRU service>
