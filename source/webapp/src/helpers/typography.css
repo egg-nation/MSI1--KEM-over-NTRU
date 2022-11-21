@@ -1,0 +1,141 @@
+@media only screen and (max-width: 600px) {
+
+    a {
+        color: #7B3DFF;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    a:hover {
+        color: #5F23DD;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 1.5;
+        font-weight: 400;
+    }
+
+    h6 {
+        font-size: 12px;
+        line-height: 1.5;
+        font-weight: 400;
+    }
+
+    h5 {
+        font-size: 16px;
+        line-height: 1.5;
+        font-weight: 500;
+    }
+
+    h4 {
+        font-size: 20px;
+        line-height: 1.2;
+        font-weight: 500;
+    }
+
+    h3 {
+        font-size: 24px;
+        line-height: 1.2;
+        font-weight: 500;
+    }
+
+    h2 {
+        font-size: 36px;
+        line-height: 1.2;
+        font-weight: 500;
+    }
+
+    h1 {
+        font-size: 40px;
+        line-height: 1.2;
+        font-weight: 500;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+
+    a {
+        color: #7B3DFF;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    a:hover {
+        color: #5F23DD;
+    }
+
+    p {
+        font-size: 14px;
+        line-height: 1.5;
+        font-weight: 400;
+    }
+
+    h6 {
+        font-size: 12px;
+        line-height: 1.5;
+        font-weight: 400;
+    }
+
+    h5 {
+        font-size: 16px;
+        line-height: 1.5;
+        font-weight: 500;
+    }
+
+    h4 {
+        font-size: 20px;
+        line-height: 1.2;
+        font-weight: 500;
+    }
+
+    h3 {
+        font-size: 24px;
+        line-height: 1.2;
+        font-weight: 500;
+    }
+
+    h2 {
+        font-size: 36px;
+        line-height: 1.2;
+        font-weight: 500;
+    }
+
+    h1 {
+        font-size: 40px;
+        line-height: 1.2;
+        font-weight: 500;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+
+    p {
+        font-size: 16px;
+    }
+
+    h6 {
+        font-size: 14px;
+    }
+
+    h5 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+    h1 {
+        font-size: 48px;
+        line-height: 1.1;
+    }
+}

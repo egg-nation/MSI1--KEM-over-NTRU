@@ -1,0 +1,16 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #050117;
+  color: #FFFFFF;
+  height: 100vh;
+}
+
+.container-fluid {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
