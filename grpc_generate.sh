@@ -12,5 +12,11 @@ docker run \
     protoc \
     	-I /work/resources \
         --js_out=import_style=commonjs:/work/source/webapp/src/apidocs \
-        --grpc-web_out=import_style=commonjs,mode=grpcwebtext:/work/source/webapp/src/apidocs \
+        --grpc-web_out=import_style=commonjs+dts,mode=grpcweb:/work/source/webapp/src/apidocs \
         /work/resources/v1.proto
+
+#protoc   \
+#   -I ./resources/ \
+#   --js_out=import_style=commonjs,binary:./source/webapp/src/apidocs \
+#   --grpc-web_out=import_style=commonjs+dts,mode=grpcweb:./source/webapp/src/apidocs \
+#   ./resources/v1.proto

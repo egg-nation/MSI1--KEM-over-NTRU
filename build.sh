@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./grpc_generate.sh
+#./grpc_generate.sh
 
 docker image rm kem-backend
 cd source/backend

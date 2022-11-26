@@ -1109,10 +1109,10 @@ proto.AuthToken.prototype.hasExpiresat = function() {
 
 /**
  * required bytes signature = 4;
- * @return {string}
+ * @return {!(string|Uint8Array)}
  */
 proto.AuthToken.prototype.getSignature = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
