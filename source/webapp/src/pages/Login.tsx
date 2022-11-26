@@ -10,6 +10,9 @@ import SmallTitle from "../components/typography/titles/SmallTitle";
 import {Col, Row, Container} from "react-bootstrap";
 import GenericText from "../components/typography/text/GenericText";
 import Logo from "../resources/Logo";
+import {UserServiceApiClient} from "../api/UserServiceClient";
+
+const {LoginCredentials, RegisterCredentials} = require("../apidocs/v1_pb.d.ts");
 
 const Login = () => {
 
@@ -25,6 +28,16 @@ const Login = () => {
 
     const handleLogin = () => {
 
+        const client = UserServiceApiClient;
+        console.log("here")
+        // const request = new LoginCredentials();
+        // request.setUsername("testUsername");
+        // request.setPassword("passwordexample1!");
+        //
+        // client.login(request, {}, (_err, result) => {
+        //
+        //     console.log(result);
+        // });
     };
 
     return (
