@@ -15,11 +15,24 @@ services:
       - 5001:5000 #for debugging purposes
     depends_on:
       - "mongo"
+    volumes:
+      - ./source/backend:/work
+
 
   mongo:
     image: mongo
     volumes:
       - kem-backend-db:/data/db #we need an external volume, not a mountpoint because windows and mac don't support memory mapped files
+
+  frontend-server:
+    image: kem-webapp:latest
+    ports:
+      - 3000:3000
+    depends_on:
+      - "backend-server"
+# for dev purposes; to be deactivated on NTFS systems
+    volumes:
+      - ./source/webapp:/work
 
 volumes:
   kem-backend-db:
