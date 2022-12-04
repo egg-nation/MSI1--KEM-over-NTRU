@@ -1,8 +1,6 @@
 import React from 'react';
 import {render} from '@testing-library/react';
 import Navigation from "../../../components/navigation/Navigation";
-import NavItem from "../../../components/navigation/NavItem";
-import WikiIcon from "../../../resources/icons/menu/WikiIcon";
 
 beforeEach(() => {
     jest.spyOn(console, 'error');
@@ -10,23 +8,12 @@ beforeEach(() => {
 
 describe('Navigation component test', () => {
 
-    it('should render Navigation with no errors when there are NavItems', () => {
+    it('should render Navigation with no errors', () => {
 
         // execute
         render(
-            <Navigation>
-                <NavItem icon={<WikiIcon/>} text="Wiki" url="/wiki" target="_self"/>
-            </Navigation>
+            <Navigation currentPage={"/wiki"}/>
         );
-
-        // verify
-        expect(console.error).not.toHaveBeenCalled();
-    })
-
-    it('should render Navigation with no errors when there are no NavItems', () => {
-
-        // execute
-        render(<Navigation></Navigation>);
 
         // verify
         expect(console.error).not.toHaveBeenCalled();
@@ -35,7 +22,7 @@ describe('Navigation component test', () => {
     it('should display Navigation correctly', () => {
 
         // execute
-        const {container, getByRole} = render(<Navigation></Navigation>);
+        const {container, getByRole} = render(<Navigation currentPage={"/wiki"}/>);
 
         // verify
         const navigation = getByRole("navigation", container);

@@ -1,17 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
 import {Formik, Field, Form, ErrorMessage} from "formik";
+import {Col, Container, Row} from "react-bootstrap";
 import * as Yup from "yup";
+
+import SmallTitle from "../components/typography/titles/SmallTitle";
+import GenericText from "../components/typography/text/GenericText";
+import Logo from "../resources/Logo";
+
+import {RegisterCredentials, User} from "../apidocs/v1_pb";
+import {UserServiceApiClient} from "../api/UserServiceApiClient";
+import grpcWeb from "grpc-web";
+import {useAtom} from "jotai";
+import {userAtom} from "../services/UserAtom";
 
 import "../helpers/forms.css";
 import "../helpers/styles.css";
 import "../helpers/paddings.css";
 
-import {Col, Container, Row} from "react-bootstrap";
-import SmallTitle from "../components/typography/titles/SmallTitle";
-import GenericText from "../components/typography/text/GenericText";
-import Logo from "../resources/Logo";
-
 const Register = () => {
+
+    const [message, setMessage] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [currentUser, setCurrentUser] = useAtom(userAtom);
+    currentUser && window.open("/", "_self");
 
     const initialValues = {
         username: "",
@@ -21,21 +32,41 @@ const Register = () => {
 
     const validationSchema = Yup.object().shape({
         username: Yup.string()
-            .required("This field is required!"),
+            .required("Username is required!"),
         email: Yup.string()
-            .email("This is not a valid email.")
-            .required("This field is required!"),
+            .email("This is not a valid e-mail address.")
+            .required("E-mail address is required!"),
         password: Yup.string()
-            .required("This field is required!")
+            .required("Password is required!")
             .matches(
                 /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-                "Must contain 8 characters, 1 uppercase, 1 lowercase, 1 digit and 1 special character"
+                "Password contain 8 characters, 1 uppercase, 1 lowercase, 1 digit and 1 special character"
             )
     });
 
-    const handleRegister = () => {
+    const handleRegister = (formValue: { username: string, email: string, password: string }) => {
 
+        const {username, email, password} = formValue;
+        setIsLoading(true);
 
+        const registerCredentials = new RegisterCredentials();
+        registerCredentials.setUsername(username);
+        registerCredentials.setEmailaddress(email);
+        registerCredentials.setPassword(password);
+
+        UserServiceApiClient.register(registerCredentials, {},
+            (err: grpcWeb.RpcError, response: User) => {
+
+                response != null ?
+                    setCurrentUser({
+                        username: response.getUsername(),
+                        email: response.getEmailaddress(),
+                        authToken: response.getToken()
+                    }) :
+                    setMessage(err.message);
+
+                setIsLoading(false);
+            });
     };
 
     return (
@@ -60,7 +91,8 @@ const Register = () => {
                                         <div>
                                             <div className="form-group">
                                                 <label htmlFor="username">Username</label>
-                                                <Field name="username" type="text" className="form-control"/>
+                                                <Field name="username" type="text" className="form-control"
+                                                       placeholder="Type your username here..."/>
                                                 <ErrorMessage
                                                     name="username"
                                                     component="div"
@@ -70,7 +102,8 @@ const Register = () => {
 
                                             <div className="form-group">
                                                 <label htmlFor="email">Email</label>
-                                                <Field name="email" type="email" className="form-control"/>
+                                                <Field name="email" type="email" className="form-control"
+                                                       placeholder="Type your e-mail address here..."/>
                                                 <ErrorMessage
                                                     name="email"
                                                     component="div"
@@ -84,6 +117,7 @@ const Register = () => {
                                                     name="password"
                                                     type="password"
                                                     className="form-control"
+                                                    placeholder="Type your password here..."
                                                 />
                                                 <ErrorMessage
                                                     name="password"
@@ -93,8 +127,20 @@ const Register = () => {
                                             </div>
 
                                             <div className="form-group d-flex justify-content-center">
-                                                <button type="submit">Sign Up</button>
+                                                <button type="submit" disabled={isLoading}>
+                                                    <span>Sign Up</span>
+                                                </button>
                                             </div>
+
+                                            {
+                                                message && (
+                                                    <div className="form-group">
+                                                        <div className="alert alert-danger alert-with-background d-flex justify-content-center" role="alert">
+                                                            {message}
+                                                        </div>
+                                                    </div>
+                                                )
+                                            }
                                         </div>
                                     </Form>
                                 </Formik>

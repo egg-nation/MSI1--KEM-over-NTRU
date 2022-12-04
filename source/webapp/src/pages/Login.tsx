@@ -1,20 +1,28 @@
-import React from "react";
+import React, {useState} from "react";
 import {Formik, Field, Form, ErrorMessage} from "formik";
+import {Col, Row, Container} from "react-bootstrap";
 import * as Yup from "yup";
+
+import SmallTitle from "../components/typography/titles/SmallTitle";
+import GenericText from "../components/typography/text/GenericText";
+import Logo from "../resources/Logo";
+
+import * as grpcWeb from 'grpc-web';
+import {LoginCredentials, User} from "../apidocs/v1_pb";
+import {UserServiceApiClient} from "../api/UserServiceApiClient";
 
 import "../helpers/forms.css";
 import "../helpers/styles.css";
 import "../helpers/paddings.css";
-
-import SmallTitle from "../components/typography/titles/SmallTitle";
-import {Col, Row, Container} from "react-bootstrap";
-import GenericText from "../components/typography/text/GenericText";
-import Logo from "../resources/Logo";
-import {UserServiceApiClient} from "../api/UserServiceClient";
-
-const {LoginCredentials, RegisterCredentials} = require("../apidocs/v1_pb.d.ts");
+import {useAtom} from "jotai";
+import {userAtom} from "../services/UserAtom";
 
 const Login = () => {
+
+    const [message, setMessage] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [currentUser, setCurrentUser] = useAtom(userAtom);
+    currentUser && window.open("/", "_self");
 
     const initialValues = {
         username: "",
@@ -22,22 +30,32 @@ const Login = () => {
     };
 
     const validationSchema = Yup.object().shape({
-        username: Yup.string().required("This field is required!"),
-        password: Yup.string().required("This field is required!"),
+        username: Yup.string().required("Username is required!"),
+        password: Yup.string().required("Password is required!"),
     });
 
-    const handleLogin = () => {
+    const handleLogin = (formValue: { username: string, password: string }) => {
 
-        const client = UserServiceApiClient;
-        console.log("here")
-        // const request = new LoginCredentials();
-        // request.setUsername("testUsername");
-        // request.setPassword("passwordexample1!");
-        //
-        // client.login(request, {}, (_err, result) => {
-        //
-        //     console.log(result);
-        // });
+        const {username, password} = formValue;
+        setIsLoading(true);
+
+        const loginCredentials = new LoginCredentials();
+        loginCredentials.setUsername(username);
+        loginCredentials.setPassword(password);
+
+        UserServiceApiClient.login(loginCredentials, {},
+            (err: grpcWeb.RpcError, response: User) => {
+
+                response != null ?
+                    setCurrentUser({
+                        username: response.getUsername(),
+                        email: response.getEmailaddress(),
+                        authToken: response.getToken()
+                    }) :
+                    setMessage(err.message);
+
+                setIsLoading(false);
+            });
     };
 
     return (
@@ -61,7 +79,8 @@ const Login = () => {
                                     <Form>
                                         <div className="form-group">
                                             <label htmlFor="username">Username</label>
-                                            <Field name="username" type="text" className="form-control"/>
+                                            <Field name="username" type="text" className="form-control"
+                                                   placeholder="Type your username here..."/>
                                             <ErrorMessage
                                                 name="username"
                                                 component="div"
@@ -71,7 +90,8 @@ const Login = () => {
 
                                         <div className="form-group">
                                             <label htmlFor="password">Password</label>
-                                            <Field name="password" type="password" className="form-control"/>
+                                            <Field name="password" type="password" className="form-control"
+                                                   placeholder="Type your password here..."/>
                                             <ErrorMessage
                                                 name="password"
                                                 component="div"
@@ -80,10 +100,22 @@ const Login = () => {
                                         </div>
 
                                         <div className="form-group d-flex justify-content-center">
-                                            <button type="submit">
+                                            <button type="submit" disabled={isLoading}>
                                                 <span>Login</span>
                                             </button>
                                         </div>
+
+                                        {
+                                            message && (
+                                                <div className="form-group">
+                                                    <div
+                                                        className="alert alert-danger alert-with-text alert-with-background d-flex justify-content-center"
+                                                        role="alert">
+                                                        {message}
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
                                     </Form>
                                 </Formik>
                             </div>

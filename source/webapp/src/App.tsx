@@ -6,19 +6,22 @@ import Register from "./pages/Register";
 import EncryptDecrypt from "./pages/EncryptDecrypt";
 import EntriesVisualization from "./pages/EntriesVisualization";
 import Wiki from "./pages/Wiki";
+import {Provider} from "jotai";
 
 function App() {
     return (
-        <Router>
-            <Routes>
-                <Route index element={<Dashboard/>}/>
-                <Route path="encrypt-decrypt" element={<EncryptDecrypt/>}/>
-                <Route path="entries-visualization" element={<EntriesVisualization/>}/>
-                <Route path="wiki" element={<Wiki/>}/>
-                <Route path="login" element={<Login/>}/>
-                <Route path="register" element={<Register/>}/>
-            </Routes>
-        </Router>
+        <Provider>
+            <Router>
+                <Routes>
+                    <Route index element={<Dashboard/>}/>
+                    <Route path="encrypt-decrypt" element={<EncryptDecrypt/>}/>
+                    <Route path="entries-visualization" element={<EntriesVisualization/>}/>
+                    <Route path="wiki" element={<Wiki/>}/>
+                    <Route path="login" element={<Login/>}/>
+                    <Route path="register" element={<Register/>}/>
+                </Routes>
+            </Router>
+        </Provider>
     );
 }
 
