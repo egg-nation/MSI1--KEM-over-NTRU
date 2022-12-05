@@ -1,10 +1,16 @@
 import "./button.css";
 
-const EmptyButton = (props: any) => {
+type Props = {
+    url: string,
+    text: string,
+    target: string
+}
+
+const EmptyButton = ({url, text, target}: Props) => {
 
     return (
         <div className="button">
-            <a href={props.url}><span className="text">{props.children}</span></a>
+            <a href={url} target={target}><span className="text">{text}</span></a>
         </div>
     );
 }

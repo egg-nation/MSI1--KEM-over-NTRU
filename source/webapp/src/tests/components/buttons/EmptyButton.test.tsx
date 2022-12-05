@@ -11,7 +11,7 @@ describe('EmptyButton component test', () => {
     it('should render EmptyButton with no errors', () => {
 
         // execute
-        render(<EmptyButton url={"/test"}>button text</EmptyButton>);
+        render(<EmptyButton url={"/test"} text={"button text"} target={"_self"}/>);
 
         // verify
         expect(console.error).not.toHaveBeenCalled();
@@ -20,7 +20,7 @@ describe('EmptyButton component test', () => {
     it('should display EmptyButton correctly', () => {
 
         // execute
-        const {container} = render(<EmptyButton url={"/test"}>button text</EmptyButton>);
+        const {container} = render(<EmptyButton url={"/test"} text={"button text"} target={"_self"}/>);
 
         // verify
         const emptyButton = container.getElementsByClassName("button").item(0);
