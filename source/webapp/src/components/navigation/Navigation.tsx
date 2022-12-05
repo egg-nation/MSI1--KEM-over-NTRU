@@ -2,14 +2,14 @@ import SidebarMenu from 'react-bootstrap-sidebar-menu';
 
 import "./navigation.css";
 import NavItem from "./NavItem";
-import DashboardIcon from "../../resources/icons/menu/DashboardIcon";
-import EncryptDecryptIcon from "../../resources/icons/menu/EncryptDecryptIcon";
-import EntriesVisualizationIcon from "../../resources/icons/menu/EntriesVisualizationIcon";
-import WikiIcon from "../../resources/icons/menu/WikiIcon";
+import DashboardIcon from "../../utils/resources/icons/menu/DashboardIcon";
+import EncryptDecryptIcon from "../../utils/resources/icons/menu/EncryptDecryptIcon";
+import EntriesVisualizationIcon from "../../utils/resources/icons/menu/EntriesVisualizationIcon";
+import WikiIcon from "../../utils/resources/icons/menu/WikiIcon";
 import React from "react";
 import {useAtom} from "jotai";
 import {userAtom} from "../../services/UserAtom";
-import LogoutIcon from "../../resources/icons/menu/LogoutIcon";
+import LogoutIcon from "../../utils/resources/icons/menu/LogoutIcon";
 import UserInfo from "./UserInfo";
 
 type Props = {

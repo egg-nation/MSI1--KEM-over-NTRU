@@ -1,0 +1,4 @@
+.delete-entry-button {
+    display: flex;
+    justify-content: end;
+}

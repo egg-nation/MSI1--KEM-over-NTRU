@@ -1,6 +1,6 @@
 import React from 'react';
 import {act, fireEvent, getByText, queryByAttribute, render} from '@testing-library/react';
-import Login from "../../pages/Login";
+import Login from "../../../pages/login/Login";
 
 beforeEach(() => {
     jest.spyOn(console, 'error');

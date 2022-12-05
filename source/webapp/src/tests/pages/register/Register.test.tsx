@@ -1,6 +1,6 @@
 import React from 'react';
 import {act, fireEvent, queryByAttribute, render} from '@testing-library/react';
-import Register from "../../pages/Register";
+import Register from "../../../pages/register/Register";
 
 beforeEach(() => {
     jest.spyOn(console, 'error');

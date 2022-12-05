@@ -1,26 +1,26 @@
 import React from 'react';
 import {render} from '@testing-library/react';
-import Wiki from "../../pages/Wiki";
+import EncryptDecrypt from "../../../pages/encrypt-decrypt/EncryptDecrypt";
 
 beforeEach(() => {
     jest.spyOn(console, 'error');
 });
 
-describe('Wiki component test', () => {
+describe('EncryptDecrypt component test', () => {
 
-    it('should render Wiki with no errors', () => {
+    it('should render EncryptDecrypt with no errors', () => {
 
         // execute
-        render(<Wiki/>);
+        render(<EncryptDecrypt/>);
 
         // verify
         expect(console.error).not.toHaveBeenCalled();
     })
 
-    it('should display Wiki correctly', () => {
+    it('should display EncryptDecrypt correctly', () => {
 
         // execute
-        const {container, getByRole} = render(<Wiki/>);
+        const {container, getByRole} = render(<EncryptDecrypt/>);
 
         // verify
         const navigation = getByRole("navigation", container);

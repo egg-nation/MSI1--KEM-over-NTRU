@@ -1,4 +1,4 @@
-import "../../../helpers/typography.css";
+import "../../../utils/css/typography.css";
 import "./title.css";
 
 const SmallTitle = (props: any) => {

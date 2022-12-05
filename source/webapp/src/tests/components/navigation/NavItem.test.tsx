@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from '@testing-library/react';
 import NavItem from "../../../components/navigation/NavItem";
-import WikiIcon from "../../../resources/icons/menu/WikiIcon";
+import WikiIcon from "../../../utils/resources/icons/menu/WikiIcon";
 
 beforeEach(() => {
     jest.spyOn(console, 'error');

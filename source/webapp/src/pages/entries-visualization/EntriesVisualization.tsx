@@ -1,13 +1,14 @@
 import {Col, Container, Row} from "react-bootstrap";
 import React from "react";
 import {useAtom} from "jotai";
-import {userAtom} from "../services/UserAtom";
-import Header from "../components/header/Header";
-import Navigation from "../components/navigation/Navigation";
-import EntriesVisualizationIcon from "../resources/icons/menu/EntriesVisualizationIcon";
-import "../helpers/table.css";
-import DeleteIcon from "../resources/icons/utils/DeleteIcon";
-import Loader from "../components/loader/Loader";
+import {userAtom} from "../../services/UserAtom";
+import Header from "../../components/header/Header";
+import Navigation from "../../components/navigation/Navigation";
+import EntriesVisualizationIcon from "../../utils/resources/icons/menu/EntriesVisualizationIcon";
+import DeleteIcon from "../../utils/resources/icons/utils/DeleteIcon";
+import Loader from "../../components/loader/Loader";
+import "../../utils/css/table.css";
+import "./entriesVisualization.css";
 
 const EntriesVisualization = () => {
 

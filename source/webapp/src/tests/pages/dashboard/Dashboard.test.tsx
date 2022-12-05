@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from '@testing-library/react';
-import Dashboard from "../../pages/Dashboard";
+import Dashboard from "../../../pages/dashboard/Dashboard";
 
 beforeEach(() => {
     jest.spyOn(console, 'error');

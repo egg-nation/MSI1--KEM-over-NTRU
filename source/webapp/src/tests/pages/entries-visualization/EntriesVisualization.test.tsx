@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from '@testing-library/react';
-import EntriesVisualization from "../../pages/EntriesVisualization";
+import EntriesVisualization from "../../../pages/entries-visualization/EntriesVisualization";
 
 beforeEach(() => {
     jest.spyOn(console, 'error');

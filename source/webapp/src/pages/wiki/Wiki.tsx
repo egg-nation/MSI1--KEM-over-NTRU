@@ -1,11 +1,11 @@
 import {Col, Container, Row} from "react-bootstrap";
 import React from "react";
 import {useAtom} from "jotai";
-import {userAtom} from "../services/UserAtom";
-import Header from "../components/header/Header";
-import WikiIcon from "../resources/icons/menu/WikiIcon";
-import Navigation from "../components/navigation/Navigation";
-import Loader from "../components/loader/Loader";
+import {userAtom} from "../../services/UserAtom";
+import Header from "../../components/header/Header";
+import WikiIcon from "../../utils/resources/icons/menu/WikiIcon";
+import Navigation from "../../components/navigation/Navigation";
+import Loader from "../../components/loader/Loader";
 
 const Wiki = () => {
 

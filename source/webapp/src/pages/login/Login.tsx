@@ -3,19 +3,19 @@ import {Formik, Field, Form, ErrorMessage} from "formik";
 import {Col, Row, Container} from "react-bootstrap";
 import * as Yup from "yup";
 
-import SmallTitle from "../components/typography/titles/SmallTitle";
-import GenericText from "../components/typography/text/GenericText";
-import Logo from "../resources/Logo";
+import SmallTitle from "../../components/typography/titles/SmallTitle";
+import GenericText from "../../components/typography/text/GenericText";
+import Logo from "../../utils/resources/Logo";
 
 import * as grpcWeb from 'grpc-web';
-import {LoginCredentials, User} from "../apidocs/v1_pb";
-import {UserServiceApiClient} from "../api/UserServiceApiClient";
+import {LoginCredentials, User} from "../../apidocs/v1_pb";
+import {UserServiceApiClient} from "../../services/api/UserServiceApiClient";
 
-import "../helpers/forms.css";
-import "../helpers/styles.css";
-import "../helpers/paddings.css";
+import "../../utils/css/forms.css";
+import "../../utils/css/styles.css";
+import "../../utils/css/paddings.css";
 import {useAtom} from "jotai";
-import {userAtom} from "../services/UserAtom";
+import {userAtom} from "../../services/UserAtom";
 
 const Login = () => {
 
@@ -109,7 +109,7 @@ const Login = () => {
                                             message && (
                                                 <div className="form-group">
                                                     <div
-                                                        className="alert alert-danger alert-with-text alert-with-background d-flex justify-content-center"
+                                                        className="alert alert-danger d-flex justify-content-center"
                                                         role="alert">
                                                         {message}
                                                     </div>

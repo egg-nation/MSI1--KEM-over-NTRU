@@ -58,7 +58,7 @@ button[type="submit"]:hover {
 }
 
 .alert {
-
+    padding: 5px 10px;
 }
 
 .alert-with-text {
@@ -78,10 +78,6 @@ button[type="submit"]:hover {
 
 .alert-danger {
     color: #FF1741;
-}
-
-.alert-success {
-    color: #009119;
 }
 
 .form-group {
