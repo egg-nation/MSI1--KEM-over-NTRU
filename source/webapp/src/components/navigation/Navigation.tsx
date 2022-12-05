@@ -1,8 +1,29 @@
 import SidebarMenu from 'react-bootstrap-sidebar-menu';
 
 import "./navigation.css";
+import NavItem from "./NavItem";
+import DashboardIcon from "../../utils/resources/icons/menu/DashboardIcon";
+import EncryptDecryptIcon from "../../utils/resources/icons/menu/EncryptDecryptIcon";
+import EntriesVisualizationIcon from "../../utils/resources/icons/menu/EntriesVisualizationIcon";
+import WikiIcon from "../../utils/resources/icons/menu/WikiIcon";
+import React from "react";
+import {useAtom} from "jotai";
+import {userAtom} from "../../services/UserAtom";
+import LogoutIcon from "../../utils/resources/icons/menu/LogoutIcon";
+import UserInfo from "./UserInfo";
 
-const Navigation = (props: any) => {
+type Props = {
+    currentPage: string
+}
+
+const Navigation = ({currentPage}: Props) => {
+
+    const [currentUser, setCurrentUser] = useAtom(userAtom);
+
+    const handleLogout = () => {
+
+        setCurrentUser(undefined);
+    }
 
     return (
         <>
@@ -26,7 +47,17 @@ const Navigation = (props: any) => {
                 </SidebarMenu.Header>
                 <SidebarMenu.Body>
                     <SidebarMenu.Nav>
-                        {props.children}
+                        <NavItem icon={<DashboardIcon/>} text="Dashboard" url="/" target="_self" isActive={currentPage == "/"}/>
+                        <NavItem icon={<EncryptDecryptIcon/>} text="Encrypt / Decrypt" url="/encrypt-decrypt"
+                                 target="_self" isActive={currentPage == "/encrypt-decrypt"}/>
+                        <NavItem icon={<EntriesVisualizationIcon/>} text="Entries visualization"
+                                 url="/entries-visualization" target="_self" isActive={currentPage == "/entries-visualization"}/>
+                        <NavItem icon={<WikiIcon/>} text="Wiki" url="/wiki" target="_self" isActive={currentPage == "/wiki"}/>
+
+                        <div className="navigation-bottom">
+                            <UserInfo username={currentUser?.username} email={currentUser?.email}/>
+                            <NavItem icon={<LogoutIcon/>} onClick={() => {handleLogout()}} className="nav-item-with-bg" text="Logout"/>
+                        </div>
                     </SidebarMenu.Nav>
                 </SidebarMenu.Body>
             </SidebarMenu>

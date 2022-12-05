@@ -1,0 +1,26 @@
+.table {
+    width: 100%;
+    caption-side: bottom;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.table-header {
+    color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.05);
+    height: 40px;
+    border-style: hidden;
+}
+
+.table-header-cell {
+    text-transform: uppercase;
+    font-weight: 500;
+    opacity: 0.5;
+}
+
+.table-row {
+    color: #FFFFFF;
+    height: 50px;
+    border-color: rgba(255, 255, 255, 0.1);
+    vertical-align: middle;
+}

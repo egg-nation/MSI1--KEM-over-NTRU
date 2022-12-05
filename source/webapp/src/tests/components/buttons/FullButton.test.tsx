@@ -11,7 +11,7 @@ describe('FullButton component test', () => {
     it('should render FullButton with no errors', () => {
 
         // execute
-        render(<FullButton url={"/test"}>button text</FullButton>);
+        render(<FullButton url={"/test"} text={"button text"} target={"_self"}/>);
 
         // verify
         expect(console.error).not.toHaveBeenCalled();
@@ -20,7 +20,7 @@ describe('FullButton component test', () => {
     it('should display FullButton correctly', () => {
 
         // execute
-        const {container} = render(<FullButton url={"/test"}>button text</FullButton>);
+        const {container} = render(<FullButton url={"/test"} text={"button text"} target={"_self"}/>);
 
         // verify
         const fullButton = container.getElementsByClassName("button").item(0);

@@ -1,0 +1,149 @@
+.no-padding-left {
+    padding-left: 0;
+}
+
+.no-padding-right {
+    padding-right: 0;
+}
+
+.content-padding {
+    padding: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .padding-top-bottom {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .padding-top-bottom-big {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .padding-top-bottom-small {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .padding-top {
+        padding-top: 60px;
+    }
+
+    .padding-top-big {
+        padding-top: 80px;
+    }
+
+    .padding-top-small {
+        padding-top: 40px;
+    }
+
+    .padding-top-smaller {
+        padding-top: 30px;
+    }
+
+    .padding-bottom {
+        padding-bottom: 60px;
+    }
+
+    .padding-bottom-big {
+        padding-bottom: 80px;
+    }
+
+    .padding-bottom-small {
+        padding-bottom: 40px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+
+    .padding-top-bottom {
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+
+    .padding-top-bottom-big {
+        padding-top: 90px;
+        padding-bottom: 90px;
+    }
+
+    .padding-top-bottom-small {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .padding-top {
+        padding-top: 70px;
+    }
+
+    .padding-top-big {
+        padding-top: 90px;
+    }
+
+    .padding-top-small {
+        padding-top: 50px;
+    }
+
+    .padding-top-smaller {
+        padding-top: 30px;
+    }
+
+    .padding-bottom {
+        padding-bottom: 70px;
+    }
+
+    .padding-bottom-big {
+        padding-bottom: 90px;
+    }
+
+    .padding-bottom-small {
+        padding-bottom: 50px;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+
+    .padding-top-bottom {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .padding-top-bottom-big {
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    .padding-top-bottom-small {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .padding-top {
+        padding-top: 80px;
+    }
+
+    .padding-top-big {
+        padding-top: 100px;
+    }
+
+    .padding-top-small {
+        padding-top: 60px;
+    }
+
+    .padding-top-smaller {
+        padding-top: 30px;
+    }
+
+    .padding-bottom {
+        padding-bottom: 80px;
+    }
+
+    .padding-bottom-big {
+        padding-bottom: 100px;
+    }
+
+    .padding-bottom-small {
+        padding-bottom: 60px;
+    }
+}

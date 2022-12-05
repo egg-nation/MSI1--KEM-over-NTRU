@@ -2,16 +2,26 @@ import SidebarMenu from 'react-bootstrap-sidebar-menu';
 
 import "./navigation.css";
 
-const NavItem = (props: any) => {
+type Props = {
+    url?: string,
+    target?: string,
+    isActive?: boolean,
+    icon?: React.ReactNode,
+    text?: string,
+    onClick?(): void,
+    className?: string
+}
+
+const NavItem = ({url, target, isActive, icon, text, onClick, className}: Props) => {
 
     return (
-        <SidebarMenu.Nav.Link href={props.url} className={props.isActive ? "active" : undefined
+        <SidebarMenu.Nav.Link onClick={onClick} href={url} target={target} className={isActive ? "active " + className : className
         }>
             <SidebarMenu.Nav.Icon>
-                {props.icon}
+                {icon}
             </SidebarMenu.Nav.Icon>
             <SidebarMenu.Nav.Title>
-                {props.text}
+                {text}
             </SidebarMenu.Nav.Title>
         </SidebarMenu.Nav.Link>
     );

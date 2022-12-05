@@ -1,0 +1,41 @@
+.row {
+    position: relative;
+}
+
+section {
+    position: relative;
+    width: 100vw;
+}
+
+.logo svg {
+    width: 200px;
+    height: auto;
+    padding: 30px 0;
+}
+
+.half-opacity {
+    opacity: 0.5;
+}
+
+.content {
+    height: calc(100vh - 70px);
+    overflow: auto;
+    overflow-x: hidden;
+    padding-left: 4px;
+}
+
+.row-with-no-gutter-x {
+    --bs-gutter-x: 0 !important;
+}
+
+section {
+    width: auto;
+}
+
+body {
+    overflow-y: hidden;
+}
+
+.skin-color {
+    color: #7B3DFF;
+}
