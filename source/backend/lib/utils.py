@@ -1,5 +1,6 @@
 from sympy.abc import x
-from sympy import Poly, Matrix, GF, Matrix, oo, sqrt
+from sympy import Poly, Matrix, GF, Matrix, oo, sqrt, invert, NotInvertible
+from random import randint
 
 def mod(X, m):
 	"""modulo operation extended to negative numbers and sympy structures"""
@@ -31,3 +32,31 @@ def round(p):
 
 	return _round(p)
 
+def sample_binary_space(size):
+	p = randint(0, (2**size) - 1)
+	return Poly([ (p >> i) & 1 for i in range(size) ], x)
+
+def BytestoPolynom(b):
+	n = 0
+	coeffs = []
+	for i in b[::-1]:
+		n = (n << 8) + i
+
+	while n > 0:
+		coeffs.append(n & 1)
+		n >>= 1
+
+	return Poly(coeffs[::-1], x)
+
+def PolynomtoBytes(p):
+	b = []
+	n = 0
+	c = p.all_coeffs()
+	for i in c:
+		n = (n << 1) | i
+
+	while n > 0:
+		b.append(n % 256)
+		n = n//256
+
+	return bytes(b)

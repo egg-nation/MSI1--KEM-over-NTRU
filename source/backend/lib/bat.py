@@ -5,18 +5,14 @@ class BAT(AlgorithmInterface):
 	def __init__(self, *args, **kwargs):
 		pass
 
-	@timer(algorithm = "BAT", function_name = "generate_keys")
-	def generate_keys(self, *args, **kwargs):
+	@timer(algorithm = "BAT", function_name = "Keygen")
+	def Keygen(self, *args, **kwargs):
 		pass
 
-	@timer(algorithm = "BAT", function_name = "generate_public_key")
-	def generate_public_key(self, *args, **kwargs):
+	@timer(algorithm = "BAT", function_name = "Encapsulate")
+	def Encapsulate(self, *args, **kwargs):
 		pass
 
-	@timer(algorithm = "BAT", function_name = "encrypt")
-	def encrypt(self, *args, **kwargs):
-		pass
-
-	@timer(algorithm = "BAT", function_name = "decrypt")
-	def decrypt(self, *args, **kwargs):
+	@timer(algorithm = "BAT", function_name = "Decapsulate")
+	def Decapsulate(self, *args, **kwargs):
 		pass
