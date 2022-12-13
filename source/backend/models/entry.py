@@ -24,6 +24,17 @@ class Entry(BaseModel):
 				executionTime = obj["executionTime"],
 			)
 
+	@classmethod
+	def from_execution(cls, obj, userId, keyId):
+		return Entry(
+				userId = str(userId),
+				algorithmName = obj["algorithm"],
+				functionName = obj["function_name"],
+				inputParameters = {},
+				keyId = str(keyId),
+				executionTime = obj["end"] - obj["start"],
+			)
+
 	def toProto(self):
 		return messages.Entry(**dict(self))
 

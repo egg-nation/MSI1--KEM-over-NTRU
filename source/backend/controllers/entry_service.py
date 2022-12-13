@@ -24,7 +24,7 @@ class EntryService(EntryServiceServicer):
 			return ProtoEntry()
 
 		entry = Entry.from_mongo(mongo_entry)
-		if entry.userID != token.userID:
+		if entry.userId != token.userId:
 			context.set_code(grpc.StatusCode.PERMISSION_DENIED)
 			context.set_details("You don't have permission to access this entry!")
 			return ProtoEntry()
@@ -38,7 +38,7 @@ class EntryService(EntryServiceServicer):
 			context.set_details("You need to be authenticated first!")
 			return ProtoEntry()
 
-		for mongo_entry in DB.find({"userID": token.userID}):
+		for mongo_entry in DB.find({"userId": token.userId}):
 			yield Entry.from_mongo(mongo_entry).toProto()
 
 	def deleteEntry(self, request, context):
@@ -48,5 +48,5 @@ class EntryService(EntryServiceServicer):
 			context.set_details("You need to be authenticated first!")
 			return ProtoEntry()
 
-		DB.delete_one({"_id":request.entryId, "userID":token.userID})
+		DB.delete_one({"_id":request.entryId, "userId":token.userId})
 		return request

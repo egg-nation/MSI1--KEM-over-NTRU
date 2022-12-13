@@ -23,6 +23,8 @@ services:
     image: mongo
     volumes:
       - kem-backend-db:/data/db #we need an external volume, not a mountpoint because windows and mac don't support memory mapped files
+    ports:
+      - 27018:27017
 
   frontend-server:
     image: kem-webapp:latest

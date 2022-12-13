@@ -26,21 +26,5 @@ def timer(algorithm, function_name):
 	return specialized_decorator_build
 
 def gather():
-	results = {}
 	while not timer_queue.empty():
-		result = timer_queue.get()
-		function_name = result["function_name"]
-		algorithm = result["algorithm"]
-
-		del result["function_name"]
-		del result["algorithm"]
-
-		if not algorithm in results:
-			results[algorithm] = {}
-
-		if not function_name in results[algorithm]:
-			results[algorithm][function_name] = []
-
-		results[algorithm][function_name].append(result)
-
-	return results		
+		yield timer_queue.get()

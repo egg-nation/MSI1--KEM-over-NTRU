@@ -1,4 +1,5 @@
 from .utils import *
+from random import randint
 
 ### general maths section ###
 
@@ -77,3 +78,12 @@ def decode_E8(X, l):
 	k0, k1, k2, k3 = arr[b][0]
 
 	return Matrix([[k0, k1 ^ k0, k3, b]])
+
+def random_polynom(max_degree, eta):
+	"""random sampling of the polynom space as described in section 2, Sets and Distributions"""
+	def cbdist():
+		a = Matrix([[ randint(0, 1) for i in range(eta) ]])
+		b = Matrix([[ randint(0, 1) for i in range(eta) ]])
+		return sum(list(a-b))
+	
+	return Poly([ cbdist() for i in range(max_degree) ], x)

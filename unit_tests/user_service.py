@@ -18,7 +18,7 @@ def test_login():
 			assert True
 
 def test_register():
-	with grpc.insecure_channel("localhost:5001") as channel:
+	with grpc.insecure_channel("localhost:5000") as channel:
 		stub = controllers.v1_pb2_grpc.UserServiceStub(channel)
 		password = urandom(10).hex()
 		login_creds = controllers.v1_pb2.LoginCredentials(username = "test", password = password)
