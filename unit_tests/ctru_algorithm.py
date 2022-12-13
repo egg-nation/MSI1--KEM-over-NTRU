@@ -24,6 +24,3 @@ def test_kem():
 		Kp = alg.Decapsulate(c)
 		assert K == Kp
 
-
-if __name__ == "__main__":
-	test_kem()

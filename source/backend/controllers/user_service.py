@@ -6,10 +6,12 @@ from pymongo import MongoClient
 from models.user import User, AuthToken
 from bcrypt import hashpw, gensalt
 from bson import ObjectId
+from controllers.utils import catch_error, require_auth
 
 DB = MongoClient(MONGODB_URL).KEM.users
 
 class UserService(UserServiceServicer):
+	@catch_error(ProtoUser)
 	def login(self, request, context):
 		db_user = DB.find_one({"username":request.username})
 		if db_user is None:
@@ -25,6 +27,7 @@ class UserService(UserServiceServicer):
 
 		return user.toProto()
 
+	@catch_error(ProtoUser)
 	def register(self, request, context):
 		if not DB.find_one({ "$or": [{ "username":request.username}, {"email":request.emailAddress } ]}) is None:
 			context.set_code(grpc.StatusCode.ALREADY_EXISTS)
@@ -39,11 +42,9 @@ class UserService(UserServiceServicer):
 
 		return self.login(request, context)
 
-	def delete(self, request, context):
-		if not AuthToken.fromProto(request).isValid():
-			context.set_code(grpc.StatusCode.PERMISSION_DENIED)
-			context.set_details("You need to be authenticated first!")
-			return ProtoUser()
 
+	@require_auth(ProtoUser)
+	@catch_error(ProtoUser)
+	def delete(self, request, context):
 		DB.delete_one({"_id":ObjectId(request.userId)})
 		return ProtoUser(userId = "", username = "", emailAddress = "")

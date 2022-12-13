@@ -1,22 +1,20 @@
 import grpc
 from config import MONGODB_URL
-from v1_pb2 import Entry as ProtoEntry
+from v1_pb2 import Entry as ProtoEntry, EntryID
 from v1_pb2_grpc import EntryServiceServicer
 from pymongo import MongoClient
 from models.user import AuthToken
 from models.entry import Entry
 from bson import ObjectId
+from controllers.utils import catch_error, require_auth
 
 DB = MongoClient(MONGODB_URL).KEM.entries
 
 class EntryService(EntryServiceServicer):
+	@require_auth(ProtoEntry)
+	@catch_error(ProtoEntry)
 	def getById(self, request, context):
 		token = AuthToken.fromProto(request.token) 
-		if not token.isValid():
-			context.set_code(grpc.StatusCode.PERMISSION_DENIED)
-			context.set_details("You need to be authenticated first!")
-			return ProtoEntry()
-
 		mongo_entry = DB.find_one({"_id":ObjectId(request.entryId)})
 		if mongo_entry is None:
 			context.set_code(grpc.StatusCode.NOT_FOUND)
@@ -31,22 +29,16 @@ class EntryService(EntryServiceServicer):
 
 		return entry.toProto()
 
+	@require_auth(ProtoEntry)
+	@catch_error(ProtoEntry)
 	def getEntryHistory(self, request, context):
 		token = AuthToken.fromProto(request) 
-		if not token.isValid():
-			context.set_code(grpc.StatusCode.PERMISSION_DENIED)
-			context.set_details("You need to be authenticated first!")
-			return ProtoEntry()
-
 		for mongo_entry in DB.find({"userId": token.userId}):
 			yield Entry.from_mongo(mongo_entry).toProto()
 
+	@require_auth(EntryID)
+	@catch_error(EntryID)
 	def deleteEntry(self, request, context):
 		token = AuthToken.fromProto(request.token) 
-		if not token.isValid():
-			context.set_code(grpc.StatusCode.PERMISSION_DENIED)
-			context.set_details("You need to be authenticated first!")
-			return ProtoEntry()
-
 		DB.delete_one({"_id":request.entryId, "userId":token.userId})
 		return request
