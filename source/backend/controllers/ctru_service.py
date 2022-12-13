@@ -11,6 +11,7 @@ from models.user import AuthToken
 from models.entry import Entry
 from bson import ObjectId
 from Crypto.Util.asn1 import DerSequence
+from controllers.utils import require_auth, catch_error
 
 entries_DB = MongoClient(MONGODB_URL).KEM.entries
 keys_DB = MongoClient(MONGODB_URL).KEM.CTRU_keys
@@ -28,17 +29,13 @@ def export_key(alg):
 	}
 
 class CTRUService(CTRUServiceServicer):
+	@require_auth(CTRUKeygenResult)
+	@catch_error(CTRUKeygenResult)
 	def keygen(self, request, context):
 		token = AuthToken.fromProto(request.token)
-		if not token.isValid():
-			context.set_code(grpc.StatusCode.PERMISSION_DENIED)
-			context.set_details("You need to be authenticated first!")
-			return CTRUKeygenResult()
 		alg = CTRU(request.parameters.n, request.parameters.q, request.parameters.q2, request.parameters.eta)
 		alg.Keygen()
-		print(PolynomtoBytes(alg.pk))
-		print(alg.sk)
-		print(alg.z)
+		
 		key = export_key(alg)
 		key_id = str(keys_DB.insert_one({"userId":token.userId, **key}).inserted_id)
 
@@ -57,14 +54,10 @@ class CTRUService(CTRUServiceServicer):
 		)
 
 
-
+	@require_auth(CTRUKeys)
+	@catch_error(CTRUKeys)
 	def getKeys(self, request, context):
 		token = AuthToken.fromProto(request)
-		if not token.isValid():
-			context.set_code(grpc.StatusCode.PERMISSION_DENIED)
-			context.set_details("You need to be authenticated first!")
-			return CTRUKeys()
-
 		for key in keys_DB.find({"userId":token.userId}):
 			yield CTRUKeys(
 					keyId = str(key["_id"]),
@@ -73,13 +66,10 @@ class CTRUService(CTRUServiceServicer):
 					sk = key["sk"]
 				)
 
+	@require_auth(CTRUKeys)
+	@catch_error(CTRUKeys)
 	def addKeys(self, request, context):
 		token = AuthToken.fromProto(request.token)
-		if not token.isValid():
-			context.set_code(grpc.StatusCode.PERMISSION_DENIED)
-			context.set_details("You need to be authenticated first!")
-			return CTRUKeys()
-
 		key = {
 			"parameters": {
 				"n": request.keys.parameters.n,
@@ -100,13 +90,10 @@ class CTRUService(CTRUServiceServicer):
 					sk = key["sk"]
 				)
 
+	@require_auth(Entry)
+	@catch_error(Entry)
 	def runEncaps(self, request, context):
 		token = AuthToken.fromProto(request.token)
-		if not token.isValid():
-			context.set_code(grpc.StatusCode.PERMISSION_DENIED)
-			context.set_details("You need to be authenticated first!")
-			return Entry()
-
 		alg = CTRU(request.keys.parameters.n, request.keys.parameters.q, request.keys.parameters.q2, request.keys.parameters.eta)
 		alg.pk = Poly(DerSequence().decode(b64decode(request.keys.pk)), x)
 		alg.sk, alg.z = [ Poly(DerSequence().decode(b64decode(b)), x) for b in request.keys.sk.split(";") ]

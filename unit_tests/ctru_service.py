@@ -55,6 +55,3 @@ def test_ctru():
 	with grpc.insecure_channel("127.0.0.1:5000") as channel:
 		user_stub = controllers.v1_pb2_grpc.UserServiceStub(channel)
 		user_stub.delete(token)
-
-if __name__ == "__main__":
-	test_ctru()
