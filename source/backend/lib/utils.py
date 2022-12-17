@@ -1,6 +1,8 @@
 from sympy.abc import x
 from sympy import Poly, Matrix, GF, Matrix, oo, sqrt, invert, NotInvertible
 from random import randint
+from math import floor, ceil
+import numpy as np
 
 def mod(X, m):
 	"""modulo operation extended to negative numbers and sympy structures"""
@@ -60,3 +62,35 @@ def PolynomtoBytes(p):
 		n = n//256
 
 	return bytes(b)
+
+def BytesToInt(B):
+	x = 0
+	for b in B[::-1]:
+		x = (x << 8) | b
+
+	return x
+
+def IntToBytes(beta):
+	B = []
+	while beta > 0:
+		B.append(beta & 0xff)
+		beta >>= 8
+
+	if len(B) == 0:
+		B.append(0)
+
+	return bytes(B)
+
+def flatten(arr):
+	if isinstance(arr, np.ndarray):
+		if arr.ndim == 0:
+			return [arr.item()]
+
+	if type(arr) in [list, tuple] or isinstance(arr, np.ndarray):
+		el = []
+		for a in arr:
+			el += flatten(a)
+
+		return el
+
+	return [arr]
