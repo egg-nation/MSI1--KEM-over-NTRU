@@ -5,6 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 from controllers.user_service import UserService
 from controllers.entry_service import EntryService
 from controllers.ctru_service import CTRUService
+from controllers.kyber_service import KYBERService
 import grpc
 import controllers.v1_pb2_grpc as ApiSpec
 
@@ -13,7 +14,7 @@ def main():
 
 	ApiSpec.add_UserServiceServicer_to_server(UserService(), server)
 	ApiSpec.add_EntryServiceServicer_to_server(EntryService(), server)
-	ApiSpec.add_BATServiceServicer_to_server(ApiSpec.BATServiceServicer(), server)
+	ApiSpec.add_KYBERServiceServicer_to_server(KYBERService(), server)
 	ApiSpec.add_CTRUServiceServicer_to_server(CTRUService(), server)
 
 	server.add_insecure_port("[::]:5000")

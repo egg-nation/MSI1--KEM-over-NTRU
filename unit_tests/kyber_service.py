@@ -7,7 +7,7 @@ import controllers.v1_pb2
 import controllers.v1_pb2_grpc
 from os import urandom
 
-def test_ctru():
+def test_kyber():
 	token = None
 	with grpc.insecure_channel("127.0.0.1:5000") as channel:
 		user_stub = controllers.v1_pb2_grpc.UserServiceStub(channel)
@@ -18,20 +18,22 @@ def test_ctru():
 
 	entries = None
 	with grpc.insecure_channel("127.0.0.1:5000") as channel:
-		stub = controllers.v1_pb2_grpc.CTRUServiceStub(channel)
-		params = controllers.v1_pb2.CTRUParameters(
-			n = 32,
-			q = 3457,
-			q2 = 2**9,
-			eta = 2
+		stub = controllers.v1_pb2_grpc.KYBERServiceStub(channel)
+		params = controllers.v1_pb2.KYBERParameters(
+			n = 256,
+			q = 3329,
+			eta = 2,
+			k = 2,
+			du = 10,
+			dv = 4
 		)
 
-		keygen_result = stub.keygen(controllers.v1_pb2.CTRUKeygenParameters(token = token, parameters = params))
+		keygen_result = stub.keygen(controllers.v1_pb2.KYBERKeygenParameters(token = token, parameters = params))
 
 		assert keygen_result.keys.keyId != ""
 		assert keygen_result.entry.id != ""
 		assert keygen_result.keys.keyId in [ key.keyId for key in stub.getKeys(token)]
-		entries = list(stub.runEncaps(controllers.v1_pb2.CTRUExecution(
+		entries = list(stub.runEncaps(controllers.v1_pb2.KYBERExecution(
 				keys = keygen_result.keys,
 				token = token,
 				iterations = 3
@@ -39,7 +41,7 @@ def test_ctru():
 		assert len(entries) > 0
 
 		for entry in entries:
-			print(list(stub.runDecaps(controllers.v1_pb2.CTRUExecution(
+			print(list(stub.runDecaps(controllers.v1_pb2.KYBERExecution(
 				keys = keygen_result.keys,
 				token = token,
 				iterations = 3,
@@ -63,3 +65,5 @@ def test_ctru():
 	with grpc.insecure_channel("127.0.0.1:5000") as channel:
 		user_stub = controllers.v1_pb2_grpc.UserServiceStub(channel)
 		user_stub.delete(token)
+
+test_kyber()

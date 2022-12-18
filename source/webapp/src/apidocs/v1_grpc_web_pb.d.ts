@@ -59,37 +59,37 @@ export class EntryServiceClient {
 
 }
 
-export class BATServiceClient {
+export class KYBERServiceClient {
   constructor (hostname: string,
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });
 
   keygen(
-    request: v1_pb.BATKeygenParameters,
+    request: v1_pb.KYBERKeygenParameters,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: v1_pb.BATKeygenResult) => void
-  ): grpcWeb.ClientReadableStream<v1_pb.BATKeygenResult>;
+               response: v1_pb.KYBERKeygenResult) => void
+  ): grpcWeb.ClientReadableStream<v1_pb.KYBERKeygenResult>;
 
   getKeys(
     request: v1_pb.AuthToken,
     metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<v1_pb.BATKeys>;
+  ): grpcWeb.ClientReadableStream<v1_pb.KYBERKeys>;
 
   addKeys(
-    request: v1_pb.BATKeyImport,
+    request: v1_pb.KYBERKeyImport,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: v1_pb.BATKeys) => void
-  ): grpcWeb.ClientReadableStream<v1_pb.BATKeys>;
+               response: v1_pb.KYBERKeys) => void
+  ): grpcWeb.ClientReadableStream<v1_pb.KYBERKeys>;
 
   runEncaps(
-    request: v1_pb.BATExecution,
+    request: v1_pb.KYBERExecution,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<v1_pb.Entry>;
 
   runDecaps(
-    request: v1_pb.BATExecution,
+    request: v1_pb.KYBERExecution,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<v1_pb.Entry>;
 
@@ -175,33 +175,33 @@ export class EntryServicePromiseClient {
 
 }
 
-export class BATServicePromiseClient {
+export class KYBERServicePromiseClient {
   constructor (hostname: string,
                credentials?: null | { [index: string]: string; },
                options?: null | { [index: string]: any; });
 
   keygen(
-    request: v1_pb.BATKeygenParameters,
+    request: v1_pb.KYBERKeygenParameters,
     metadata?: grpcWeb.Metadata
-  ): Promise<v1_pb.BATKeygenResult>;
+  ): Promise<v1_pb.KYBERKeygenResult>;
 
   getKeys(
     request: v1_pb.AuthToken,
     metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<v1_pb.BATKeys>;
+  ): grpcWeb.ClientReadableStream<v1_pb.KYBERKeys>;
 
   addKeys(
-    request: v1_pb.BATKeyImport,
+    request: v1_pb.KYBERKeyImport,
     metadata?: grpcWeb.Metadata
-  ): Promise<v1_pb.BATKeys>;
+  ): Promise<v1_pb.KYBERKeys>;
 
   runEncaps(
-    request: v1_pb.BATExecution,
+    request: v1_pb.KYBERExecution,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<v1_pb.Entry>;
 
   runDecaps(
-    request: v1_pb.BATExecution,
+    request: v1_pb.KYBERExecution,
     metadata?: grpcWeb.Metadata
   ): grpcWeb.ClientReadableStream<v1_pb.Entry>;
 

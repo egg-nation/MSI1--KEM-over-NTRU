@@ -132,8 +132,13 @@ export class Entry extends jspb.Message {
   getFunctionname(): string;
   setFunctionname(value: string): Entry;
 
-  getInputparametersMap(): jspb.Map<string, number>;
+  getInputparametersMap(): jspb.Map<string, string>;
   clearInputparametersMap(): Entry;
+
+  getOutput(): string;
+  setOutput(value: string): Entry;
+  hasOutput(): boolean;
+  clearOutput(): Entry;
 
   getKeyid(): string;
   setKeyid(value: string): Entry;
@@ -155,7 +160,8 @@ export namespace Entry {
     userid?: string,
     algorithmname: string,
     functionname: string,
-    inputparametersMap: Array<[string, number]>,
+    inputparametersMap: Array<[string, string]>,
+    output?: string,
     keyid: string,
     executiontime: number,
   }
@@ -185,174 +191,188 @@ export namespace EntryID {
   }
 }
 
-export class BATParameters extends jspb.Message {
+export class KYBERParameters extends jspb.Message {
   getN(): number;
-  setN(value: number): BATParameters;
-
-  getB(): number;
-  setB(value: number): BATParameters;
-
-  getK(): number;
-  setK(value: number): BATParameters;
+  setN(value: number): KYBERParameters;
 
   getQ(): number;
-  setQ(value: number): BATParameters;
+  setQ(value: number): KYBERParameters;
+
+  getEta(): number;
+  setEta(value: number): KYBERParameters;
+
+  getK(): number;
+  setK(value: number): KYBERParameters;
+
+  getDu(): number;
+  setDu(value: number): KYBERParameters;
+
+  getDv(): number;
+  setDv(value: number): KYBERParameters;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BATParameters.AsObject;
-  static toObject(includeInstance: boolean, msg: BATParameters): BATParameters.AsObject;
-  static serializeBinaryToWriter(message: BATParameters, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BATParameters;
-  static deserializeBinaryFromReader(message: BATParameters, reader: jspb.BinaryReader): BATParameters;
+  toObject(includeInstance?: boolean): KYBERParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: KYBERParameters): KYBERParameters.AsObject;
+  static serializeBinaryToWriter(message: KYBERParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): KYBERParameters;
+  static deserializeBinaryFromReader(message: KYBERParameters, reader: jspb.BinaryReader): KYBERParameters;
 }
 
-export namespace BATParameters {
+export namespace KYBERParameters {
   export type AsObject = {
     n: number,
-    b: number,
-    k: number,
     q: number,
+    eta: number,
+    k: number,
+    du: number,
+    dv: number,
   }
 }
 
-export class BATKeys extends jspb.Message {
+export class KYBERKeys extends jspb.Message {
   getKeyid(): string;
-  setKeyid(value: string): BATKeys;
+  setKeyid(value: string): KYBERKeys;
   hasKeyid(): boolean;
-  clearKeyid(): BATKeys;
+  clearKeyid(): KYBERKeys;
 
-  getParameters(): BATParameters | undefined;
-  setParameters(value?: BATParameters): BATKeys;
+  getParameters(): KYBERParameters | undefined;
+  setParameters(value?: KYBERParameters): KYBERKeys;
   hasParameters(): boolean;
-  clearParameters(): BATKeys;
+  clearParameters(): KYBERKeys;
 
   getPk(): string;
-  setPk(value: string): BATKeys;
+  setPk(value: string): KYBERKeys;
 
   getSk(): string;
-  setSk(value: string): BATKeys;
+  setSk(value: string): KYBERKeys;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BATKeys.AsObject;
-  static toObject(includeInstance: boolean, msg: BATKeys): BATKeys.AsObject;
-  static serializeBinaryToWriter(message: BATKeys, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BATKeys;
-  static deserializeBinaryFromReader(message: BATKeys, reader: jspb.BinaryReader): BATKeys;
+  toObject(includeInstance?: boolean): KYBERKeys.AsObject;
+  static toObject(includeInstance: boolean, msg: KYBERKeys): KYBERKeys.AsObject;
+  static serializeBinaryToWriter(message: KYBERKeys, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): KYBERKeys;
+  static deserializeBinaryFromReader(message: KYBERKeys, reader: jspb.BinaryReader): KYBERKeys;
 }
 
-export namespace BATKeys {
+export namespace KYBERKeys {
   export type AsObject = {
     keyid?: string,
-    parameters?: BATParameters.AsObject,
+    parameters?: KYBERParameters.AsObject,
     pk: string,
     sk: string,
   }
 }
 
-export class BATKeygenResult extends jspb.Message {
-  getKeys(): BATKeys | undefined;
-  setKeys(value?: BATKeys): BATKeygenResult;
+export class KYBERKeygenResult extends jspb.Message {
+  getKeys(): KYBERKeys | undefined;
+  setKeys(value?: KYBERKeys): KYBERKeygenResult;
   hasKeys(): boolean;
-  clearKeys(): BATKeygenResult;
+  clearKeys(): KYBERKeygenResult;
 
   getEntry(): Entry | undefined;
-  setEntry(value?: Entry): BATKeygenResult;
+  setEntry(value?: Entry): KYBERKeygenResult;
   hasEntry(): boolean;
-  clearEntry(): BATKeygenResult;
+  clearEntry(): KYBERKeygenResult;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BATKeygenResult.AsObject;
-  static toObject(includeInstance: boolean, msg: BATKeygenResult): BATKeygenResult.AsObject;
-  static serializeBinaryToWriter(message: BATKeygenResult, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BATKeygenResult;
-  static deserializeBinaryFromReader(message: BATKeygenResult, reader: jspb.BinaryReader): BATKeygenResult;
+  toObject(includeInstance?: boolean): KYBERKeygenResult.AsObject;
+  static toObject(includeInstance: boolean, msg: KYBERKeygenResult): KYBERKeygenResult.AsObject;
+  static serializeBinaryToWriter(message: KYBERKeygenResult, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): KYBERKeygenResult;
+  static deserializeBinaryFromReader(message: KYBERKeygenResult, reader: jspb.BinaryReader): KYBERKeygenResult;
 }
 
-export namespace BATKeygenResult {
+export namespace KYBERKeygenResult {
   export type AsObject = {
-    keys?: BATKeys.AsObject,
+    keys?: KYBERKeys.AsObject,
     entry?: Entry.AsObject,
   }
 }
 
-export class BATKeygenParameters extends jspb.Message {
+export class KYBERKeygenParameters extends jspb.Message {
   getToken(): AuthToken | undefined;
-  setToken(value?: AuthToken): BATKeygenParameters;
+  setToken(value?: AuthToken): KYBERKeygenParameters;
   hasToken(): boolean;
-  clearToken(): BATKeygenParameters;
+  clearToken(): KYBERKeygenParameters;
 
-  getParameters(): BATParameters | undefined;
-  setParameters(value?: BATParameters): BATKeygenParameters;
+  getParameters(): KYBERParameters | undefined;
+  setParameters(value?: KYBERParameters): KYBERKeygenParameters;
   hasParameters(): boolean;
-  clearParameters(): BATKeygenParameters;
+  clearParameters(): KYBERKeygenParameters;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BATKeygenParameters.AsObject;
-  static toObject(includeInstance: boolean, msg: BATKeygenParameters): BATKeygenParameters.AsObject;
-  static serializeBinaryToWriter(message: BATKeygenParameters, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BATKeygenParameters;
-  static deserializeBinaryFromReader(message: BATKeygenParameters, reader: jspb.BinaryReader): BATKeygenParameters;
+  toObject(includeInstance?: boolean): KYBERKeygenParameters.AsObject;
+  static toObject(includeInstance: boolean, msg: KYBERKeygenParameters): KYBERKeygenParameters.AsObject;
+  static serializeBinaryToWriter(message: KYBERKeygenParameters, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): KYBERKeygenParameters;
+  static deserializeBinaryFromReader(message: KYBERKeygenParameters, reader: jspb.BinaryReader): KYBERKeygenParameters;
 }
 
-export namespace BATKeygenParameters {
+export namespace KYBERKeygenParameters {
   export type AsObject = {
     token?: AuthToken.AsObject,
-    parameters?: BATParameters.AsObject,
+    parameters?: KYBERParameters.AsObject,
   }
 }
 
-export class BATExecution extends jspb.Message {
-  getKeys(): BATKeys | undefined;
-  setKeys(value?: BATKeys): BATExecution;
+export class KYBERExecution extends jspb.Message {
+  getKeys(): KYBERKeys | undefined;
+  setKeys(value?: KYBERKeys): KYBERExecution;
   hasKeys(): boolean;
-  clearKeys(): BATExecution;
+  clearKeys(): KYBERExecution;
 
   getToken(): AuthToken | undefined;
-  setToken(value?: AuthToken): BATExecution;
+  setToken(value?: AuthToken): KYBERExecution;
   hasToken(): boolean;
-  clearToken(): BATExecution;
+  clearToken(): KYBERExecution;
 
   getIterations(): number;
-  setIterations(value: number): BATExecution;
+  setIterations(value: number): KYBERExecution;
+
+  getData(): string;
+  setData(value: string): KYBERExecution;
+  hasData(): boolean;
+  clearData(): KYBERExecution;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BATExecution.AsObject;
-  static toObject(includeInstance: boolean, msg: BATExecution): BATExecution.AsObject;
-  static serializeBinaryToWriter(message: BATExecution, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BATExecution;
-  static deserializeBinaryFromReader(message: BATExecution, reader: jspb.BinaryReader): BATExecution;
+  toObject(includeInstance?: boolean): KYBERExecution.AsObject;
+  static toObject(includeInstance: boolean, msg: KYBERExecution): KYBERExecution.AsObject;
+  static serializeBinaryToWriter(message: KYBERExecution, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): KYBERExecution;
+  static deserializeBinaryFromReader(message: KYBERExecution, reader: jspb.BinaryReader): KYBERExecution;
 }
 
-export namespace BATExecution {
+export namespace KYBERExecution {
   export type AsObject = {
-    keys?: BATKeys.AsObject,
+    keys?: KYBERKeys.AsObject,
     token?: AuthToken.AsObject,
     iterations: number,
+    data?: string,
   }
 }
 
-export class BATKeyImport extends jspb.Message {
-  getKeys(): BATKeys | undefined;
-  setKeys(value?: BATKeys): BATKeyImport;
+export class KYBERKeyImport extends jspb.Message {
+  getKeys(): KYBERKeys | undefined;
+  setKeys(value?: KYBERKeys): KYBERKeyImport;
   hasKeys(): boolean;
-  clearKeys(): BATKeyImport;
+  clearKeys(): KYBERKeyImport;
 
   getToken(): AuthToken | undefined;
-  setToken(value?: AuthToken): BATKeyImport;
+  setToken(value?: AuthToken): KYBERKeyImport;
   hasToken(): boolean;
-  clearToken(): BATKeyImport;
+  clearToken(): KYBERKeyImport;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): BATKeyImport.AsObject;
-  static toObject(includeInstance: boolean, msg: BATKeyImport): BATKeyImport.AsObject;
-  static serializeBinaryToWriter(message: BATKeyImport, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): BATKeyImport;
-  static deserializeBinaryFromReader(message: BATKeyImport, reader: jspb.BinaryReader): BATKeyImport;
+  toObject(includeInstance?: boolean): KYBERKeyImport.AsObject;
+  static toObject(includeInstance: boolean, msg: KYBERKeyImport): KYBERKeyImport.AsObject;
+  static serializeBinaryToWriter(message: KYBERKeyImport, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): KYBERKeyImport;
+  static deserializeBinaryFromReader(message: KYBERKeyImport, reader: jspb.BinaryReader): KYBERKeyImport;
 }
 
-export namespace BATKeyImport {
+export namespace KYBERKeyImport {
   export type AsObject = {
-    keys?: BATKeys.AsObject,
+    keys?: KYBERKeys.AsObject,
     token?: AuthToken.AsObject,
   }
 }
@@ -487,6 +507,11 @@ export class CTRUExecution extends jspb.Message {
   getIterations(): number;
   setIterations(value: number): CTRUExecution;
 
+  getData(): string;
+  setData(value: string): CTRUExecution;
+  hasData(): boolean;
+  clearData(): CTRUExecution;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CTRUExecution.AsObject;
   static toObject(includeInstance: boolean, msg: CTRUExecution): CTRUExecution.AsObject;
@@ -500,6 +525,7 @@ export namespace CTRUExecution {
     keys?: CTRUKeys.AsObject,
     token?: AuthToken.AsObject,
     iterations: number,
+    data?: string,
   }
 }
 
