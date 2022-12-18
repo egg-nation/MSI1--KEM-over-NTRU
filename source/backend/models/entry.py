@@ -8,6 +8,7 @@ class Entry(BaseModel):
 	algorithmName : str
 	functionName : str
 	inputParameters : dict
+	output : Optional[str]
 	keyId : str
 	executionTime : int
 
@@ -22,6 +23,7 @@ class Entry(BaseModel):
 				inputParameters = obj["inputParameters"],
 				keyId = obj["keyId"],
 				executionTime = obj["executionTime"],
+				output = obj["output"]
 			)
 
 	@classmethod

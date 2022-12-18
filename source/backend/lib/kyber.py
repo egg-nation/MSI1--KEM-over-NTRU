@@ -137,11 +137,13 @@ class Kyber(AlgorithmInterface):
 		M = Compress(self.REv(v - np.matmul(sk.T, u)), 1, self.q)
 		return M.item()
 
+	@timer(algorithm = "Kyber", function_name = "Keygen")
 	def Keygen(self, *args, **kwargs):
 		z = urandom(32)
 		self.pk, skp = self._CPAPKE_KeyGen()
 		self.sk = (skp, self.pk, H(self.pk), z)
 
+	@timer(algorithm = "Kyber", function_name = "Encapsulate")
 	def Encapsulate(self, *args, **kwargs):
 		m = urandom(32)
 		m = H(m)
@@ -150,6 +152,7 @@ class Kyber(AlgorithmInterface):
 		K = KDF(K_bar + H(c))
 		return c, K
 
+	@timer(algorithm = "Kyber", function_name = "Decapsulate")
 	def Decapsulate(self, c, *args, **kwargs):
 		sk, pk, h, z = self.sk
 

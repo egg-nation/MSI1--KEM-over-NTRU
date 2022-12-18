@@ -40,9 +40,10 @@ message Entry{
 	optional string userId = 2;
 	required string algorithmName = 3;
 	required string functionName = 4;
-	map<string, uint64> inputParameters = 5;
-	required string keyId = 6;
-	required int64 executionTime = 7;
+	map<string, string> inputParameters = 5;
+	optional string output = 6;
+	required string keyId = 7;
+	required int64 executionTime = 8;
 }
 
 message EntryID{
@@ -59,52 +60,55 @@ service EntryService{
 //</entry service>
 
 
-//<BAT service>
+//<KYBER service>
 
-message BATParameters{
+message KYBERParameters{
 	required int64 n = 1;
-	required int64 b = 2;
-	required int64 k = 3;
-	required int64 q = 4;
+	required int64 q = 2;
+	required int64 eta = 3;
+	required int64 k = 4;
+	required int64 du = 5;
+	required int64 dv = 6;
 }
 
-message BATKeys{
+message KYBERKeys{
 	optional string keyId = 1;
-	required BATParameters parameters = 2;
+	required KYBERParameters parameters = 2;
 	required string pk = 3;
 	required string sk = 4;
 }
 
-message BATKeygenResult{
-	required BATKeys keys = 1;
+message KYBERKeygenResult{
+	required KYBERKeys keys = 1;
 	required Entry entry = 2;
 }
 
-message BATKeygenParameters{
+message KYBERKeygenParameters{
 	required AuthToken token = 1;
-	required BATParameters parameters = 2;
+	required KYBERParameters parameters = 2;
 }
 
-message BATExecution{
-	required BATKeys keys = 1;
+message KYBERExecution{
+	required KYBERKeys keys = 1;
 	required AuthToken token = 2;
 	required int64 iterations = 3;
+	optional string data = 4;
 }
 
-message BATKeyImport{
-	required BATKeys keys = 1;
+message KYBERKeyImport{
+	required KYBERKeys keys = 1;
 	required AuthToken token = 2;
 }
 
-service BATService{
-	rpc keygen(BATKeygenParameters) returns (BATKeygenResult){};
-	rpc getKeys(AuthToken) returns (stream BATKeys){};
-	rpc addKeys(BATKeyImport) returns (BATKeys){};
-	rpc runEncaps(BATExecution) returns (stream Entry){}; 
-	rpc runDecaps(BATExecution) returns (stream Entry){}; 
+service KYBERService{
+	rpc keygen(KYBERKeygenParameters) returns (KYBERKeygenResult){};
+	rpc getKeys(AuthToken) returns (stream KYBERKeys){};
+	rpc addKeys(KYBERKeyImport) returns (KYBERKeys){};
+	rpc runEncaps(KYBERExecution) returns (stream Entry){}; 
+	rpc runDecaps(KYBERExecution) returns (stream Entry){}; 
 }
 
-//</BAT service>
+//</KYBER service>
 
 //<CTRU service>
 
@@ -136,6 +140,7 @@ message CTRUExecution{
 	required CTRUKeys keys = 1;
 	required AuthToken token = 2;
 	required int64 iterations = 3;
+	optional string data = 4;
 }
 
 message CTRUKeyImport{

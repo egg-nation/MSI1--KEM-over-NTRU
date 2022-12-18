@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x08v1.proto\"6\n\x10LoginCredentials\x12\x10\n\x08username\x18\x01 \x02(\t\x12\x10\n\x08password\x18\x02 \x02(\t\"O\n\x13RegisterCredentials\x12\x10\n\x08username\x18\x01 \x02(\t\x12\x14\n\x0c\x65mailAddress\x18\x02 \x02(\t\x12\x10\n\x08password\x18\x03 \x02(\t\"V\n\tAuthToken\x12\x0e\n\x06userId\x18\x01 \x02(\t\x12\x13\n\x0bgeneratedAt\x18\x02 \x02(\x03\x12\x11\n\texpiresAt\x18\x03 \x02(\x03\x12\x11\n\tsignature\x18\x04 \x02(\x0c\"Y\n\x04User\x12\x10\n\x08username\x18\x01 \x02(\t\x12\x14\n\x0c\x65mailAddress\x18\x02 \x02(\t\x12\x0e\n\x06userId\x18\x03 \x02(\t\x12\x19\n\x05token\x18\x04 \x01(\x0b\x32\n.AuthToken\"\xe4\x01\n\x05\x45ntry\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0e\n\x06userId\x18\x02 \x01(\t\x12\x15\n\ralgorithmName\x18\x03 \x02(\t\x12\x14\n\x0c\x66unctionName\x18\x04 \x02(\t\x12\x34\n\x0finputParameters\x18\x05 \x03(\x0b\x32\x1b.Entry.InputParametersEntry\x12\r\n\x05keyId\x18\x06 \x02(\t\x12\x15\n\rexecutionTime\x18\x07 \x02(\x03\x1a\x36\n\x14InputParametersEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x04:\x02\x38\x01\"5\n\x07\x45ntryID\x12\x19\n\x05token\x18\x01 \x02(\x0b\x32\n.AuthToken\x12\x0f\n\x07\x65ntryId\x18\x02 \x02(\t\";\n\rBATParameters\x12\t\n\x01n\x18\x01 \x02(\x03\x12\t\n\x01\x62\x18\x02 \x02(\x03\x12\t\n\x01k\x18\x03 \x02(\x03\x12\t\n\x01q\x18\x04 \x02(\x03\"T\n\x07\x42\x41TKeys\x12\r\n\x05keyId\x18\x01 \x01(\t\x12\"\n\nparameters\x18\x02 \x02(\x0b\x32\x0e.BATParameters\x12\n\n\x02pk\x18\x03 \x02(\t\x12\n\n\x02sk\x18\x04 \x02(\t\"@\n\x0f\x42\x41TKeygenResult\x12\x16\n\x04keys\x18\x01 \x02(\x0b\x32\x08.BATKeys\x12\x15\n\x05\x65ntry\x18\x02 \x02(\x0b\x32\x06.Entry\"T\n\x13\x42\x41TKeygenParameters\x12\x19\n\x05token\x18\x01 \x02(\x0b\x32\n.AuthToken\x12\"\n\nparameters\x18\x02 \x02(\x0b\x32\x0e.BATParameters\"U\n\x0c\x42\x41TExecution\x12\x16\n\x04keys\x18\x01 \x02(\x0b\x32\x08.BATKeys\x12\x19\n\x05token\x18\x02 \x02(\x0b\x32\n.AuthToken\x12\x12\n\niterations\x18\x03 \x02(\x03\"A\n\x0c\x42\x41TKeyImport\x12\x16\n\x04keys\x18\x01 \x02(\x0b\x32\x08.BATKeys\x12\x19\n\x05token\x18\x02 \x02(\x0b\x32\n.AuthToken\"?\n\x0e\x43TRUParameters\x12\t\n\x01n\x18\x01 \x02(\x03\x12\t\n\x01q\x18\x02 \x02(\x03\x12\n\n\x02q2\x18\x03 \x02(\x03\x12\x0b\n\x03\x65ta\x18\x04 \x02(\x03\"V\n\x08\x43TRUKeys\x12\r\n\x05keyId\x18\x01 \x01(\t\x12#\n\nparameters\x18\x02 \x02(\x0b\x32\x0f.CTRUParameters\x12\n\n\x02pk\x18\x03 \x02(\t\x12\n\n\x02sk\x18\x04 \x02(\t\"B\n\x10\x43TRUKeygenResult\x12\x17\n\x04keys\x18\x01 \x02(\x0b\x32\t.CTRUKeys\x12\x15\n\x05\x65ntry\x18\x02 \x02(\x0b\x32\x06.Entry\"V\n\x14\x43TRUKeygenParameters\x12\x19\n\x05token\x18\x01 \x02(\x0b\x32\n.AuthToken\x12#\n\nparameters\x18\x02 \x02(\x0b\x32\x0f.CTRUParameters\"W\n\rCTRUExecution\x12\x17\n\x04keys\x18\x01 \x02(\x0b\x32\t.CTRUKeys\x12\x19\n\x05token\x18\x02 \x02(\x0b\x32\n.AuthToken\x12\x12\n\niterations\x18\x03 \x02(\x03\"C\n\rCTRUKeyImport\x12\x17\n\x04keys\x18\x01 \x02(\x0b\x32\t.CTRUKeys\x12\x19\n\x05token\x18\x02 \x02(\x0b\x32\n.AuthToken2|\n\x0bUserService\x12#\n\x05login\x12\x11.LoginCredentials\x1a\x05.User\"\x00\x12)\n\x08register\x12\x14.RegisterCredentials\x1a\x05.User\"\x00\x12\x1d\n\x06\x64\x65lete\x12\n.AuthToken\x1a\x05.User\"\x00\x32}\n\x0c\x45ntryService\x12\x1d\n\x07getById\x12\x08.EntryID\x1a\x06.Entry\"\x00\x12)\n\x0fgetEntryHistory\x12\n.AuthToken\x1a\x06.Entry\"\x00\x30\x01\x12#\n\x0b\x64\x65leteEntry\x12\x08.EntryID\x1a\x08.EntryID\"\x00\x32\xdb\x01\n\nBATService\x12\x32\n\x06keygen\x12\x14.BATKeygenParameters\x1a\x10.BATKeygenResult\"\x00\x12#\n\x07getKeys\x12\n.AuthToken\x1a\x08.BATKeys\"\x00\x30\x01\x12$\n\x07\x61\x64\x64Keys\x12\r.BATKeyImport\x1a\x08.BATKeys\"\x00\x12&\n\trunEncaps\x12\r.BATExecution\x1a\x06.Entry\"\x00\x30\x01\x12&\n\trunDecaps\x12\r.BATExecution\x1a\x06.Entry\"\x00\x30\x01\x32\xe3\x01\n\x0b\x43TRUService\x12\x34\n\x06keygen\x12\x15.CTRUKeygenParameters\x1a\x11.CTRUKeygenResult\"\x00\x12$\n\x07getKeys\x12\n.AuthToken\x1a\t.CTRUKeys\"\x00\x30\x01\x12&\n\x07\x61\x64\x64Keys\x12\x0e.CTRUKeyImport\x1a\t.CTRUKeys\"\x00\x12\'\n\trunEncaps\x12\x0e.CTRUExecution\x1a\x06.Entry\"\x00\x30\x01\x12\'\n\trunDecaps\x12\x0e.CTRUExecution\x1a\x06.Entry\"\x00\x30\x01')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x08v1.proto\"6\n\x10LoginCredentials\x12\x10\n\x08username\x18\x01 \x02(\t\x12\x10\n\x08password\x18\x02 \x02(\t\"O\n\x13RegisterCredentials\x12\x10\n\x08username\x18\x01 \x02(\t\x12\x14\n\x0c\x65mailAddress\x18\x02 \x02(\t\x12\x10\n\x08password\x18\x03 \x02(\t\"V\n\tAuthToken\x12\x0e\n\x06userId\x18\x01 \x02(\t\x12\x13\n\x0bgeneratedAt\x18\x02 \x02(\x03\x12\x11\n\texpiresAt\x18\x03 \x02(\x03\x12\x11\n\tsignature\x18\x04 \x02(\x0c\"Y\n\x04User\x12\x10\n\x08username\x18\x01 \x02(\t\x12\x14\n\x0c\x65mailAddress\x18\x02 \x02(\t\x12\x0e\n\x06userId\x18\x03 \x02(\t\x12\x19\n\x05token\x18\x04 \x01(\x0b\x32\n.AuthToken\"\xf4\x01\n\x05\x45ntry\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0e\n\x06userId\x18\x02 \x01(\t\x12\x15\n\ralgorithmName\x18\x03 \x02(\t\x12\x14\n\x0c\x66unctionName\x18\x04 \x02(\t\x12\x34\n\x0finputParameters\x18\x05 \x03(\x0b\x32\x1b.Entry.InputParametersEntry\x12\x0e\n\x06output\x18\x06 \x01(\t\x12\r\n\x05keyId\x18\x07 \x02(\t\x12\x15\n\rexecutionTime\x18\x08 \x02(\x03\x1a\x36\n\x14InputParametersEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"5\n\x07\x45ntryID\x12\x19\n\x05token\x18\x01 \x02(\x0b\x32\n.AuthToken\x12\x0f\n\x07\x65ntryId\x18\x02 \x02(\t\"W\n\x0fKYBERParameters\x12\t\n\x01n\x18\x01 \x02(\x03\x12\t\n\x01q\x18\x02 \x02(\x03\x12\x0b\n\x03\x65ta\x18\x03 \x02(\x03\x12\t\n\x01k\x18\x04 \x02(\x03\x12\n\n\x02\x64u\x18\x05 \x02(\x03\x12\n\n\x02\x64v\x18\x06 \x02(\x03\"X\n\tKYBERKeys\x12\r\n\x05keyId\x18\x01 \x01(\t\x12$\n\nparameters\x18\x02 \x02(\x0b\x32\x10.KYBERParameters\x12\n\n\x02pk\x18\x03 \x02(\t\x12\n\n\x02sk\x18\x04 \x02(\t\"D\n\x11KYBERKeygenResult\x12\x18\n\x04keys\x18\x01 \x02(\x0b\x32\n.KYBERKeys\x12\x15\n\x05\x65ntry\x18\x02 \x02(\x0b\x32\x06.Entry\"X\n\x15KYBERKeygenParameters\x12\x19\n\x05token\x18\x01 \x02(\x0b\x32\n.AuthToken\x12$\n\nparameters\x18\x02 \x02(\x0b\x32\x10.KYBERParameters\"g\n\x0eKYBERExecution\x12\x18\n\x04keys\x18\x01 \x02(\x0b\x32\n.KYBERKeys\x12\x19\n\x05token\x18\x02 \x02(\x0b\x32\n.AuthToken\x12\x12\n\niterations\x18\x03 \x02(\x03\x12\x0c\n\x04\x64\x61ta\x18\x04 \x01(\t\"E\n\x0eKYBERKeyImport\x12\x18\n\x04keys\x18\x01 \x02(\x0b\x32\n.KYBERKeys\x12\x19\n\x05token\x18\x02 \x02(\x0b\x32\n.AuthToken\"?\n\x0e\x43TRUParameters\x12\t\n\x01n\x18\x01 \x02(\x03\x12\t\n\x01q\x18\x02 \x02(\x03\x12\n\n\x02q2\x18\x03 \x02(\x03\x12\x0b\n\x03\x65ta\x18\x04 \x02(\x03\"V\n\x08\x43TRUKeys\x12\r\n\x05keyId\x18\x01 \x01(\t\x12#\n\nparameters\x18\x02 \x02(\x0b\x32\x0f.CTRUParameters\x12\n\n\x02pk\x18\x03 \x02(\t\x12\n\n\x02sk\x18\x04 \x02(\t\"B\n\x10\x43TRUKeygenResult\x12\x17\n\x04keys\x18\x01 \x02(\x0b\x32\t.CTRUKeys\x12\x15\n\x05\x65ntry\x18\x02 \x02(\x0b\x32\x06.Entry\"V\n\x14\x43TRUKeygenParameters\x12\x19\n\x05token\x18\x01 \x02(\x0b\x32\n.AuthToken\x12#\n\nparameters\x18\x02 \x02(\x0b\x32\x0f.CTRUParameters\"e\n\rCTRUExecution\x12\x17\n\x04keys\x18\x01 \x02(\x0b\x32\t.CTRUKeys\x12\x19\n\x05token\x18\x02 \x02(\x0b\x32\n.AuthToken\x12\x12\n\niterations\x18\x03 \x02(\x03\x12\x0c\n\x04\x64\x61ta\x18\x04 \x01(\t\"C\n\rCTRUKeyImport\x12\x17\n\x04keys\x18\x01 \x02(\x0b\x32\t.CTRUKeys\x12\x19\n\x05token\x18\x02 \x02(\x0b\x32\n.AuthToken2|\n\x0bUserService\x12#\n\x05login\x12\x11.LoginCredentials\x1a\x05.User\"\x00\x12)\n\x08register\x12\x14.RegisterCredentials\x1a\x05.User\"\x00\x12\x1d\n\x06\x64\x65lete\x12\n.AuthToken\x1a\x05.User\"\x00\x32}\n\x0c\x45ntryService\x12\x1d\n\x07getById\x12\x08.EntryID\x1a\x06.Entry\"\x00\x12)\n\x0fgetEntryHistory\x12\n.AuthToken\x1a\x06.Entry\"\x00\x30\x01\x12#\n\x0b\x64\x65leteEntry\x12\x08.EntryID\x1a\x08.EntryID\"\x00\x32\xeb\x01\n\x0cKYBERService\x12\x36\n\x06keygen\x12\x16.KYBERKeygenParameters\x1a\x12.KYBERKeygenResult\"\x00\x12%\n\x07getKeys\x12\n.AuthToken\x1a\n.KYBERKeys\"\x00\x30\x01\x12(\n\x07\x61\x64\x64Keys\x12\x0f.KYBERKeyImport\x1a\n.KYBERKeys\"\x00\x12(\n\trunEncaps\x12\x0f.KYBERExecution\x1a\x06.Entry\"\x00\x30\x01\x12(\n\trunDecaps\x12\x0f.KYBERExecution\x1a\x06.Entry\"\x00\x30\x01\x32\xe3\x01\n\x0b\x43TRUService\x12\x34\n\x06keygen\x12\x15.CTRUKeygenParameters\x1a\x11.CTRUKeygenResult\"\x00\x12$\n\x07getKeys\x12\n.AuthToken\x1a\t.CTRUKeys\"\x00\x30\x01\x12&\n\x07\x61\x64\x64Keys\x12\x0e.CTRUKeyImport\x1a\t.CTRUKeys\"\x00\x12\'\n\trunEncaps\x12\x0e.CTRUExecution\x1a\x06.Entry\"\x00\x30\x01\x12\'\n\trunDecaps\x12\x0e.CTRUExecution\x1a\x06.Entry\"\x00\x30\x01')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'v1_pb2', globals())
@@ -31,41 +31,41 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _USER._serialized_start=237
   _USER._serialized_end=326
   _ENTRY._serialized_start=329
-  _ENTRY._serialized_end=557
-  _ENTRY_INPUTPARAMETERSENTRY._serialized_start=503
-  _ENTRY_INPUTPARAMETERSENTRY._serialized_end=557
-  _ENTRYID._serialized_start=559
-  _ENTRYID._serialized_end=612
-  _BATPARAMETERS._serialized_start=614
-  _BATPARAMETERS._serialized_end=673
-  _BATKEYS._serialized_start=675
-  _BATKEYS._serialized_end=759
-  _BATKEYGENRESULT._serialized_start=761
-  _BATKEYGENRESULT._serialized_end=825
-  _BATKEYGENPARAMETERS._serialized_start=827
-  _BATKEYGENPARAMETERS._serialized_end=911
-  _BATEXECUTION._serialized_start=913
-  _BATEXECUTION._serialized_end=998
-  _BATKEYIMPORT._serialized_start=1000
-  _BATKEYIMPORT._serialized_end=1065
-  _CTRUPARAMETERS._serialized_start=1067
-  _CTRUPARAMETERS._serialized_end=1130
-  _CTRUKEYS._serialized_start=1132
-  _CTRUKEYS._serialized_end=1218
-  _CTRUKEYGENRESULT._serialized_start=1220
-  _CTRUKEYGENRESULT._serialized_end=1286
-  _CTRUKEYGENPARAMETERS._serialized_start=1288
-  _CTRUKEYGENPARAMETERS._serialized_end=1374
-  _CTRUEXECUTION._serialized_start=1376
-  _CTRUEXECUTION._serialized_end=1463
-  _CTRUKEYIMPORT._serialized_start=1465
-  _CTRUKEYIMPORT._serialized_end=1532
-  _USERSERVICE._serialized_start=1534
-  _USERSERVICE._serialized_end=1658
-  _ENTRYSERVICE._serialized_start=1660
-  _ENTRYSERVICE._serialized_end=1785
-  _BATSERVICE._serialized_start=1788
-  _BATSERVICE._serialized_end=2007
-  _CTRUSERVICE._serialized_start=2010
-  _CTRUSERVICE._serialized_end=2237
+  _ENTRY._serialized_end=573
+  _ENTRY_INPUTPARAMETERSENTRY._serialized_start=519
+  _ENTRY_INPUTPARAMETERSENTRY._serialized_end=573
+  _ENTRYID._serialized_start=575
+  _ENTRYID._serialized_end=628
+  _KYBERPARAMETERS._serialized_start=630
+  _KYBERPARAMETERS._serialized_end=717
+  _KYBERKEYS._serialized_start=719
+  _KYBERKEYS._serialized_end=807
+  _KYBERKEYGENRESULT._serialized_start=809
+  _KYBERKEYGENRESULT._serialized_end=877
+  _KYBERKEYGENPARAMETERS._serialized_start=879
+  _KYBERKEYGENPARAMETERS._serialized_end=967
+  _KYBEREXECUTION._serialized_start=969
+  _KYBEREXECUTION._serialized_end=1072
+  _KYBERKEYIMPORT._serialized_start=1074
+  _KYBERKEYIMPORT._serialized_end=1143
+  _CTRUPARAMETERS._serialized_start=1145
+  _CTRUPARAMETERS._serialized_end=1208
+  _CTRUKEYS._serialized_start=1210
+  _CTRUKEYS._serialized_end=1296
+  _CTRUKEYGENRESULT._serialized_start=1298
+  _CTRUKEYGENRESULT._serialized_end=1364
+  _CTRUKEYGENPARAMETERS._serialized_start=1366
+  _CTRUKEYGENPARAMETERS._serialized_end=1452
+  _CTRUEXECUTION._serialized_start=1454
+  _CTRUEXECUTION._serialized_end=1555
+  _CTRUKEYIMPORT._serialized_start=1557
+  _CTRUKEYIMPORT._serialized_end=1624
+  _USERSERVICE._serialized_start=1626
+  _USERSERVICE._serialized_end=1750
+  _ENTRYSERVICE._serialized_start=1752
+  _ENTRYSERVICE._serialized_end=1877
+  _KYBERSERVICE._serialized_start=1880
+  _KYBERSERVICE._serialized_end=2115
+  _CTRUSERVICE._serialized_start=2118
+  _CTRUSERVICE._serialized_end=2345
 # @@protoc_insertion_point(module_scope)

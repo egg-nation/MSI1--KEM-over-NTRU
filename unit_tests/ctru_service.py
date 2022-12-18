@@ -38,6 +38,14 @@ def test_ctru():
 			)))
 		assert len(entries) > 0
 
+		for entry in entries:
+			print(list(stub.runDecaps(controllers.v1_pb2.CTRUExecution(
+				keys = keygen_result.keys,
+				token = token,
+				iterations = 3,
+				data = entry.output
+			))))
+
 	with grpc.insecure_channel("127.0.0.1:5000") as channel:
 		stub = controllers.v1_pb2_grpc.EntryServiceStub(channel)
 		for entry in entries:

@@ -259,7 +259,7 @@ class EntryService(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
 
-class BATServiceStub(object):
+class KYBERServiceStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -269,33 +269,33 @@ class BATServiceStub(object):
             channel: A grpc.Channel.
         """
         self.keygen = channel.unary_unary(
-                '/BATService/keygen',
-                request_serializer=v1__pb2.BATKeygenParameters.SerializeToString,
-                response_deserializer=v1__pb2.BATKeygenResult.FromString,
+                '/KYBERService/keygen',
+                request_serializer=v1__pb2.KYBERKeygenParameters.SerializeToString,
+                response_deserializer=v1__pb2.KYBERKeygenResult.FromString,
                 )
         self.getKeys = channel.unary_stream(
-                '/BATService/getKeys',
+                '/KYBERService/getKeys',
                 request_serializer=v1__pb2.AuthToken.SerializeToString,
-                response_deserializer=v1__pb2.BATKeys.FromString,
+                response_deserializer=v1__pb2.KYBERKeys.FromString,
                 )
         self.addKeys = channel.unary_unary(
-                '/BATService/addKeys',
-                request_serializer=v1__pb2.BATKeyImport.SerializeToString,
-                response_deserializer=v1__pb2.BATKeys.FromString,
+                '/KYBERService/addKeys',
+                request_serializer=v1__pb2.KYBERKeyImport.SerializeToString,
+                response_deserializer=v1__pb2.KYBERKeys.FromString,
                 )
         self.runEncaps = channel.unary_stream(
-                '/BATService/runEncaps',
-                request_serializer=v1__pb2.BATExecution.SerializeToString,
+                '/KYBERService/runEncaps',
+                request_serializer=v1__pb2.KYBERExecution.SerializeToString,
                 response_deserializer=v1__pb2.Entry.FromString,
                 )
         self.runDecaps = channel.unary_stream(
-                '/BATService/runDecaps',
-                request_serializer=v1__pb2.BATExecution.SerializeToString,
+                '/KYBERService/runDecaps',
+                request_serializer=v1__pb2.KYBERExecution.SerializeToString,
                 response_deserializer=v1__pb2.Entry.FromString,
                 )
 
 
-class BATServiceServicer(object):
+class KYBERServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def keygen(self, request, context):
@@ -329,41 +329,41 @@ class BATServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_BATServiceServicer_to_server(servicer, server):
+def add_KYBERServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'keygen': grpc.unary_unary_rpc_method_handler(
                     servicer.keygen,
-                    request_deserializer=v1__pb2.BATKeygenParameters.FromString,
-                    response_serializer=v1__pb2.BATKeygenResult.SerializeToString,
+                    request_deserializer=v1__pb2.KYBERKeygenParameters.FromString,
+                    response_serializer=v1__pb2.KYBERKeygenResult.SerializeToString,
             ),
             'getKeys': grpc.unary_stream_rpc_method_handler(
                     servicer.getKeys,
                     request_deserializer=v1__pb2.AuthToken.FromString,
-                    response_serializer=v1__pb2.BATKeys.SerializeToString,
+                    response_serializer=v1__pb2.KYBERKeys.SerializeToString,
             ),
             'addKeys': grpc.unary_unary_rpc_method_handler(
                     servicer.addKeys,
-                    request_deserializer=v1__pb2.BATKeyImport.FromString,
-                    response_serializer=v1__pb2.BATKeys.SerializeToString,
+                    request_deserializer=v1__pb2.KYBERKeyImport.FromString,
+                    response_serializer=v1__pb2.KYBERKeys.SerializeToString,
             ),
             'runEncaps': grpc.unary_stream_rpc_method_handler(
                     servicer.runEncaps,
-                    request_deserializer=v1__pb2.BATExecution.FromString,
+                    request_deserializer=v1__pb2.KYBERExecution.FromString,
                     response_serializer=v1__pb2.Entry.SerializeToString,
             ),
             'runDecaps': grpc.unary_stream_rpc_method_handler(
                     servicer.runDecaps,
-                    request_deserializer=v1__pb2.BATExecution.FromString,
+                    request_deserializer=v1__pb2.KYBERExecution.FromString,
                     response_serializer=v1__pb2.Entry.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'BATService', rpc_method_handlers)
+            'KYBERService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class BATService(object):
+class KYBERService(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -377,9 +377,9 @@ class BATService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/BATService/keygen',
-            v1__pb2.BATKeygenParameters.SerializeToString,
-            v1__pb2.BATKeygenResult.FromString,
+        return grpc.experimental.unary_unary(request, target, '/KYBERService/keygen',
+            v1__pb2.KYBERKeygenParameters.SerializeToString,
+            v1__pb2.KYBERKeygenResult.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -394,9 +394,9 @@ class BATService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/BATService/getKeys',
+        return grpc.experimental.unary_stream(request, target, '/KYBERService/getKeys',
             v1__pb2.AuthToken.SerializeToString,
-            v1__pb2.BATKeys.FromString,
+            v1__pb2.KYBERKeys.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -411,9 +411,9 @@ class BATService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/BATService/addKeys',
-            v1__pb2.BATKeyImport.SerializeToString,
-            v1__pb2.BATKeys.FromString,
+        return grpc.experimental.unary_unary(request, target, '/KYBERService/addKeys',
+            v1__pb2.KYBERKeyImport.SerializeToString,
+            v1__pb2.KYBERKeys.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -428,8 +428,8 @@ class BATService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/BATService/runEncaps',
-            v1__pb2.BATExecution.SerializeToString,
+        return grpc.experimental.unary_stream(request, target, '/KYBERService/runEncaps',
+            v1__pb2.KYBERExecution.SerializeToString,
             v1__pb2.Entry.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
@@ -445,8 +445,8 @@ class BATService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/BATService/runDecaps',
-            v1__pb2.BATExecution.SerializeToString,
+        return grpc.experimental.unary_stream(request, target, '/KYBERService/runDecaps',
+            v1__pb2.KYBERExecution.SerializeToString,
             v1__pb2.Entry.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

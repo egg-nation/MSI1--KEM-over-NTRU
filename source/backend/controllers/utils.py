@@ -40,6 +40,7 @@ def catch_error(error_response):
 				context.set_code(grpc.StatusCode.UNKNOWN)
 				context.set_details("Unknown except raised")
 				logger.error("Unknown except raised "+str(e))
+				print(e)
 				return error_response()
 		return wrapper
 	return specialized_decorator_build

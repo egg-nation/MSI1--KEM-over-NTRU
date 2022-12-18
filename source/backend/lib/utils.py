@@ -94,3 +94,15 @@ def flatten(arr):
 		return el
 
 	return [arr]
+
+def to_array(arr):
+	if isinstance(arr, np.ndarray):
+		if arr.ndim == 0:
+			return arr.item()
+		else:
+			arr = list(arr)
+
+	try:
+		return [to_array(e) for e in arr]
+	except:
+		return arr

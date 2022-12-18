@@ -99,14 +99,28 @@ class CTRUService(CTRUServiceServicer):
 		alg.sk, alg.z = [ Poly(DerSequence().decode(b64decode(b)), x) for b in request.keys.sk.split(";") ]
 
 		for i in range(request.iterations):
-			alg.Encapsulate()
+			c, _ = alg.Encapsulate()
 			entry_info = list(gather())[0]
 			entry = Entry.from_execution(entry_info, token.userId, request.keys.keyId)
+			entry.output = b64encode(DerSequence(c.all_coeffs()).encode()).decode('utf-8')
 			entry.id = str(entries_DB.insert_one(entry.toMongo()).inserted_id)
 			yield entry.toProto()
 
+	@require_auth(Entry)
+	@catch_error(Entry)
 	def runDecaps(self, request, context):
-		"""Missing associated documentation comment in .proto file."""
-		context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-		context.set_details('Method not implemented!')
-		raise NotImplementedError('Method not implemented!')
+		token = AuthToken.fromProto(request.token)
+		alg = CTRU(request.keys.parameters.n, request.keys.parameters.q, request.keys.parameters.q2, request.keys.parameters.eta)
+		alg.pk = Poly(DerSequence().decode(b64decode(request.keys.pk)), x)
+		alg.sk, alg.z = [ Poly(DerSequence().decode(b64decode(b)), x) for b in request.keys.sk.split(";") ]
+
+		c = Poly(DerSequence().decode(b64decode(request.data)), x)
+
+		for i in range(request.iterations):
+			entry_info = list(gather())[0]
+			entry = Entry.from_execution(entry_info, token.userId, request.keys.keyId)
+			entry.inputParameters = {
+				"c": request.data
+			}
+			entry.id = str(entries_DB.insert_one(entry.toMongo()).inserted_id)
+			yield entry.toProto()
