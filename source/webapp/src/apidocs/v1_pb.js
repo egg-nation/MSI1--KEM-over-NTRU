@@ -10,20 +10,24 @@
 /* eslint-disable */
 // @ts-nocheck
 
+
 var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
 goog.exportSymbol('proto.AuthToken', null, global);
 goog.exportSymbol('proto.CTRUExecution', null, global);
+goog.exportSymbol('proto.CTRUKey', null, global);
 goog.exportSymbol('proto.CTRUKeyImport', null, global);
 goog.exportSymbol('proto.CTRUKeygenParameters', null, global);
 goog.exportSymbol('proto.CTRUKeygenResult', null, global);
 goog.exportSymbol('proto.CTRUKeys', null, global);
 goog.exportSymbol('proto.CTRUParameters', null, global);
+goog.exportSymbol('proto.Entries', null, global);
 goog.exportSymbol('proto.Entry', null, global);
 goog.exportSymbol('proto.EntryID', null, global);
 goog.exportSymbol('proto.KYBERExecution', null, global);
+goog.exportSymbol('proto.KYBERKey', null, global);
 goog.exportSymbol('proto.KYBERKeyImport', null, global);
 goog.exportSymbol('proto.KYBERKeygenParameters', null, global);
 goog.exportSymbol('proto.KYBERKeygenResult', null, global);
@@ -719,10 +723,10 @@ proto.AuthToken.prototype.hasExpiresat = function() {
 
 /**
  * required bytes signature = 4;
- * @return {string}
+ * @return {!(string|Uint8Array)}
  */
 proto.AuthToken.prototype.getSignature = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
@@ -1694,6 +1698,174 @@ proto.EntryID.prototype.hasEntryid = function() {
  * @extends {jspb.Message}
  * @constructor
  */
+proto.Entries = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.Entries.repeatedFields_, null);
+};
+goog.inherits(proto.Entries, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.Entries.displayName = 'proto.Entries';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.Entries.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.Entries.prototype.toObject = function(opt_includeInstance) {
+  return proto.Entries.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.Entries} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.Entries.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    entriesList: jspb.Message.toObjectList(msg.getEntriesList(),
+    proto.Entry.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.Entries}
+ */
+proto.Entries.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.Entries;
+  return proto.Entries.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.Entries} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.Entries}
+ */
+proto.Entries.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.Entry;
+      reader.readMessage(value,proto.Entry.deserializeBinaryFromReader);
+      msg.addEntries(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.Entries.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.Entries.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.Entries} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.Entries.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getEntriesList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.Entry.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated Entry entries = 1;
+ * @return {!Array<!proto.Entry>}
+ */
+proto.Entries.prototype.getEntriesList = function() {
+  return /** @type{!Array<!proto.Entry>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.Entry, 1));
+};
+
+
+/** @param {!Array<!proto.Entry>} value */
+proto.Entries.prototype.setEntriesList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.Entry=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.Entry}
+ */
+proto.Entries.prototype.addEntries = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.Entry, opt_index);
+};
+
+
+proto.Entries.prototype.clearEntriesList = function() {
+  this.setEntriesList([]);
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
 proto.KYBERParameters = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
@@ -2055,12 +2227,12 @@ proto.KYBERParameters.prototype.hasDv = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.KYBERKeys = function(opt_data) {
+proto.KYBERKey = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.KYBERKeys, jspb.Message);
+goog.inherits(proto.KYBERKey, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.KYBERKeys.displayName = 'proto.KYBERKeys';
+  proto.KYBERKey.displayName = 'proto.KYBERKey';
 }
 
 
@@ -2075,8 +2247,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.KYBERKeys.prototype.toObject = function(opt_includeInstance) {
-  return proto.KYBERKeys.toObject(opt_includeInstance, this);
+proto.KYBERKey.prototype.toObject = function(opt_includeInstance) {
+  return proto.KYBERKey.toObject(opt_includeInstance, this);
 };
 
 
@@ -2085,11 +2257,11 @@ proto.KYBERKeys.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.KYBERKeys} msg The msg instance to transform.
+ * @param {!proto.KYBERKey} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.KYBERKeys.toObject = function(includeInstance, msg) {
+proto.KYBERKey.toObject = function(includeInstance, msg) {
   var f, obj = {
     keyid: jspb.Message.getField(msg, 1),
     parameters: (f = msg.getParameters()) && proto.KYBERParameters.toObject(includeInstance, f),
@@ -2108,23 +2280,23 @@ proto.KYBERKeys.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.KYBERKeys}
+ * @return {!proto.KYBERKey}
  */
-proto.KYBERKeys.deserializeBinary = function(bytes) {
+proto.KYBERKey.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.KYBERKeys;
-  return proto.KYBERKeys.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.KYBERKey;
+  return proto.KYBERKey.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.KYBERKeys} msg The message object to deserialize into.
+ * @param {!proto.KYBERKey} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.KYBERKeys}
+ * @return {!proto.KYBERKey}
  */
-proto.KYBERKeys.deserializeBinaryFromReader = function(msg, reader) {
+proto.KYBERKey.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -2161,9 +2333,9 @@ proto.KYBERKeys.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.KYBERKeys.prototype.serializeBinary = function() {
+proto.KYBERKey.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.KYBERKeys.serializeBinaryToWriter(this, writer);
+  proto.KYBERKey.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -2171,11 +2343,11 @@ proto.KYBERKeys.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.KYBERKeys} message
+ * @param {!proto.KYBERKey} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.KYBERKeys.serializeBinaryToWriter = function(message, writer) {
+proto.KYBERKey.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = /** @type {string} */ (jspb.Message.getField(message, 1));
   if (f != null) {
@@ -2213,18 +2385,18 @@ proto.KYBERKeys.serializeBinaryToWriter = function(message, writer) {
  * optional string keyId = 1;
  * @return {string}
  */
-proto.KYBERKeys.prototype.getKeyid = function() {
+proto.KYBERKey.prototype.getKeyid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.KYBERKeys.prototype.setKeyid = function(value) {
+proto.KYBERKey.prototype.setKeyid = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
 
-proto.KYBERKeys.prototype.clearKeyid = function() {
+proto.KYBERKey.prototype.clearKeyid = function() {
   jspb.Message.setField(this, 1, undefined);
 };
 
@@ -2233,7 +2405,7 @@ proto.KYBERKeys.prototype.clearKeyid = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.KYBERKeys.prototype.hasKeyid = function() {
+proto.KYBERKey.prototype.hasKeyid = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -2242,19 +2414,19 @@ proto.KYBERKeys.prototype.hasKeyid = function() {
  * required KYBERParameters parameters = 2;
  * @return {!proto.KYBERParameters}
  */
-proto.KYBERKeys.prototype.getParameters = function() {
+proto.KYBERKey.prototype.getParameters = function() {
   return /** @type{!proto.KYBERParameters} */ (
     jspb.Message.getWrapperField(this, proto.KYBERParameters, 2, 1));
 };
 
 
 /** @param {!proto.KYBERParameters} value */
-proto.KYBERKeys.prototype.setParameters = function(value) {
+proto.KYBERKey.prototype.setParameters = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.KYBERKeys.prototype.clearParameters = function() {
+proto.KYBERKey.prototype.clearParameters = function() {
   jspb.Message.setField(this, 2, undefined);
 };
 
@@ -2263,7 +2435,7 @@ proto.KYBERKeys.prototype.clearParameters = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.KYBERKeys.prototype.hasParameters = function() {
+proto.KYBERKey.prototype.hasParameters = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -2272,18 +2444,18 @@ proto.KYBERKeys.prototype.hasParameters = function() {
  * required string pk = 3;
  * @return {string}
  */
-proto.KYBERKeys.prototype.getPk = function() {
+proto.KYBERKey.prototype.getPk = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /** @param {string} value */
-proto.KYBERKeys.prototype.setPk = function(value) {
+proto.KYBERKey.prototype.setPk = function(value) {
   jspb.Message.setField(this, 3, value);
 };
 
 
-proto.KYBERKeys.prototype.clearPk = function() {
+proto.KYBERKey.prototype.clearPk = function() {
   jspb.Message.setField(this, 3, undefined);
 };
 
@@ -2292,7 +2464,7 @@ proto.KYBERKeys.prototype.clearPk = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.KYBERKeys.prototype.hasPk = function() {
+proto.KYBERKey.prototype.hasPk = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -2301,18 +2473,18 @@ proto.KYBERKeys.prototype.hasPk = function() {
  * required string sk = 4;
  * @return {string}
  */
-proto.KYBERKeys.prototype.getSk = function() {
+proto.KYBERKey.prototype.getSk = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /** @param {string} value */
-proto.KYBERKeys.prototype.setSk = function(value) {
+proto.KYBERKey.prototype.setSk = function(value) {
   jspb.Message.setField(this, 4, value);
 };
 
 
-proto.KYBERKeys.prototype.clearSk = function() {
+proto.KYBERKey.prototype.clearSk = function() {
   jspb.Message.setField(this, 4, undefined);
 };
 
@@ -2321,7 +2493,7 @@ proto.KYBERKeys.prototype.clearSk = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.KYBERKeys.prototype.hasSk = function() {
+proto.KYBERKey.prototype.hasSk = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -2373,7 +2545,7 @@ proto.KYBERKeygenResult.prototype.toObject = function(opt_includeInstance) {
  */
 proto.KYBERKeygenResult.toObject = function(includeInstance, msg) {
   var f, obj = {
-    keys: (f = msg.getKeys()) && proto.KYBERKeys.toObject(includeInstance, f),
+    keys: (f = msg.getKeys()) && proto.KYBERKey.toObject(includeInstance, f),
     entry: (f = msg.getEntry()) && proto.Entry.toObject(includeInstance, f)
   };
 
@@ -2412,8 +2584,8 @@ proto.KYBERKeygenResult.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.KYBERKeys;
-      reader.readMessage(value,proto.KYBERKeys.deserializeBinaryFromReader);
+      var value = new proto.KYBERKey;
+      reader.readMessage(value,proto.KYBERKey.deserializeBinaryFromReader);
       msg.setKeys(value);
       break;
     case 2:
@@ -2455,7 +2627,7 @@ proto.KYBERKeygenResult.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       1,
       f,
-      proto.KYBERKeys.serializeBinaryToWriter
+      proto.KYBERKey.serializeBinaryToWriter
     );
   }
   f = message.getEntry();
@@ -2470,16 +2642,16 @@ proto.KYBERKeygenResult.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * required KYBERKeys keys = 1;
- * @return {!proto.KYBERKeys}
+ * required KYBERKey keys = 1;
+ * @return {!proto.KYBERKey}
  */
 proto.KYBERKeygenResult.prototype.getKeys = function() {
-  return /** @type{!proto.KYBERKeys} */ (
-    jspb.Message.getWrapperField(this, proto.KYBERKeys, 1, 1));
+  return /** @type{!proto.KYBERKey} */ (
+    jspb.Message.getWrapperField(this, proto.KYBERKey, 1, 1));
 };
 
 
-/** @param {!proto.KYBERKeys} value */
+/** @param {!proto.KYBERKey} value */
 proto.KYBERKeygenResult.prototype.setKeys = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
@@ -2779,7 +2951,7 @@ proto.KYBERExecution.prototype.toObject = function(opt_includeInstance) {
  */
 proto.KYBERExecution.toObject = function(includeInstance, msg) {
   var f, obj = {
-    keys: (f = msg.getKeys()) && proto.KYBERKeys.toObject(includeInstance, f),
+    keys: (f = msg.getKeys()) && proto.KYBERKey.toObject(includeInstance, f),
     token: (f = msg.getToken()) && proto.AuthToken.toObject(includeInstance, f),
     iterations: jspb.Message.getField(msg, 3),
     data: jspb.Message.getField(msg, 4)
@@ -2820,8 +2992,8 @@ proto.KYBERExecution.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.KYBERKeys;
-      reader.readMessage(value,proto.KYBERKeys.deserializeBinaryFromReader);
+      var value = new proto.KYBERKey;
+      reader.readMessage(value,proto.KYBERKey.deserializeBinaryFromReader);
       msg.setKeys(value);
       break;
     case 2:
@@ -2871,7 +3043,7 @@ proto.KYBERExecution.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       1,
       f,
-      proto.KYBERKeys.serializeBinaryToWriter
+      proto.KYBERKey.serializeBinaryToWriter
     );
   }
   f = message.getToken();
@@ -2900,16 +3072,16 @@ proto.KYBERExecution.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * required KYBERKeys keys = 1;
- * @return {!proto.KYBERKeys}
+ * required KYBERKey keys = 1;
+ * @return {!proto.KYBERKey}
  */
 proto.KYBERExecution.prototype.getKeys = function() {
-  return /** @type{!proto.KYBERKeys} */ (
-    jspb.Message.getWrapperField(this, proto.KYBERKeys, 1, 1));
+  return /** @type{!proto.KYBERKey} */ (
+    jspb.Message.getWrapperField(this, proto.KYBERKey, 1, 1));
 };
 
 
-/** @param {!proto.KYBERKeys} value */
+/** @param {!proto.KYBERKey} value */
 proto.KYBERExecution.prototype.setKeys = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
@@ -3064,7 +3236,7 @@ proto.KYBERKeyImport.prototype.toObject = function(opt_includeInstance) {
  */
 proto.KYBERKeyImport.toObject = function(includeInstance, msg) {
   var f, obj = {
-    keys: (f = msg.getKeys()) && proto.KYBERKeys.toObject(includeInstance, f),
+    keys: (f = msg.getKeys()) && proto.KYBERKey.toObject(includeInstance, f),
     token: (f = msg.getToken()) && proto.AuthToken.toObject(includeInstance, f)
   };
 
@@ -3103,8 +3275,8 @@ proto.KYBERKeyImport.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.KYBERKeys;
-      reader.readMessage(value,proto.KYBERKeys.deserializeBinaryFromReader);
+      var value = new proto.KYBERKey;
+      reader.readMessage(value,proto.KYBERKey.deserializeBinaryFromReader);
       msg.setKeys(value);
       break;
     case 2:
@@ -3146,7 +3318,7 @@ proto.KYBERKeyImport.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       1,
       f,
-      proto.KYBERKeys.serializeBinaryToWriter
+      proto.KYBERKey.serializeBinaryToWriter
     );
   }
   f = message.getToken();
@@ -3161,16 +3333,16 @@ proto.KYBERKeyImport.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * required KYBERKeys keys = 1;
- * @return {!proto.KYBERKeys}
+ * required KYBERKey keys = 1;
+ * @return {!proto.KYBERKey}
  */
 proto.KYBERKeyImport.prototype.getKeys = function() {
-  return /** @type{!proto.KYBERKeys} */ (
-    jspb.Message.getWrapperField(this, proto.KYBERKeys, 1, 1));
+  return /** @type{!proto.KYBERKey} */ (
+    jspb.Message.getWrapperField(this, proto.KYBERKey, 1, 1));
 };
 
 
-/** @param {!proto.KYBERKeys} value */
+/** @param {!proto.KYBERKey} value */
 proto.KYBERKeyImport.prototype.setKeys = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
@@ -3217,6 +3389,174 @@ proto.KYBERKeyImport.prototype.clearToken = function() {
  */
 proto.KYBERKeyImport.prototype.hasToken = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.KYBERKeys = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.KYBERKeys.repeatedFields_, null);
+};
+goog.inherits(proto.KYBERKeys, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.KYBERKeys.displayName = 'proto.KYBERKeys';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.KYBERKeys.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.KYBERKeys.prototype.toObject = function(opt_includeInstance) {
+  return proto.KYBERKeys.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.KYBERKeys} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.KYBERKeys.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    keysList: jspb.Message.toObjectList(msg.getKeysList(),
+    proto.KYBERKey.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.KYBERKeys}
+ */
+proto.KYBERKeys.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.KYBERKeys;
+  return proto.KYBERKeys.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.KYBERKeys} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.KYBERKeys}
+ */
+proto.KYBERKeys.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.KYBERKey;
+      reader.readMessage(value,proto.KYBERKey.deserializeBinaryFromReader);
+      msg.addKeys(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.KYBERKeys.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.KYBERKeys.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.KYBERKeys} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.KYBERKeys.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getKeysList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.KYBERKey.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated KYBERKey keys = 1;
+ * @return {!Array<!proto.KYBERKey>}
+ */
+proto.KYBERKeys.prototype.getKeysList = function() {
+  return /** @type{!Array<!proto.KYBERKey>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.KYBERKey, 1));
+};
+
+
+/** @param {!Array<!proto.KYBERKey>} value */
+proto.KYBERKeys.prototype.setKeysList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.KYBERKey=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.KYBERKey}
+ */
+proto.KYBERKeys.prototype.addKeys = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.KYBERKey, opt_index);
+};
+
+
+proto.KYBERKeys.prototype.clearKeysList = function() {
+  this.setKeysList([]);
 };
 
 
@@ -3510,12 +3850,12 @@ proto.CTRUParameters.prototype.hasEta = function() {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.CTRUKeys = function(opt_data) {
+proto.CTRUKey = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.CTRUKeys, jspb.Message);
+goog.inherits(proto.CTRUKey, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.CTRUKeys.displayName = 'proto.CTRUKeys';
+  proto.CTRUKey.displayName = 'proto.CTRUKey';
 }
 
 
@@ -3530,8 +3870,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.CTRUKeys.prototype.toObject = function(opt_includeInstance) {
-  return proto.CTRUKeys.toObject(opt_includeInstance, this);
+proto.CTRUKey.prototype.toObject = function(opt_includeInstance) {
+  return proto.CTRUKey.toObject(opt_includeInstance, this);
 };
 
 
@@ -3540,11 +3880,11 @@ proto.CTRUKeys.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.CTRUKeys} msg The msg instance to transform.
+ * @param {!proto.CTRUKey} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.CTRUKeys.toObject = function(includeInstance, msg) {
+proto.CTRUKey.toObject = function(includeInstance, msg) {
   var f, obj = {
     keyid: jspb.Message.getField(msg, 1),
     parameters: (f = msg.getParameters()) && proto.CTRUParameters.toObject(includeInstance, f),
@@ -3563,23 +3903,23 @@ proto.CTRUKeys.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.CTRUKeys}
+ * @return {!proto.CTRUKey}
  */
-proto.CTRUKeys.deserializeBinary = function(bytes) {
+proto.CTRUKey.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.CTRUKeys;
-  return proto.CTRUKeys.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.CTRUKey;
+  return proto.CTRUKey.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.CTRUKeys} msg The message object to deserialize into.
+ * @param {!proto.CTRUKey} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.CTRUKeys}
+ * @return {!proto.CTRUKey}
  */
-proto.CTRUKeys.deserializeBinaryFromReader = function(msg, reader) {
+proto.CTRUKey.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -3616,9 +3956,9 @@ proto.CTRUKeys.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.CTRUKeys.prototype.serializeBinary = function() {
+proto.CTRUKey.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.CTRUKeys.serializeBinaryToWriter(this, writer);
+  proto.CTRUKey.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -3626,11 +3966,11 @@ proto.CTRUKeys.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.CTRUKeys} message
+ * @param {!proto.CTRUKey} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.CTRUKeys.serializeBinaryToWriter = function(message, writer) {
+proto.CTRUKey.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = /** @type {string} */ (jspb.Message.getField(message, 1));
   if (f != null) {
@@ -3668,18 +4008,18 @@ proto.CTRUKeys.serializeBinaryToWriter = function(message, writer) {
  * optional string keyId = 1;
  * @return {string}
  */
-proto.CTRUKeys.prototype.getKeyid = function() {
+proto.CTRUKey.prototype.getKeyid = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.CTRUKeys.prototype.setKeyid = function(value) {
+proto.CTRUKey.prototype.setKeyid = function(value) {
   jspb.Message.setField(this, 1, value);
 };
 
 
-proto.CTRUKeys.prototype.clearKeyid = function() {
+proto.CTRUKey.prototype.clearKeyid = function() {
   jspb.Message.setField(this, 1, undefined);
 };
 
@@ -3688,7 +4028,7 @@ proto.CTRUKeys.prototype.clearKeyid = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.CTRUKeys.prototype.hasKeyid = function() {
+proto.CTRUKey.prototype.hasKeyid = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
@@ -3697,19 +4037,19 @@ proto.CTRUKeys.prototype.hasKeyid = function() {
  * required CTRUParameters parameters = 2;
  * @return {!proto.CTRUParameters}
  */
-proto.CTRUKeys.prototype.getParameters = function() {
+proto.CTRUKey.prototype.getParameters = function() {
   return /** @type{!proto.CTRUParameters} */ (
     jspb.Message.getWrapperField(this, proto.CTRUParameters, 2, 1));
 };
 
 
 /** @param {!proto.CTRUParameters} value */
-proto.CTRUKeys.prototype.setParameters = function(value) {
+proto.CTRUKey.prototype.setParameters = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.CTRUKeys.prototype.clearParameters = function() {
+proto.CTRUKey.prototype.clearParameters = function() {
   jspb.Message.setField(this, 2, undefined);
 };
 
@@ -3718,7 +4058,7 @@ proto.CTRUKeys.prototype.clearParameters = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.CTRUKeys.prototype.hasParameters = function() {
+proto.CTRUKey.prototype.hasParameters = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -3727,18 +4067,18 @@ proto.CTRUKeys.prototype.hasParameters = function() {
  * required string pk = 3;
  * @return {string}
  */
-proto.CTRUKeys.prototype.getPk = function() {
+proto.CTRUKey.prototype.getPk = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /** @param {string} value */
-proto.CTRUKeys.prototype.setPk = function(value) {
+proto.CTRUKey.prototype.setPk = function(value) {
   jspb.Message.setField(this, 3, value);
 };
 
 
-proto.CTRUKeys.prototype.clearPk = function() {
+proto.CTRUKey.prototype.clearPk = function() {
   jspb.Message.setField(this, 3, undefined);
 };
 
@@ -3747,7 +4087,7 @@ proto.CTRUKeys.prototype.clearPk = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.CTRUKeys.prototype.hasPk = function() {
+proto.CTRUKey.prototype.hasPk = function() {
   return jspb.Message.getField(this, 3) != null;
 };
 
@@ -3756,18 +4096,18 @@ proto.CTRUKeys.prototype.hasPk = function() {
  * required string sk = 4;
  * @return {string}
  */
-proto.CTRUKeys.prototype.getSk = function() {
+proto.CTRUKey.prototype.getSk = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /** @param {string} value */
-proto.CTRUKeys.prototype.setSk = function(value) {
+proto.CTRUKey.prototype.setSk = function(value) {
   jspb.Message.setField(this, 4, value);
 };
 
 
-proto.CTRUKeys.prototype.clearSk = function() {
+proto.CTRUKey.prototype.clearSk = function() {
   jspb.Message.setField(this, 4, undefined);
 };
 
@@ -3776,7 +4116,7 @@ proto.CTRUKeys.prototype.clearSk = function() {
  * Returns whether this field is set.
  * @return {!boolean}
  */
-proto.CTRUKeys.prototype.hasSk = function() {
+proto.CTRUKey.prototype.hasSk = function() {
   return jspb.Message.getField(this, 4) != null;
 };
 
@@ -3828,7 +4168,7 @@ proto.CTRUKeygenResult.prototype.toObject = function(opt_includeInstance) {
  */
 proto.CTRUKeygenResult.toObject = function(includeInstance, msg) {
   var f, obj = {
-    keys: (f = msg.getKeys()) && proto.CTRUKeys.toObject(includeInstance, f),
+    keys: (f = msg.getKeys()) && proto.CTRUKey.toObject(includeInstance, f),
     entry: (f = msg.getEntry()) && proto.Entry.toObject(includeInstance, f)
   };
 
@@ -3867,8 +4207,8 @@ proto.CTRUKeygenResult.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.CTRUKeys;
-      reader.readMessage(value,proto.CTRUKeys.deserializeBinaryFromReader);
+      var value = new proto.CTRUKey;
+      reader.readMessage(value,proto.CTRUKey.deserializeBinaryFromReader);
       msg.setKeys(value);
       break;
     case 2:
@@ -3910,7 +4250,7 @@ proto.CTRUKeygenResult.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       1,
       f,
-      proto.CTRUKeys.serializeBinaryToWriter
+      proto.CTRUKey.serializeBinaryToWriter
     );
   }
   f = message.getEntry();
@@ -3925,16 +4265,16 @@ proto.CTRUKeygenResult.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * required CTRUKeys keys = 1;
- * @return {!proto.CTRUKeys}
+ * required CTRUKey keys = 1;
+ * @return {!proto.CTRUKey}
  */
 proto.CTRUKeygenResult.prototype.getKeys = function() {
-  return /** @type{!proto.CTRUKeys} */ (
-    jspb.Message.getWrapperField(this, proto.CTRUKeys, 1, 1));
+  return /** @type{!proto.CTRUKey} */ (
+    jspb.Message.getWrapperField(this, proto.CTRUKey, 1, 1));
 };
 
 
-/** @param {!proto.CTRUKeys} value */
+/** @param {!proto.CTRUKey} value */
 proto.CTRUKeygenResult.prototype.setKeys = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
@@ -4234,7 +4574,7 @@ proto.CTRUExecution.prototype.toObject = function(opt_includeInstance) {
  */
 proto.CTRUExecution.toObject = function(includeInstance, msg) {
   var f, obj = {
-    keys: (f = msg.getKeys()) && proto.CTRUKeys.toObject(includeInstance, f),
+    keys: (f = msg.getKeys()) && proto.CTRUKey.toObject(includeInstance, f),
     token: (f = msg.getToken()) && proto.AuthToken.toObject(includeInstance, f),
     iterations: jspb.Message.getField(msg, 3),
     data: jspb.Message.getField(msg, 4)
@@ -4275,8 +4615,8 @@ proto.CTRUExecution.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.CTRUKeys;
-      reader.readMessage(value,proto.CTRUKeys.deserializeBinaryFromReader);
+      var value = new proto.CTRUKey;
+      reader.readMessage(value,proto.CTRUKey.deserializeBinaryFromReader);
       msg.setKeys(value);
       break;
     case 2:
@@ -4326,7 +4666,7 @@ proto.CTRUExecution.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       1,
       f,
-      proto.CTRUKeys.serializeBinaryToWriter
+      proto.CTRUKey.serializeBinaryToWriter
     );
   }
   f = message.getToken();
@@ -4355,16 +4695,16 @@ proto.CTRUExecution.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * required CTRUKeys keys = 1;
- * @return {!proto.CTRUKeys}
+ * required CTRUKey keys = 1;
+ * @return {!proto.CTRUKey}
  */
 proto.CTRUExecution.prototype.getKeys = function() {
-  return /** @type{!proto.CTRUKeys} */ (
-    jspb.Message.getWrapperField(this, proto.CTRUKeys, 1, 1));
+  return /** @type{!proto.CTRUKey} */ (
+    jspb.Message.getWrapperField(this, proto.CTRUKey, 1, 1));
 };
 
 
-/** @param {!proto.CTRUKeys} value */
+/** @param {!proto.CTRUKey} value */
 proto.CTRUExecution.prototype.setKeys = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
@@ -4519,7 +4859,7 @@ proto.CTRUKeyImport.prototype.toObject = function(opt_includeInstance) {
  */
 proto.CTRUKeyImport.toObject = function(includeInstance, msg) {
   var f, obj = {
-    keys: (f = msg.getKeys()) && proto.CTRUKeys.toObject(includeInstance, f),
+    keys: (f = msg.getKeys()) && proto.CTRUKey.toObject(includeInstance, f),
     token: (f = msg.getToken()) && proto.AuthToken.toObject(includeInstance, f)
   };
 
@@ -4558,8 +4898,8 @@ proto.CTRUKeyImport.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.CTRUKeys;
-      reader.readMessage(value,proto.CTRUKeys.deserializeBinaryFromReader);
+      var value = new proto.CTRUKey;
+      reader.readMessage(value,proto.CTRUKey.deserializeBinaryFromReader);
       msg.setKeys(value);
       break;
     case 2:
@@ -4601,7 +4941,7 @@ proto.CTRUKeyImport.serializeBinaryToWriter = function(message, writer) {
     writer.writeMessage(
       1,
       f,
-      proto.CTRUKeys.serializeBinaryToWriter
+      proto.CTRUKey.serializeBinaryToWriter
     );
   }
   f = message.getToken();
@@ -4616,16 +4956,16 @@ proto.CTRUKeyImport.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * required CTRUKeys keys = 1;
- * @return {!proto.CTRUKeys}
+ * required CTRUKey keys = 1;
+ * @return {!proto.CTRUKey}
  */
 proto.CTRUKeyImport.prototype.getKeys = function() {
-  return /** @type{!proto.CTRUKeys} */ (
-    jspb.Message.getWrapperField(this, proto.CTRUKeys, 1, 1));
+  return /** @type{!proto.CTRUKey} */ (
+    jspb.Message.getWrapperField(this, proto.CTRUKey, 1, 1));
 };
 
 
-/** @param {!proto.CTRUKeys} value */
+/** @param {!proto.CTRUKey} value */
 proto.CTRUKeyImport.prototype.setKeys = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
@@ -4672,6 +5012,174 @@ proto.CTRUKeyImport.prototype.clearToken = function() {
  */
 proto.CTRUKeyImport.prototype.hasToken = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+
+/**
+ * Generated by JsPbCodeGenerator.
+ * @param {Array=} opt_data Optional initial data array, typically from a
+ * server response, or constructed directly in Javascript. The array is used
+ * in place and becomes part of the constructed object. It is not cloned.
+ * If no data is provided, the constructed object will be empty, but still
+ * valid.
+ * @extends {jspb.Message}
+ * @constructor
+ */
+proto.CTRUKeys = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.CTRUKeys.repeatedFields_, null);
+};
+goog.inherits(proto.CTRUKeys, jspb.Message);
+if (goog.DEBUG && !COMPILED) {
+  proto.CTRUKeys.displayName = 'proto.CTRUKeys';
+}
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.CTRUKeys.repeatedFields_ = [1];
+
+
+
+if (jspb.Message.GENERATE_TO_OBJECT) {
+/**
+ * Creates an object representation of this proto suitable for use in Soy templates.
+ * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
+ * For the list of reserved names please see:
+ *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
+ * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
+ *     for transitional soy proto support: http://goto/soy-param-migration
+ * @return {!Object}
+ */
+proto.CTRUKeys.prototype.toObject = function(opt_includeInstance) {
+  return proto.CTRUKeys.toObject(opt_includeInstance, this);
+};
+
+
+/**
+ * Static version of the {@see toObject} method.
+ * @param {boolean|undefined} includeInstance Whether to include the JSPB
+ *     instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
+ * @param {!proto.CTRUKeys} msg The msg instance to transform.
+ * @return {!Object}
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.CTRUKeys.toObject = function(includeInstance, msg) {
+  var f, obj = {
+    keysList: jspb.Message.toObjectList(msg.getKeysList(),
+    proto.CTRUKey.toObject, includeInstance)
+  };
+
+  if (includeInstance) {
+    obj.$jspbMessageInstance = msg;
+  }
+  return obj;
+};
+}
+
+
+/**
+ * Deserializes binary data (in protobuf wire format).
+ * @param {jspb.ByteSource} bytes The bytes to deserialize.
+ * @return {!proto.CTRUKeys}
+ */
+proto.CTRUKeys.deserializeBinary = function(bytes) {
+  var reader = new jspb.BinaryReader(bytes);
+  var msg = new proto.CTRUKeys;
+  return proto.CTRUKeys.deserializeBinaryFromReader(msg, reader);
+};
+
+
+/**
+ * Deserializes binary data (in protobuf wire format) from the
+ * given reader into the given message object.
+ * @param {!proto.CTRUKeys} msg The message object to deserialize into.
+ * @param {!jspb.BinaryReader} reader The BinaryReader to use.
+ * @return {!proto.CTRUKeys}
+ */
+proto.CTRUKeys.deserializeBinaryFromReader = function(msg, reader) {
+  while (reader.nextField()) {
+    if (reader.isEndGroup()) {
+      break;
+    }
+    var field = reader.getFieldNumber();
+    switch (field) {
+    case 1:
+      var value = new proto.CTRUKey;
+      reader.readMessage(value,proto.CTRUKey.deserializeBinaryFromReader);
+      msg.addKeys(value);
+      break;
+    default:
+      reader.skipField();
+      break;
+    }
+  }
+  return msg;
+};
+
+
+/**
+ * Serializes the message to binary data (in protobuf wire format).
+ * @return {!Uint8Array}
+ */
+proto.CTRUKeys.prototype.serializeBinary = function() {
+  var writer = new jspb.BinaryWriter();
+  proto.CTRUKeys.serializeBinaryToWriter(this, writer);
+  return writer.getResultBuffer();
+};
+
+
+/**
+ * Serializes the given message to binary data (in protobuf wire
+ * format), writing to the given BinaryWriter.
+ * @param {!proto.CTRUKeys} message
+ * @param {!jspb.BinaryWriter} writer
+ * @suppress {unusedLocalVariables} f is only used for nested messages
+ */
+proto.CTRUKeys.serializeBinaryToWriter = function(message, writer) {
+  var f = undefined;
+  f = message.getKeysList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.CTRUKey.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * repeated CTRUKey keys = 1;
+ * @return {!Array<!proto.CTRUKey>}
+ */
+proto.CTRUKeys.prototype.getKeysList = function() {
+  return /** @type{!Array<!proto.CTRUKey>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.CTRUKey, 1));
+};
+
+
+/** @param {!Array<!proto.CTRUKey>} value */
+proto.CTRUKeys.prototype.setKeysList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.CTRUKey=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.CTRUKey}
+ */
+proto.CTRUKeys.prototype.addKeys = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.CTRUKey, opt_index);
+};
+
+
+proto.CTRUKeys.prototype.clearKeysList = function() {
+  this.setKeysList([]);
 };
 
 

@@ -4,7 +4,7 @@ from lib.utils import BytestoPolynom, PolynomtoBytes, Poly, x
 from lib.ctru import CTRU
 from lib.timer import gather
 from config import MONGODB_URL
-from v1_pb2 import CTRUKeygenResult, CTRUKeys, Entry, CTRUParameters
+from v1_pb2 import CTRUKeygenResult, CTRUKeys, CTRUKey, Entries, Entry, CTRUParameters
 from v1_pb2_grpc import CTRUServiceServicer
 from pymongo import MongoClient
 from models.user import AuthToken
@@ -44,7 +44,7 @@ class CTRUService(CTRUServiceServicer):
 		entry.id = str(entries_DB.insert_one(entry.toMongo()).inserted_id)
 
 		return CTRUKeygenResult(
-			keys = CTRUKeys(
+			keys = CTRUKey(
 					keyId = key_id,
 					parameters = CTRUParameters(**key["parameters"]),
 					pk = key["pk"],
@@ -58,16 +58,18 @@ class CTRUService(CTRUServiceServicer):
 	@catch_error(CTRUKeys)
 	def getKeys(self, request, context):
 		token = AuthToken.fromProto(request)
-		for key in keys_DB.find({"userId":token.userId}):
-			yield CTRUKeys(
+		return CTRUKeys(keys = [
+			CTRUKey(
 					keyId = str(key["_id"]),
 					parameters = CTRUParameters(**key["parameters"]),
 					pk = key["pk"],
 					sk = key["sk"]
 				)
+			for key in keys_DB.find({"userId":token.userId})
+		])
 
-	@require_auth(CTRUKeys)
-	@catch_error(CTRUKeys)
+	@require_auth(CTRUKey)
+	@catch_error(CTRUKey)
 	def addKeys(self, request, context):
 		token = AuthToken.fromProto(request.token)
 		key = {
@@ -83,31 +85,32 @@ class CTRUService(CTRUServiceServicer):
 		}
 
 		key_id = str(keys_DB.insert_one(key).inserted_id)
-		return CTRUKeys(
+		return CTRUKey(
 					keyId = key_id,
 					parameters = CTRUParameters(**key["parameters"]),
 					pk = key["pk"],
 					sk = key["sk"]
 				)
 
-	@require_auth(Entry)
-	@catch_error(Entry)
+	@require_auth(Entries)
+	@catch_error(Entries)
 	def runEncaps(self, request, context):
 		token = AuthToken.fromProto(request.token)
 		alg = CTRU(request.keys.parameters.n, request.keys.parameters.q, request.keys.parameters.q2, request.keys.parameters.eta)
 		alg.pk = Poly(DerSequence().decode(b64decode(request.keys.pk)), x)
 		alg.sk, alg.z = [ Poly(DerSequence().decode(b64decode(b)), x) for b in request.keys.sk.split(";") ]
-
+		entries = []
 		for i in range(request.iterations):
 			c, _ = alg.Encapsulate()
 			entry_info = list(gather())[0]
 			entry = Entry.from_execution(entry_info, token.userId, request.keys.keyId)
 			entry.output = b64encode(DerSequence(c.all_coeffs()).encode()).decode('utf-8')
 			entry.id = str(entries_DB.insert_one(entry.toMongo()).inserted_id)
-			yield entry.toProto()
+			entries.append(entry.toProto())
+		return Entries(entries = entries)
 
-	@require_auth(Entry)
-	@catch_error(Entry)
+	@require_auth(Entries)
+	@catch_error(Entries)
 	def runDecaps(self, request, context):
 		token = AuthToken.fromProto(request.token)
 		alg = CTRU(request.keys.parameters.n, request.keys.parameters.q, request.keys.parameters.q2, request.keys.parameters.eta)
@@ -116,11 +119,14 @@ class CTRUService(CTRUServiceServicer):
 
 		c = Poly(DerSequence().decode(b64decode(request.data)), x)
 
+		entries = []
 		for i in range(request.iterations):
+			alg.Decapsulate(c)
 			entry_info = list(gather())[0]
 			entry = Entry.from_execution(entry_info, token.userId, request.keys.keyId)
 			entry.inputParameters = {
 				"c": request.data
 			}
 			entry.id = str(entries_DB.insert_one(entry.toMongo()).inserted_id)
-			yield entry.toProto()
+			entries.append(entry.toProto())
+		return Entries(entries = entries)

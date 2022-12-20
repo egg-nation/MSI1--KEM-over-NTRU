@@ -146,10 +146,10 @@ class EntryServiceStub(object):
                 request_serializer=v1__pb2.EntryID.SerializeToString,
                 response_deserializer=v1__pb2.Entry.FromString,
                 )
-        self.getEntryHistory = channel.unary_stream(
+        self.getEntryHistory = channel.unary_unary(
                 '/EntryService/getEntryHistory',
                 request_serializer=v1__pb2.AuthToken.SerializeToString,
-                response_deserializer=v1__pb2.Entry.FromString,
+                response_deserializer=v1__pb2.Entries.FromString,
                 )
         self.deleteEntry = channel.unary_unary(
                 '/EntryService/deleteEntry',
@@ -187,10 +187,10 @@ def add_EntryServiceServicer_to_server(servicer, server):
                     request_deserializer=v1__pb2.EntryID.FromString,
                     response_serializer=v1__pb2.Entry.SerializeToString,
             ),
-            'getEntryHistory': grpc.unary_stream_rpc_method_handler(
+            'getEntryHistory': grpc.unary_unary_rpc_method_handler(
                     servicer.getEntryHistory,
                     request_deserializer=v1__pb2.AuthToken.FromString,
-                    response_serializer=v1__pb2.Entry.SerializeToString,
+                    response_serializer=v1__pb2.Entries.SerializeToString,
             ),
             'deleteEntry': grpc.unary_unary_rpc_method_handler(
                     servicer.deleteEntry,
@@ -235,9 +235,9 @@ class EntryService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/EntryService/getEntryHistory',
+        return grpc.experimental.unary_unary(request, target, '/EntryService/getEntryHistory',
             v1__pb2.AuthToken.SerializeToString,
-            v1__pb2.Entry.FromString,
+            v1__pb2.Entries.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -273,7 +273,7 @@ class KYBERServiceStub(object):
                 request_serializer=v1__pb2.KYBERKeygenParameters.SerializeToString,
                 response_deserializer=v1__pb2.KYBERKeygenResult.FromString,
                 )
-        self.getKeys = channel.unary_stream(
+        self.getKeys = channel.unary_unary(
                 '/KYBERService/getKeys',
                 request_serializer=v1__pb2.AuthToken.SerializeToString,
                 response_deserializer=v1__pb2.KYBERKeys.FromString,
@@ -281,17 +281,17 @@ class KYBERServiceStub(object):
         self.addKeys = channel.unary_unary(
                 '/KYBERService/addKeys',
                 request_serializer=v1__pb2.KYBERKeyImport.SerializeToString,
-                response_deserializer=v1__pb2.KYBERKeys.FromString,
+                response_deserializer=v1__pb2.KYBERKey.FromString,
                 )
-        self.runEncaps = channel.unary_stream(
+        self.runEncaps = channel.unary_unary(
                 '/KYBERService/runEncaps',
                 request_serializer=v1__pb2.KYBERExecution.SerializeToString,
-                response_deserializer=v1__pb2.Entry.FromString,
+                response_deserializer=v1__pb2.Entries.FromString,
                 )
-        self.runDecaps = channel.unary_stream(
+        self.runDecaps = channel.unary_unary(
                 '/KYBERService/runDecaps',
                 request_serializer=v1__pb2.KYBERExecution.SerializeToString,
-                response_deserializer=v1__pb2.Entry.FromString,
+                response_deserializer=v1__pb2.Entries.FromString,
                 )
 
 
@@ -336,7 +336,7 @@ def add_KYBERServiceServicer_to_server(servicer, server):
                     request_deserializer=v1__pb2.KYBERKeygenParameters.FromString,
                     response_serializer=v1__pb2.KYBERKeygenResult.SerializeToString,
             ),
-            'getKeys': grpc.unary_stream_rpc_method_handler(
+            'getKeys': grpc.unary_unary_rpc_method_handler(
                     servicer.getKeys,
                     request_deserializer=v1__pb2.AuthToken.FromString,
                     response_serializer=v1__pb2.KYBERKeys.SerializeToString,
@@ -344,17 +344,17 @@ def add_KYBERServiceServicer_to_server(servicer, server):
             'addKeys': grpc.unary_unary_rpc_method_handler(
                     servicer.addKeys,
                     request_deserializer=v1__pb2.KYBERKeyImport.FromString,
-                    response_serializer=v1__pb2.KYBERKeys.SerializeToString,
+                    response_serializer=v1__pb2.KYBERKey.SerializeToString,
             ),
-            'runEncaps': grpc.unary_stream_rpc_method_handler(
+            'runEncaps': grpc.unary_unary_rpc_method_handler(
                     servicer.runEncaps,
                     request_deserializer=v1__pb2.KYBERExecution.FromString,
-                    response_serializer=v1__pb2.Entry.SerializeToString,
+                    response_serializer=v1__pb2.Entries.SerializeToString,
             ),
-            'runDecaps': grpc.unary_stream_rpc_method_handler(
+            'runDecaps': grpc.unary_unary_rpc_method_handler(
                     servicer.runDecaps,
                     request_deserializer=v1__pb2.KYBERExecution.FromString,
-                    response_serializer=v1__pb2.Entry.SerializeToString,
+                    response_serializer=v1__pb2.Entries.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -394,7 +394,7 @@ class KYBERService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/KYBERService/getKeys',
+        return grpc.experimental.unary_unary(request, target, '/KYBERService/getKeys',
             v1__pb2.AuthToken.SerializeToString,
             v1__pb2.KYBERKeys.FromString,
             options, channel_credentials,
@@ -413,7 +413,7 @@ class KYBERService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/KYBERService/addKeys',
             v1__pb2.KYBERKeyImport.SerializeToString,
-            v1__pb2.KYBERKeys.FromString,
+            v1__pb2.KYBERKey.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -428,9 +428,9 @@ class KYBERService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/KYBERService/runEncaps',
+        return grpc.experimental.unary_unary(request, target, '/KYBERService/runEncaps',
             v1__pb2.KYBERExecution.SerializeToString,
-            v1__pb2.Entry.FromString,
+            v1__pb2.Entries.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -445,9 +445,9 @@ class KYBERService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/KYBERService/runDecaps',
+        return grpc.experimental.unary_unary(request, target, '/KYBERService/runDecaps',
             v1__pb2.KYBERExecution.SerializeToString,
-            v1__pb2.Entry.FromString,
+            v1__pb2.Entries.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -466,7 +466,7 @@ class CTRUServiceStub(object):
                 request_serializer=v1__pb2.CTRUKeygenParameters.SerializeToString,
                 response_deserializer=v1__pb2.CTRUKeygenResult.FromString,
                 )
-        self.getKeys = channel.unary_stream(
+        self.getKeys = channel.unary_unary(
                 '/CTRUService/getKeys',
                 request_serializer=v1__pb2.AuthToken.SerializeToString,
                 response_deserializer=v1__pb2.CTRUKeys.FromString,
@@ -474,17 +474,17 @@ class CTRUServiceStub(object):
         self.addKeys = channel.unary_unary(
                 '/CTRUService/addKeys',
                 request_serializer=v1__pb2.CTRUKeyImport.SerializeToString,
-                response_deserializer=v1__pb2.CTRUKeys.FromString,
+                response_deserializer=v1__pb2.CTRUKey.FromString,
                 )
-        self.runEncaps = channel.unary_stream(
+        self.runEncaps = channel.unary_unary(
                 '/CTRUService/runEncaps',
                 request_serializer=v1__pb2.CTRUExecution.SerializeToString,
-                response_deserializer=v1__pb2.Entry.FromString,
+                response_deserializer=v1__pb2.Entries.FromString,
                 )
-        self.runDecaps = channel.unary_stream(
+        self.runDecaps = channel.unary_unary(
                 '/CTRUService/runDecaps',
                 request_serializer=v1__pb2.CTRUExecution.SerializeToString,
-                response_deserializer=v1__pb2.Entry.FromString,
+                response_deserializer=v1__pb2.Entries.FromString,
                 )
 
 
@@ -529,7 +529,7 @@ def add_CTRUServiceServicer_to_server(servicer, server):
                     request_deserializer=v1__pb2.CTRUKeygenParameters.FromString,
                     response_serializer=v1__pb2.CTRUKeygenResult.SerializeToString,
             ),
-            'getKeys': grpc.unary_stream_rpc_method_handler(
+            'getKeys': grpc.unary_unary_rpc_method_handler(
                     servicer.getKeys,
                     request_deserializer=v1__pb2.AuthToken.FromString,
                     response_serializer=v1__pb2.CTRUKeys.SerializeToString,
@@ -537,17 +537,17 @@ def add_CTRUServiceServicer_to_server(servicer, server):
             'addKeys': grpc.unary_unary_rpc_method_handler(
                     servicer.addKeys,
                     request_deserializer=v1__pb2.CTRUKeyImport.FromString,
-                    response_serializer=v1__pb2.CTRUKeys.SerializeToString,
+                    response_serializer=v1__pb2.CTRUKey.SerializeToString,
             ),
-            'runEncaps': grpc.unary_stream_rpc_method_handler(
+            'runEncaps': grpc.unary_unary_rpc_method_handler(
                     servicer.runEncaps,
                     request_deserializer=v1__pb2.CTRUExecution.FromString,
-                    response_serializer=v1__pb2.Entry.SerializeToString,
+                    response_serializer=v1__pb2.Entries.SerializeToString,
             ),
-            'runDecaps': grpc.unary_stream_rpc_method_handler(
+            'runDecaps': grpc.unary_unary_rpc_method_handler(
                     servicer.runDecaps,
                     request_deserializer=v1__pb2.CTRUExecution.FromString,
-                    response_serializer=v1__pb2.Entry.SerializeToString,
+                    response_serializer=v1__pb2.Entries.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -587,7 +587,7 @@ class CTRUService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/CTRUService/getKeys',
+        return grpc.experimental.unary_unary(request, target, '/CTRUService/getKeys',
             v1__pb2.AuthToken.SerializeToString,
             v1__pb2.CTRUKeys.FromString,
             options, channel_credentials,
@@ -606,7 +606,7 @@ class CTRUService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/CTRUService/addKeys',
             v1__pb2.CTRUKeyImport.SerializeToString,
-            v1__pb2.CTRUKeys.FromString,
+            v1__pb2.CTRUKey.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -621,9 +621,9 @@ class CTRUService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/CTRUService/runEncaps',
+        return grpc.experimental.unary_unary(request, target, '/CTRUService/runEncaps',
             v1__pb2.CTRUExecution.SerializeToString,
-            v1__pb2.Entry.FromString,
+            v1__pb2.Entries.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -638,8 +638,8 @@ class CTRUService(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/CTRUService/runDecaps',
+        return grpc.experimental.unary_unary(request, target, '/CTRUService/runDecaps',
             v1__pb2.CTRUExecution.SerializeToString,
-            v1__pb2.Entry.FromString,
+            v1__pb2.Entries.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
