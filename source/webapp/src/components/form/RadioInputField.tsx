@@ -13,7 +13,7 @@ const RadioInputField = ({fieldName, fieldId, fieldValue, checkedValue, setCheck
 
     return (
         <div className="form-check">
-            <label className="form-check-label"
+            <label className="form-label"
                    htmlFor={fieldId}
             >
                 {fieldValue}

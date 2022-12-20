@@ -16,7 +16,7 @@ const RegularInputField = ({
 
     return (
         <div className="form-field">
-            <div className="col-form-label">
+            <div className="form-label">
                 {fieldName}
             </div>
             <input

@@ -3,6 +3,7 @@ import * as jspb from 'google-protobuf'
 /* eslint-disable */
 // @ts-nocheck
 
+
 export class LoginCredentials extends jspb.Message {
   getUsername(): string;
   setUsername(value: string): LoginCredentials;

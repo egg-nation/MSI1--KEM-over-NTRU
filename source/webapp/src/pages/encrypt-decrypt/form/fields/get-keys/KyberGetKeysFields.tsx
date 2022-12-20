@@ -1,13 +1,12 @@
 import React, {useState} from "react";
 import {Button, Col, Row} from "react-bootstrap";
-import RegularInputField from "../../../../components/form/RegularInputField";
-import {AuthToken} from "../../../../apidocs/v1_pb";
+import {AuthToken} from "../../../../../apidocs/v1_pb";
 
 type Props = {
-    // authToken: AuthToken;
+    authToken: AuthToken;
 }
 
-const KyberGetKeysFields = ({}: Props) => {
+const KyberGetKeysFields = ({authToken}: Props) => {
 
     const handleKyberGetKeys = () => {
 
@@ -16,7 +15,7 @@ const KyberGetKeysFields = ({}: Props) => {
 
     return (
         <Row>
-            <Col>
+            <Col className="no-padding-left content-align-end">
                 <Button
                     className="button"
                     variant="primary"
