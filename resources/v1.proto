@@ -51,9 +51,13 @@ message EntryID{
 	required string entryId = 2;
 }
 
+message Entries{
+	repeated Entry entries = 1;
+}
+
 service EntryService{
 	rpc getById(EntryID) returns (Entry){};
-	rpc getEntryHistory(AuthToken) returns (stream Entry){};
+	rpc getEntryHistory(AuthToken) returns (Entries){};
 	rpc deleteEntry(EntryID) returns (EntryID){};
 }
 
@@ -71,7 +75,7 @@ message KYBERParameters{
 	required int64 dv = 6;
 }
 
-message KYBERKeys{
+message KYBERKey{
 	optional string keyId = 1;
 	required KYBERParameters parameters = 2;
 	required string pk = 3;
@@ -79,7 +83,7 @@ message KYBERKeys{
 }
 
 message KYBERKeygenResult{
-	required KYBERKeys keys = 1;
+	required KYBERKey keys = 1;
 	required Entry entry = 2;
 }
 
@@ -89,23 +93,27 @@ message KYBERKeygenParameters{
 }
 
 message KYBERExecution{
-	required KYBERKeys keys = 1;
+	required KYBERKey keys = 1;
 	required AuthToken token = 2;
 	required int64 iterations = 3;
 	optional string data = 4;
 }
 
 message KYBERKeyImport{
-	required KYBERKeys keys = 1;
+	required KYBERKey keys = 1;
 	required AuthToken token = 2;
+}
+
+message KYBERKeys{
+	repeated KYBERKey keys = 1;
 }
 
 service KYBERService{
 	rpc keygen(KYBERKeygenParameters) returns (KYBERKeygenResult){};
-	rpc getKeys(AuthToken) returns (stream KYBERKeys){};
-	rpc addKeys(KYBERKeyImport) returns (KYBERKeys){};
-	rpc runEncaps(KYBERExecution) returns (stream Entry){}; 
-	rpc runDecaps(KYBERExecution) returns (stream Entry){}; 
+	rpc getKeys(AuthToken) returns (KYBERKeys){};
+	rpc addKeys(KYBERKeyImport) returns (KYBERKey){};
+	rpc runEncaps(KYBERExecution) returns (Entries){}; 
+	rpc runDecaps(KYBERExecution) returns (Entries){}; 
 }
 
 //</KYBER service>
@@ -119,7 +127,7 @@ message CTRUParameters{
 	required int64 eta = 4;
 }
 
-message CTRUKeys{
+message CTRUKey{
 	optional string keyId = 1;
 	required CTRUParameters parameters = 2;
 	required string pk = 3;
@@ -127,7 +135,7 @@ message CTRUKeys{
 }
 
 message CTRUKeygenResult{
-	required CTRUKeys keys = 1;
+	required CTRUKey keys = 1;
 	required Entry entry = 2;
 }
 
@@ -137,23 +145,27 @@ message CTRUKeygenParameters{
 }
 
 message CTRUExecution{
-	required CTRUKeys keys = 1;
+	required CTRUKey keys = 1;
 	required AuthToken token = 2;
 	required int64 iterations = 3;
 	optional string data = 4;
 }
 
 message CTRUKeyImport{
-	required CTRUKeys keys = 1;
+	required CTRUKey keys = 1;
 	required AuthToken token = 2;
+}
+
+message CTRUKeys{
+	repeated CTRUKey keys = 1;
 }
 
 service CTRUService{
 	rpc keygen(CTRUKeygenParameters) returns (CTRUKeygenResult){};
-	rpc getKeys(AuthToken) returns (stream CTRUKeys){};
-	rpc addKeys(CTRUKeyImport) returns (CTRUKeys){};
-	rpc runEncaps(CTRUExecution) returns (stream Entry){}; 
-	rpc runDecaps(CTRUExecution) returns (stream Entry){}; 
+	rpc getKeys(AuthToken) returns (CTRUKeys){};
+	rpc addKeys(CTRUKeyImport) returns (CTRUKey){};
+	rpc runEncaps(CTRUExecution) returns (Entries){}; 
+	rpc runDecaps(CTRUExecution) returns (Entries){}; 
 }
 
 //</CTRU service>

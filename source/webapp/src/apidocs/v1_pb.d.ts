@@ -192,6 +192,26 @@ export namespace EntryID {
   }
 }
 
+export class Entries extends jspb.Message {
+  getEntriesList(): Array<Entry>;
+  setEntriesList(value: Array<Entry>): Entries;
+  clearEntriesList(): Entries;
+  addEntries(value?: Entry, index?: number): Entry;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Entries.AsObject;
+  static toObject(includeInstance: boolean, msg: Entries): Entries.AsObject;
+  static serializeBinaryToWriter(message: Entries, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Entries;
+  static deserializeBinaryFromReader(message: Entries, reader: jspb.BinaryReader): Entries;
+}
+
+export namespace Entries {
+  export type AsObject = {
+    entriesList: Array<Entry.AsObject>,
+  }
+}
+
 export class KYBERParameters extends jspb.Message {
   getN(): number;
   setN(value: number): KYBERParameters;
@@ -230,32 +250,32 @@ export namespace KYBERParameters {
   }
 }
 
-export class KYBERKeys extends jspb.Message {
+export class KYBERKey extends jspb.Message {
   getKeyid(): string;
-  setKeyid(value: string): KYBERKeys;
+  setKeyid(value: string): KYBERKey;
   hasKeyid(): boolean;
-  clearKeyid(): KYBERKeys;
+  clearKeyid(): KYBERKey;
 
   getParameters(): KYBERParameters | undefined;
-  setParameters(value?: KYBERParameters): KYBERKeys;
+  setParameters(value?: KYBERParameters): KYBERKey;
   hasParameters(): boolean;
-  clearParameters(): KYBERKeys;
+  clearParameters(): KYBERKey;
 
   getPk(): string;
-  setPk(value: string): KYBERKeys;
+  setPk(value: string): KYBERKey;
 
   getSk(): string;
-  setSk(value: string): KYBERKeys;
+  setSk(value: string): KYBERKey;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): KYBERKeys.AsObject;
-  static toObject(includeInstance: boolean, msg: KYBERKeys): KYBERKeys.AsObject;
-  static serializeBinaryToWriter(message: KYBERKeys, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): KYBERKeys;
-  static deserializeBinaryFromReader(message: KYBERKeys, reader: jspb.BinaryReader): KYBERKeys;
+  toObject(includeInstance?: boolean): KYBERKey.AsObject;
+  static toObject(includeInstance: boolean, msg: KYBERKey): KYBERKey.AsObject;
+  static serializeBinaryToWriter(message: KYBERKey, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): KYBERKey;
+  static deserializeBinaryFromReader(message: KYBERKey, reader: jspb.BinaryReader): KYBERKey;
 }
 
-export namespace KYBERKeys {
+export namespace KYBERKey {
   export type AsObject = {
     keyid?: string,
     parameters?: KYBERParameters.AsObject,
@@ -265,8 +285,8 @@ export namespace KYBERKeys {
 }
 
 export class KYBERKeygenResult extends jspb.Message {
-  getKeys(): KYBERKeys | undefined;
-  setKeys(value?: KYBERKeys): KYBERKeygenResult;
+  getKeys(): KYBERKey | undefined;
+  setKeys(value?: KYBERKey): KYBERKeygenResult;
   hasKeys(): boolean;
   clearKeys(): KYBERKeygenResult;
 
@@ -285,7 +305,7 @@ export class KYBERKeygenResult extends jspb.Message {
 
 export namespace KYBERKeygenResult {
   export type AsObject = {
-    keys?: KYBERKeys.AsObject,
+    keys?: KYBERKey.AsObject,
     entry?: Entry.AsObject,
   }
 }
@@ -317,8 +337,8 @@ export namespace KYBERKeygenParameters {
 }
 
 export class KYBERExecution extends jspb.Message {
-  getKeys(): KYBERKeys | undefined;
-  setKeys(value?: KYBERKeys): KYBERExecution;
+  getKeys(): KYBERKey | undefined;
+  setKeys(value?: KYBERKey): KYBERExecution;
   hasKeys(): boolean;
   clearKeys(): KYBERExecution;
 
@@ -345,7 +365,7 @@ export class KYBERExecution extends jspb.Message {
 
 export namespace KYBERExecution {
   export type AsObject = {
-    keys?: KYBERKeys.AsObject,
+    keys?: KYBERKey.AsObject,
     token?: AuthToken.AsObject,
     iterations: number,
     data?: string,
@@ -353,8 +373,8 @@ export namespace KYBERExecution {
 }
 
 export class KYBERKeyImport extends jspb.Message {
-  getKeys(): KYBERKeys | undefined;
-  setKeys(value?: KYBERKeys): KYBERKeyImport;
+  getKeys(): KYBERKey | undefined;
+  setKeys(value?: KYBERKey): KYBERKeyImport;
   hasKeys(): boolean;
   clearKeys(): KYBERKeyImport;
 
@@ -373,8 +393,28 @@ export class KYBERKeyImport extends jspb.Message {
 
 export namespace KYBERKeyImport {
   export type AsObject = {
-    keys?: KYBERKeys.AsObject,
+    keys?: KYBERKey.AsObject,
     token?: AuthToken.AsObject,
+  }
+}
+
+export class KYBERKeys extends jspb.Message {
+  getKeysList(): Array<KYBERKey>;
+  setKeysList(value: Array<KYBERKey>): KYBERKeys;
+  clearKeysList(): KYBERKeys;
+  addKeys(value?: KYBERKey, index?: number): KYBERKey;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): KYBERKeys.AsObject;
+  static toObject(includeInstance: boolean, msg: KYBERKeys): KYBERKeys.AsObject;
+  static serializeBinaryToWriter(message: KYBERKeys, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): KYBERKeys;
+  static deserializeBinaryFromReader(message: KYBERKeys, reader: jspb.BinaryReader): KYBERKeys;
+}
+
+export namespace KYBERKeys {
+  export type AsObject = {
+    keysList: Array<KYBERKey.AsObject>,
   }
 }
 
@@ -408,32 +448,32 @@ export namespace CTRUParameters {
   }
 }
 
-export class CTRUKeys extends jspb.Message {
+export class CTRUKey extends jspb.Message {
   getKeyid(): string;
-  setKeyid(value: string): CTRUKeys;
+  setKeyid(value: string): CTRUKey;
   hasKeyid(): boolean;
-  clearKeyid(): CTRUKeys;
+  clearKeyid(): CTRUKey;
 
   getParameters(): CTRUParameters | undefined;
-  setParameters(value?: CTRUParameters): CTRUKeys;
+  setParameters(value?: CTRUParameters): CTRUKey;
   hasParameters(): boolean;
-  clearParameters(): CTRUKeys;
+  clearParameters(): CTRUKey;
 
   getPk(): string;
-  setPk(value: string): CTRUKeys;
+  setPk(value: string): CTRUKey;
 
   getSk(): string;
-  setSk(value: string): CTRUKeys;
+  setSk(value: string): CTRUKey;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): CTRUKeys.AsObject;
-  static toObject(includeInstance: boolean, msg: CTRUKeys): CTRUKeys.AsObject;
-  static serializeBinaryToWriter(message: CTRUKeys, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): CTRUKeys;
-  static deserializeBinaryFromReader(message: CTRUKeys, reader: jspb.BinaryReader): CTRUKeys;
+  toObject(includeInstance?: boolean): CTRUKey.AsObject;
+  static toObject(includeInstance: boolean, msg: CTRUKey): CTRUKey.AsObject;
+  static serializeBinaryToWriter(message: CTRUKey, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CTRUKey;
+  static deserializeBinaryFromReader(message: CTRUKey, reader: jspb.BinaryReader): CTRUKey;
 }
 
-export namespace CTRUKeys {
+export namespace CTRUKey {
   export type AsObject = {
     keyid?: string,
     parameters?: CTRUParameters.AsObject,
@@ -443,8 +483,8 @@ export namespace CTRUKeys {
 }
 
 export class CTRUKeygenResult extends jspb.Message {
-  getKeys(): CTRUKeys | undefined;
-  setKeys(value?: CTRUKeys): CTRUKeygenResult;
+  getKeys(): CTRUKey | undefined;
+  setKeys(value?: CTRUKey): CTRUKeygenResult;
   hasKeys(): boolean;
   clearKeys(): CTRUKeygenResult;
 
@@ -463,7 +503,7 @@ export class CTRUKeygenResult extends jspb.Message {
 
 export namespace CTRUKeygenResult {
   export type AsObject = {
-    keys?: CTRUKeys.AsObject,
+    keys?: CTRUKey.AsObject,
     entry?: Entry.AsObject,
   }
 }
@@ -495,8 +535,8 @@ export namespace CTRUKeygenParameters {
 }
 
 export class CTRUExecution extends jspb.Message {
-  getKeys(): CTRUKeys | undefined;
-  setKeys(value?: CTRUKeys): CTRUExecution;
+  getKeys(): CTRUKey | undefined;
+  setKeys(value?: CTRUKey): CTRUExecution;
   hasKeys(): boolean;
   clearKeys(): CTRUExecution;
 
@@ -523,7 +563,7 @@ export class CTRUExecution extends jspb.Message {
 
 export namespace CTRUExecution {
   export type AsObject = {
-    keys?: CTRUKeys.AsObject,
+    keys?: CTRUKey.AsObject,
     token?: AuthToken.AsObject,
     iterations: number,
     data?: string,
@@ -531,8 +571,8 @@ export namespace CTRUExecution {
 }
 
 export class CTRUKeyImport extends jspb.Message {
-  getKeys(): CTRUKeys | undefined;
-  setKeys(value?: CTRUKeys): CTRUKeyImport;
+  getKeys(): CTRUKey | undefined;
+  setKeys(value?: CTRUKey): CTRUKeyImport;
   hasKeys(): boolean;
   clearKeys(): CTRUKeyImport;
 
@@ -551,8 +591,28 @@ export class CTRUKeyImport extends jspb.Message {
 
 export namespace CTRUKeyImport {
   export type AsObject = {
-    keys?: CTRUKeys.AsObject,
+    keys?: CTRUKey.AsObject,
     token?: AuthToken.AsObject,
+  }
+}
+
+export class CTRUKeys extends jspb.Message {
+  getKeysList(): Array<CTRUKey>;
+  setKeysList(value: Array<CTRUKey>): CTRUKeys;
+  clearKeysList(): CTRUKeys;
+  addKeys(value?: CTRUKey, index?: number): CTRUKey;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): CTRUKeys.AsObject;
+  static toObject(includeInstance: boolean, msg: CTRUKeys): CTRUKeys.AsObject;
+  static serializeBinaryToWriter(message: CTRUKeys, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): CTRUKeys;
+  static deserializeBinaryFromReader(message: CTRUKeys, reader: jspb.BinaryReader): CTRUKeys;
+}
+
+export namespace CTRUKeys {
+  export type AsObject = {
+    keysList: Array<CTRUKey.AsObject>,
   }
 }
 

@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for
+ * @fileoverview gRPC-Web generated client stub for 
  * @enhanceable
  * @public
  */
@@ -31,20 +31,20 @@ const proto = require('./v1_pb.js');
  */
 proto.UserServiceClient =
     function(hostname, credentials, options) {
-        if (!options) options = {};
-        options.format = 'text';
+  if (!options) options = {};
+  options.format = 'text';
 
-        /**
-         * @private @const {!grpc.web.GrpcWebClientBase} The client
-         */
-        this.client_ = new grpc.web.GrpcWebClientBase(options);
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
 
-        /**
-         * @private @const {string} The hostname
-         */
-        this.hostname_ = hostname.replace(/\/+$/, '');
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
-    };
+};
 
 
 /**
@@ -57,20 +57,20 @@ proto.UserServiceClient =
  */
 proto.UserServicePromiseClient =
     function(hostname, credentials, options) {
-        if (!options) options = {};
-        options.format = 'text';
+  if (!options) options = {};
+  options.format = 'text';
 
-        /**
-         * @private @const {!grpc.web.GrpcWebClientBase} The client
-         */
-        this.client_ = new grpc.web.GrpcWebClientBase(options);
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
 
-        /**
-         * @private @const {string} The hostname
-         */
-        this.hostname_ = hostname.replace(/\/+$/, '');
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
-    };
+};
 
 
 /**
@@ -80,18 +80,18 @@ proto.UserServicePromiseClient =
  *   !proto.User>}
  */
 const methodDescriptor_UserService_login = new grpc.web.MethodDescriptor(
-    '/UserService/login',
-    grpc.web.MethodType.UNARY,
-    proto.LoginCredentials,
-    proto.User,
-    /**
-     * @param {!proto.LoginCredentials} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.User.deserializeBinary
+  '/UserService/login',
+  grpc.web.MethodType.UNARY,
+  proto.LoginCredentials,
+  proto.User,
+  /**
+   * @param {!proto.LoginCredentials} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.User.deserializeBinary
 );
 
 
@@ -107,13 +107,13 @@ const methodDescriptor_UserService_login = new grpc.web.MethodDescriptor(
  */
 proto.UserServiceClient.prototype.login =
     function(request, metadata, callback) {
-        return this.client_.rpcCall(this.hostname_ +
-            '/UserService/login',
-            request,
-            metadata || {},
-            methodDescriptor_UserService_login,
-            callback);
-    };
+  return this.client_.rpcCall(this.hostname_ +
+      '/UserService/login',
+      request,
+      metadata || {},
+      methodDescriptor_UserService_login,
+      callback);
+};
 
 
 /**
@@ -126,12 +126,12 @@ proto.UserServiceClient.prototype.login =
  */
 proto.UserServicePromiseClient.prototype.login =
     function(request, metadata) {
-        return this.client_.unaryCall(this.hostname_ +
-            '/UserService/login',
-            request,
-            metadata || {},
-            methodDescriptor_UserService_login);
-    };
+  return this.client_.unaryCall(this.hostname_ +
+      '/UserService/login',
+      request,
+      metadata || {},
+      methodDescriptor_UserService_login);
+};
 
 
 /**
@@ -141,18 +141,18 @@ proto.UserServicePromiseClient.prototype.login =
  *   !proto.User>}
  */
 const methodDescriptor_UserService_register = new grpc.web.MethodDescriptor(
-    '/UserService/register',
-    grpc.web.MethodType.UNARY,
-    proto.RegisterCredentials,
-    proto.User,
-    /**
-     * @param {!proto.RegisterCredentials} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.User.deserializeBinary
+  '/UserService/register',
+  grpc.web.MethodType.UNARY,
+  proto.RegisterCredentials,
+  proto.User,
+  /**
+   * @param {!proto.RegisterCredentials} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.User.deserializeBinary
 );
 
 
@@ -168,13 +168,13 @@ const methodDescriptor_UserService_register = new grpc.web.MethodDescriptor(
  */
 proto.UserServiceClient.prototype.register =
     function(request, metadata, callback) {
-        return this.client_.rpcCall(this.hostname_ +
-            '/UserService/register',
-            request,
-            metadata || {},
-            methodDescriptor_UserService_register,
-            callback);
-    };
+  return this.client_.rpcCall(this.hostname_ +
+      '/UserService/register',
+      request,
+      metadata || {},
+      methodDescriptor_UserService_register,
+      callback);
+};
 
 
 /**
@@ -187,12 +187,12 @@ proto.UserServiceClient.prototype.register =
  */
 proto.UserServicePromiseClient.prototype.register =
     function(request, metadata) {
-        return this.client_.unaryCall(this.hostname_ +
-            '/UserService/register',
-            request,
-            metadata || {},
-            methodDescriptor_UserService_register);
-    };
+  return this.client_.unaryCall(this.hostname_ +
+      '/UserService/register',
+      request,
+      metadata || {},
+      methodDescriptor_UserService_register);
+};
 
 
 /**
@@ -202,18 +202,18 @@ proto.UserServicePromiseClient.prototype.register =
  *   !proto.User>}
  */
 const methodDescriptor_UserService_delete = new grpc.web.MethodDescriptor(
-    '/UserService/delete',
-    grpc.web.MethodType.UNARY,
-    proto.AuthToken,
-    proto.User,
-    /**
-     * @param {!proto.AuthToken} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.User.deserializeBinary
+  '/UserService/delete',
+  grpc.web.MethodType.UNARY,
+  proto.AuthToken,
+  proto.User,
+  /**
+   * @param {!proto.AuthToken} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.User.deserializeBinary
 );
 
 
@@ -229,13 +229,13 @@ const methodDescriptor_UserService_delete = new grpc.web.MethodDescriptor(
  */
 proto.UserServiceClient.prototype.delete =
     function(request, metadata, callback) {
-        return this.client_.rpcCall(this.hostname_ +
-            '/UserService/delete',
-            request,
-            metadata || {},
-            methodDescriptor_UserService_delete,
-            callback);
-    };
+  return this.client_.rpcCall(this.hostname_ +
+      '/UserService/delete',
+      request,
+      metadata || {},
+      methodDescriptor_UserService_delete,
+      callback);
+};
 
 
 /**
@@ -248,12 +248,12 @@ proto.UserServiceClient.prototype.delete =
  */
 proto.UserServicePromiseClient.prototype.delete =
     function(request, metadata) {
-        return this.client_.unaryCall(this.hostname_ +
-            '/UserService/delete',
-            request,
-            metadata || {},
-            methodDescriptor_UserService_delete);
-    };
+  return this.client_.unaryCall(this.hostname_ +
+      '/UserService/delete',
+      request,
+      metadata || {},
+      methodDescriptor_UserService_delete);
+};
 
 
 /**
@@ -266,20 +266,20 @@ proto.UserServicePromiseClient.prototype.delete =
  */
 proto.EntryServiceClient =
     function(hostname, credentials, options) {
-        if (!options) options = {};
-        options.format = 'text';
+  if (!options) options = {};
+  options.format = 'text';
 
-        /**
-         * @private @const {!grpc.web.GrpcWebClientBase} The client
-         */
-        this.client_ = new grpc.web.GrpcWebClientBase(options);
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
 
-        /**
-         * @private @const {string} The hostname
-         */
-        this.hostname_ = hostname.replace(/\/+$/, '');
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
-    };
+};
 
 
 /**
@@ -292,20 +292,20 @@ proto.EntryServiceClient =
  */
 proto.EntryServicePromiseClient =
     function(hostname, credentials, options) {
-        if (!options) options = {};
-        options.format = 'text';
+  if (!options) options = {};
+  options.format = 'text';
 
-        /**
-         * @private @const {!grpc.web.GrpcWebClientBase} The client
-         */
-        this.client_ = new grpc.web.GrpcWebClientBase(options);
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
 
-        /**
-         * @private @const {string} The hostname
-         */
-        this.hostname_ = hostname.replace(/\/+$/, '');
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
-    };
+};
 
 
 /**
@@ -315,18 +315,18 @@ proto.EntryServicePromiseClient =
  *   !proto.Entry>}
  */
 const methodDescriptor_EntryService_getById = new grpc.web.MethodDescriptor(
-    '/EntryService/getById',
-    grpc.web.MethodType.UNARY,
-    proto.EntryID,
-    proto.Entry,
-    /**
-     * @param {!proto.EntryID} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.Entry.deserializeBinary
+  '/EntryService/getById',
+  grpc.web.MethodType.UNARY,
+  proto.EntryID,
+  proto.Entry,
+  /**
+   * @param {!proto.EntryID} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.Entry.deserializeBinary
 );
 
 
@@ -342,13 +342,13 @@ const methodDescriptor_EntryService_getById = new grpc.web.MethodDescriptor(
  */
 proto.EntryServiceClient.prototype.getById =
     function(request, metadata, callback) {
-        return this.client_.rpcCall(this.hostname_ +
-            '/EntryService/getById',
-            request,
-            metadata || {},
-            methodDescriptor_EntryService_getById,
-            callback);
-    };
+  return this.client_.rpcCall(this.hostname_ +
+      '/EntryService/getById',
+      request,
+      metadata || {},
+      methodDescriptor_EntryService_getById,
+      callback);
+};
 
 
 /**
@@ -361,68 +361,73 @@ proto.EntryServiceClient.prototype.getById =
  */
 proto.EntryServicePromiseClient.prototype.getById =
     function(request, metadata) {
-        return this.client_.unaryCall(this.hostname_ +
-            '/EntryService/getById',
-            request,
-            metadata || {},
-            methodDescriptor_EntryService_getById);
-    };
+  return this.client_.unaryCall(this.hostname_ +
+      '/EntryService/getById',
+      request,
+      metadata || {},
+      methodDescriptor_EntryService_getById);
+};
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.AuthToken,
- *   !proto.Entry>}
+ *   !proto.Entries>}
  */
 const methodDescriptor_EntryService_getEntryHistory = new grpc.web.MethodDescriptor(
-    '/EntryService/getEntryHistory',
-    grpc.web.MethodType.SERVER_STREAMING,
-    proto.AuthToken,
-    proto.Entry,
-    /**
-     * @param {!proto.AuthToken} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.Entry.deserializeBinary
+  '/EntryService/getEntryHistory',
+  grpc.web.MethodType.UNARY,
+  proto.AuthToken,
+  proto.Entries,
+  /**
+   * @param {!proto.AuthToken} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.Entries.deserializeBinary
 );
 
 
 /**
- * @param {!proto.AuthToken} request The request proto
- * @param {?Object<string, string>=} metadata User defined
+ * @param {!proto.AuthToken} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.Entry>}
+ * @param {function(?grpc.web.RpcError, ?proto.Entries)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.Entries>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.EntryServiceClient.prototype.getEntryHistory =
-    function(request, metadata) {
-        return this.client_.serverStreaming(this.hostname_ +
-            '/EntryService/getEntryHistory',
-            request,
-            metadata || {},
-            methodDescriptor_EntryService_getEntryHistory);
-    };
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/EntryService/getEntryHistory',
+      request,
+      metadata || {},
+      methodDescriptor_EntryService_getEntryHistory,
+      callback);
+};
 
 
 /**
- * @param {!proto.AuthToken} request The request proto
+ * @param {!proto.AuthToken} request The
+ *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.Entry>}
- *     The XHR Node Readable Stream
+ * @return {!Promise<!proto.Entries>}
+ *     Promise that resolves to the response
  */
 proto.EntryServicePromiseClient.prototype.getEntryHistory =
     function(request, metadata) {
-        return this.client_.serverStreaming(this.hostname_ +
-            '/EntryService/getEntryHistory',
-            request,
-            metadata || {},
-            methodDescriptor_EntryService_getEntryHistory);
-    };
+  return this.client_.unaryCall(this.hostname_ +
+      '/EntryService/getEntryHistory',
+      request,
+      metadata || {},
+      methodDescriptor_EntryService_getEntryHistory);
+};
 
 
 /**
@@ -432,18 +437,18 @@ proto.EntryServicePromiseClient.prototype.getEntryHistory =
  *   !proto.EntryID>}
  */
 const methodDescriptor_EntryService_deleteEntry = new grpc.web.MethodDescriptor(
-    '/EntryService/deleteEntry',
-    grpc.web.MethodType.UNARY,
-    proto.EntryID,
-    proto.EntryID,
-    /**
-     * @param {!proto.EntryID} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.EntryID.deserializeBinary
+  '/EntryService/deleteEntry',
+  grpc.web.MethodType.UNARY,
+  proto.EntryID,
+  proto.EntryID,
+  /**
+   * @param {!proto.EntryID} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.EntryID.deserializeBinary
 );
 
 
@@ -459,13 +464,13 @@ const methodDescriptor_EntryService_deleteEntry = new grpc.web.MethodDescriptor(
  */
 proto.EntryServiceClient.prototype.deleteEntry =
     function(request, metadata, callback) {
-        return this.client_.rpcCall(this.hostname_ +
-            '/EntryService/deleteEntry',
-            request,
-            metadata || {},
-            methodDescriptor_EntryService_deleteEntry,
-            callback);
-    };
+  return this.client_.rpcCall(this.hostname_ +
+      '/EntryService/deleteEntry',
+      request,
+      metadata || {},
+      methodDescriptor_EntryService_deleteEntry,
+      callback);
+};
 
 
 /**
@@ -478,12 +483,12 @@ proto.EntryServiceClient.prototype.deleteEntry =
  */
 proto.EntryServicePromiseClient.prototype.deleteEntry =
     function(request, metadata) {
-        return this.client_.unaryCall(this.hostname_ +
-            '/EntryService/deleteEntry',
-            request,
-            metadata || {},
-            methodDescriptor_EntryService_deleteEntry);
-    };
+  return this.client_.unaryCall(this.hostname_ +
+      '/EntryService/deleteEntry',
+      request,
+      metadata || {},
+      methodDescriptor_EntryService_deleteEntry);
+};
 
 
 /**
@@ -496,20 +501,20 @@ proto.EntryServicePromiseClient.prototype.deleteEntry =
  */
 proto.KYBERServiceClient =
     function(hostname, credentials, options) {
-        if (!options) options = {};
-        options.format = 'text';
+  if (!options) options = {};
+  options.format = 'text';
 
-        /**
-         * @private @const {!grpc.web.GrpcWebClientBase} The client
-         */
-        this.client_ = new grpc.web.GrpcWebClientBase(options);
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
 
-        /**
-         * @private @const {string} The hostname
-         */
-        this.hostname_ = hostname.replace(/\/+$/, '');
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
-    };
+};
 
 
 /**
@@ -522,20 +527,20 @@ proto.KYBERServiceClient =
  */
 proto.KYBERServicePromiseClient =
     function(hostname, credentials, options) {
-        if (!options) options = {};
-        options.format = 'text';
+  if (!options) options = {};
+  options.format = 'text';
 
-        /**
-         * @private @const {!grpc.web.GrpcWebClientBase} The client
-         */
-        this.client_ = new grpc.web.GrpcWebClientBase(options);
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
 
-        /**
-         * @private @const {string} The hostname
-         */
-        this.hostname_ = hostname.replace(/\/+$/, '');
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
-    };
+};
 
 
 /**
@@ -545,18 +550,18 @@ proto.KYBERServicePromiseClient =
  *   !proto.KYBERKeygenResult>}
  */
 const methodDescriptor_KYBERService_keygen = new grpc.web.MethodDescriptor(
-    '/KYBERService/keygen',
-    grpc.web.MethodType.UNARY,
-    proto.KYBERKeygenParameters,
-    proto.KYBERKeygenResult,
-    /**
-     * @param {!proto.KYBERKeygenParameters} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.KYBERKeygenResult.deserializeBinary
+  '/KYBERService/keygen',
+  grpc.web.MethodType.UNARY,
+  proto.KYBERKeygenParameters,
+  proto.KYBERKeygenResult,
+  /**
+   * @param {!proto.KYBERKeygenParameters} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.KYBERKeygenResult.deserializeBinary
 );
 
 
@@ -572,13 +577,13 @@ const methodDescriptor_KYBERService_keygen = new grpc.web.MethodDescriptor(
  */
 proto.KYBERServiceClient.prototype.keygen =
     function(request, metadata, callback) {
-        return this.client_.rpcCall(this.hostname_ +
-            '/KYBERService/keygen',
-            request,
-            metadata || {},
-            methodDescriptor_KYBERService_keygen,
-            callback);
-    };
+  return this.client_.rpcCall(this.hostname_ +
+      '/KYBERService/keygen',
+      request,
+      metadata || {},
+      methodDescriptor_KYBERService_keygen,
+      callback);
+};
 
 
 /**
@@ -591,12 +596,12 @@ proto.KYBERServiceClient.prototype.keygen =
  */
 proto.KYBERServicePromiseClient.prototype.keygen =
     function(request, metadata) {
-        return this.client_.unaryCall(this.hostname_ +
-            '/KYBERService/keygen',
-            request,
-            metadata || {},
-            methodDescriptor_KYBERService_keygen);
-    };
+  return this.client_.unaryCall(this.hostname_ +
+      '/KYBERService/keygen',
+      request,
+      metadata || {},
+      methodDescriptor_KYBERService_keygen);
+};
 
 
 /**
@@ -606,79 +611,23 @@ proto.KYBERServicePromiseClient.prototype.keygen =
  *   !proto.KYBERKeys>}
  */
 const methodDescriptor_KYBERService_getKeys = new grpc.web.MethodDescriptor(
-    '/KYBERService/getKeys',
-    grpc.web.MethodType.SERVER_STREAMING,
-    proto.AuthToken,
-    proto.KYBERKeys,
-    /**
-     * @param {!proto.AuthToken} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.KYBERKeys.deserializeBinary
+  '/KYBERService/getKeys',
+  grpc.web.MethodType.UNARY,
+  proto.AuthToken,
+  proto.KYBERKeys,
+  /**
+   * @param {!proto.AuthToken} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.KYBERKeys.deserializeBinary
 );
 
 
 /**
- * @param {!proto.AuthToken} request The request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.KYBERKeys>}
- *     The XHR Node Readable Stream
- */
-proto.KYBERServiceClient.prototype.getKeys =
-    function(request, metadata) {
-        return this.client_.serverStreaming(this.hostname_ +
-            '/KYBERService/getKeys',
-            request,
-            metadata || {},
-            methodDescriptor_KYBERService_getKeys);
-    };
-
-
-/**
- * @param {!proto.AuthToken} request The request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.KYBERKeys>}
- *     The XHR Node Readable Stream
- */
-proto.KYBERServicePromiseClient.prototype.getKeys =
-    function(request, metadata) {
-        return this.client_.serverStreaming(this.hostname_ +
-            '/KYBERService/getKeys',
-            request,
-            metadata || {},
-            methodDescriptor_KYBERService_getKeys);
-    };
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.KYBERKeyImport,
- *   !proto.KYBERKeys>}
- */
-const methodDescriptor_KYBERService_addKeys = new grpc.web.MethodDescriptor(
-    '/KYBERService/addKeys',
-    grpc.web.MethodType.UNARY,
-    proto.KYBERKeyImport,
-    proto.KYBERKeys,
-    /**
-     * @param {!proto.KYBERKeyImport} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.KYBERKeys.deserializeBinary
-);
-
-
-/**
- * @param {!proto.KYBERKeyImport} request The
+ * @param {!proto.AuthToken} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -687,15 +636,76 @@ const methodDescriptor_KYBERService_addKeys = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.KYBERKeys>|undefined}
  *     The XHR Node Readable Stream
  */
+proto.KYBERServiceClient.prototype.getKeys =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/KYBERService/getKeys',
+      request,
+      metadata || {},
+      methodDescriptor_KYBERService_getKeys,
+      callback);
+};
+
+
+/**
+ * @param {!proto.AuthToken} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.KYBERKeys>}
+ *     Promise that resolves to the response
+ */
+proto.KYBERServicePromiseClient.prototype.getKeys =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/KYBERService/getKeys',
+      request,
+      metadata || {},
+      methodDescriptor_KYBERService_getKeys);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.KYBERKeyImport,
+ *   !proto.KYBERKey>}
+ */
+const methodDescriptor_KYBERService_addKeys = new grpc.web.MethodDescriptor(
+  '/KYBERService/addKeys',
+  grpc.web.MethodType.UNARY,
+  proto.KYBERKeyImport,
+  proto.KYBERKey,
+  /**
+   * @param {!proto.KYBERKeyImport} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.KYBERKey.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.KYBERKeyImport} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.KYBERKey)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.KYBERKey>|undefined}
+ *     The XHR Node Readable Stream
+ */
 proto.KYBERServiceClient.prototype.addKeys =
     function(request, metadata, callback) {
-        return this.client_.rpcCall(this.hostname_ +
-            '/KYBERService/addKeys',
-            request,
-            metadata || {},
-            methodDescriptor_KYBERService_addKeys,
-            callback);
-    };
+  return this.client_.rpcCall(this.hostname_ +
+      '/KYBERService/addKeys',
+      request,
+      metadata || {},
+      methodDescriptor_KYBERService_addKeys,
+      callback);
+};
 
 
 /**
@@ -703,129 +713,139 @@ proto.KYBERServiceClient.prototype.addKeys =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.KYBERKeys>}
+ * @return {!Promise<!proto.KYBERKey>}
  *     Promise that resolves to the response
  */
 proto.KYBERServicePromiseClient.prototype.addKeys =
     function(request, metadata) {
-        return this.client_.unaryCall(this.hostname_ +
-            '/KYBERService/addKeys',
-            request,
-            metadata || {},
-            methodDescriptor_KYBERService_addKeys);
-    };
+  return this.client_.unaryCall(this.hostname_ +
+      '/KYBERService/addKeys',
+      request,
+      metadata || {},
+      methodDescriptor_KYBERService_addKeys);
+};
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.KYBERExecution,
- *   !proto.Entry>}
+ *   !proto.Entries>}
  */
 const methodDescriptor_KYBERService_runEncaps = new grpc.web.MethodDescriptor(
-    '/KYBERService/runEncaps',
-    grpc.web.MethodType.SERVER_STREAMING,
-    proto.KYBERExecution,
-    proto.Entry,
-    /**
-     * @param {!proto.KYBERExecution} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.Entry.deserializeBinary
+  '/KYBERService/runEncaps',
+  grpc.web.MethodType.UNARY,
+  proto.KYBERExecution,
+  proto.Entries,
+  /**
+   * @param {!proto.KYBERExecution} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.Entries.deserializeBinary
 );
 
 
 /**
- * @param {!proto.KYBERExecution} request The request proto
- * @param {?Object<string, string>=} metadata User defined
+ * @param {!proto.KYBERExecution} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.Entry>}
+ * @param {function(?grpc.web.RpcError, ?proto.Entries)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.Entries>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.KYBERServiceClient.prototype.runEncaps =
-    function(request, metadata) {
-        return this.client_.serverStreaming(this.hostname_ +
-            '/KYBERService/runEncaps',
-            request,
-            metadata || {},
-            methodDescriptor_KYBERService_runEncaps);
-    };
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/KYBERService/runEncaps',
+      request,
+      metadata || {},
+      methodDescriptor_KYBERService_runEncaps,
+      callback);
+};
 
 
 /**
- * @param {!proto.KYBERExecution} request The request proto
+ * @param {!proto.KYBERExecution} request The
+ *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.Entry>}
- *     The XHR Node Readable Stream
+ * @return {!Promise<!proto.Entries>}
+ *     Promise that resolves to the response
  */
 proto.KYBERServicePromiseClient.prototype.runEncaps =
     function(request, metadata) {
-        return this.client_.serverStreaming(this.hostname_ +
-            '/KYBERService/runEncaps',
-            request,
-            metadata || {},
-            methodDescriptor_KYBERService_runEncaps);
-    };
+  return this.client_.unaryCall(this.hostname_ +
+      '/KYBERService/runEncaps',
+      request,
+      metadata || {},
+      methodDescriptor_KYBERService_runEncaps);
+};
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.KYBERExecution,
- *   !proto.Entry>}
+ *   !proto.Entries>}
  */
 const methodDescriptor_KYBERService_runDecaps = new grpc.web.MethodDescriptor(
-    '/KYBERService/runDecaps',
-    grpc.web.MethodType.SERVER_STREAMING,
-    proto.KYBERExecution,
-    proto.Entry,
-    /**
-     * @param {!proto.KYBERExecution} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.Entry.deserializeBinary
+  '/KYBERService/runDecaps',
+  grpc.web.MethodType.UNARY,
+  proto.KYBERExecution,
+  proto.Entries,
+  /**
+   * @param {!proto.KYBERExecution} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.Entries.deserializeBinary
 );
 
 
 /**
- * @param {!proto.KYBERExecution} request The request proto
- * @param {?Object<string, string>=} metadata User defined
+ * @param {!proto.KYBERExecution} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.Entry>}
+ * @param {function(?grpc.web.RpcError, ?proto.Entries)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.Entries>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.KYBERServiceClient.prototype.runDecaps =
-    function(request, metadata) {
-        return this.client_.serverStreaming(this.hostname_ +
-            '/KYBERService/runDecaps',
-            request,
-            metadata || {},
-            methodDescriptor_KYBERService_runDecaps);
-    };
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/KYBERService/runDecaps',
+      request,
+      metadata || {},
+      methodDescriptor_KYBERService_runDecaps,
+      callback);
+};
 
 
 /**
- * @param {!proto.KYBERExecution} request The request proto
+ * @param {!proto.KYBERExecution} request The
+ *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.Entry>}
- *     The XHR Node Readable Stream
+ * @return {!Promise<!proto.Entries>}
+ *     Promise that resolves to the response
  */
 proto.KYBERServicePromiseClient.prototype.runDecaps =
     function(request, metadata) {
-        return this.client_.serverStreaming(this.hostname_ +
-            '/KYBERService/runDecaps',
-            request,
-            metadata || {},
-            methodDescriptor_KYBERService_runDecaps);
-    };
+  return this.client_.unaryCall(this.hostname_ +
+      '/KYBERService/runDecaps',
+      request,
+      metadata || {},
+      methodDescriptor_KYBERService_runDecaps);
+};
 
 
 /**
@@ -838,20 +858,20 @@ proto.KYBERServicePromiseClient.prototype.runDecaps =
  */
 proto.CTRUServiceClient =
     function(hostname, credentials, options) {
-        if (!options) options = {};
-        options.format = 'text';
+  if (!options) options = {};
+  options.format = 'text';
 
-        /**
-         * @private @const {!grpc.web.GrpcWebClientBase} The client
-         */
-        this.client_ = new grpc.web.GrpcWebClientBase(options);
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
 
-        /**
-         * @private @const {string} The hostname
-         */
-        this.hostname_ = hostname.replace(/\/+$/, '');
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
-    };
+};
 
 
 /**
@@ -864,20 +884,20 @@ proto.CTRUServiceClient =
  */
 proto.CTRUServicePromiseClient =
     function(hostname, credentials, options) {
-        if (!options) options = {};
-        options.format = 'text';
+  if (!options) options = {};
+  options.format = 'text';
 
-        /**
-         * @private @const {!grpc.web.GrpcWebClientBase} The client
-         */
-        this.client_ = new grpc.web.GrpcWebClientBase(options);
+  /**
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
+   */
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
 
-        /**
-         * @private @const {string} The hostname
-         */
-        this.hostname_ = hostname.replace(/\/+$/, '');
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname.replace(/\/+$/, '');
 
-    };
+};
 
 
 /**
@@ -887,18 +907,18 @@ proto.CTRUServicePromiseClient =
  *   !proto.CTRUKeygenResult>}
  */
 const methodDescriptor_CTRUService_keygen = new grpc.web.MethodDescriptor(
-    '/CTRUService/keygen',
-    grpc.web.MethodType.UNARY,
-    proto.CTRUKeygenParameters,
-    proto.CTRUKeygenResult,
-    /**
-     * @param {!proto.CTRUKeygenParameters} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.CTRUKeygenResult.deserializeBinary
+  '/CTRUService/keygen',
+  grpc.web.MethodType.UNARY,
+  proto.CTRUKeygenParameters,
+  proto.CTRUKeygenResult,
+  /**
+   * @param {!proto.CTRUKeygenParameters} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.CTRUKeygenResult.deserializeBinary
 );
 
 
@@ -914,13 +934,13 @@ const methodDescriptor_CTRUService_keygen = new grpc.web.MethodDescriptor(
  */
 proto.CTRUServiceClient.prototype.keygen =
     function(request, metadata, callback) {
-        return this.client_.rpcCall(this.hostname_ +
-            '/CTRUService/keygen',
-            request,
-            metadata || {},
-            methodDescriptor_CTRUService_keygen,
-            callback);
-    };
+  return this.client_.rpcCall(this.hostname_ +
+      '/CTRUService/keygen',
+      request,
+      metadata || {},
+      methodDescriptor_CTRUService_keygen,
+      callback);
+};
 
 
 /**
@@ -933,12 +953,12 @@ proto.CTRUServiceClient.prototype.keygen =
  */
 proto.CTRUServicePromiseClient.prototype.keygen =
     function(request, metadata) {
-        return this.client_.unaryCall(this.hostname_ +
-            '/CTRUService/keygen',
-            request,
-            metadata || {},
-            methodDescriptor_CTRUService_keygen);
-    };
+  return this.client_.unaryCall(this.hostname_ +
+      '/CTRUService/keygen',
+      request,
+      metadata || {},
+      methodDescriptor_CTRUService_keygen);
+};
 
 
 /**
@@ -948,79 +968,23 @@ proto.CTRUServicePromiseClient.prototype.keygen =
  *   !proto.CTRUKeys>}
  */
 const methodDescriptor_CTRUService_getKeys = new grpc.web.MethodDescriptor(
-    '/CTRUService/getKeys',
-    grpc.web.MethodType.SERVER_STREAMING,
-    proto.AuthToken,
-    proto.CTRUKeys,
-    /**
-     * @param {!proto.AuthToken} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.CTRUKeys.deserializeBinary
+  '/CTRUService/getKeys',
+  grpc.web.MethodType.UNARY,
+  proto.AuthToken,
+  proto.CTRUKeys,
+  /**
+   * @param {!proto.AuthToken} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.CTRUKeys.deserializeBinary
 );
 
 
 /**
- * @param {!proto.AuthToken} request The request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.CTRUKeys>}
- *     The XHR Node Readable Stream
- */
-proto.CTRUServiceClient.prototype.getKeys =
-    function(request, metadata) {
-        return this.client_.serverStreaming(this.hostname_ +
-            '/CTRUService/getKeys',
-            request,
-            metadata || {},
-            methodDescriptor_CTRUService_getKeys);
-    };
-
-
-/**
- * @param {!proto.AuthToken} request The request proto
- * @param {?Object<string, string>=} metadata User defined
- *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.CTRUKeys>}
- *     The XHR Node Readable Stream
- */
-proto.CTRUServicePromiseClient.prototype.getKeys =
-    function(request, metadata) {
-        return this.client_.serverStreaming(this.hostname_ +
-            '/CTRUService/getKeys',
-            request,
-            metadata || {},
-            methodDescriptor_CTRUService_getKeys);
-    };
-
-
-/**
- * @const
- * @type {!grpc.web.MethodDescriptor<
- *   !proto.CTRUKeyImport,
- *   !proto.CTRUKeys>}
- */
-const methodDescriptor_CTRUService_addKeys = new grpc.web.MethodDescriptor(
-    '/CTRUService/addKeys',
-    grpc.web.MethodType.UNARY,
-    proto.CTRUKeyImport,
-    proto.CTRUKeys,
-    /**
-     * @param {!proto.CTRUKeyImport} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.CTRUKeys.deserializeBinary
-);
-
-
-/**
- * @param {!proto.CTRUKeyImport} request The
+ * @param {!proto.AuthToken} request The
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
@@ -1029,15 +993,76 @@ const methodDescriptor_CTRUService_addKeys = new grpc.web.MethodDescriptor(
  * @return {!grpc.web.ClientReadableStream<!proto.CTRUKeys>|undefined}
  *     The XHR Node Readable Stream
  */
+proto.CTRUServiceClient.prototype.getKeys =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/CTRUService/getKeys',
+      request,
+      metadata || {},
+      methodDescriptor_CTRUService_getKeys,
+      callback);
+};
+
+
+/**
+ * @param {!proto.AuthToken} request The
+ *     request proto
+ * @param {?Object<string, string>=} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.CTRUKeys>}
+ *     Promise that resolves to the response
+ */
+proto.CTRUServicePromiseClient.prototype.getKeys =
+    function(request, metadata) {
+  return this.client_.unaryCall(this.hostname_ +
+      '/CTRUService/getKeys',
+      request,
+      metadata || {},
+      methodDescriptor_CTRUService_getKeys);
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.MethodDescriptor<
+ *   !proto.CTRUKeyImport,
+ *   !proto.CTRUKey>}
+ */
+const methodDescriptor_CTRUService_addKeys = new grpc.web.MethodDescriptor(
+  '/CTRUService/addKeys',
+  grpc.web.MethodType.UNARY,
+  proto.CTRUKeyImport,
+  proto.CTRUKey,
+  /**
+   * @param {!proto.CTRUKeyImport} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.CTRUKey.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.CTRUKeyImport} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.RpcError, ?proto.CTRUKey)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.CTRUKey>|undefined}
+ *     The XHR Node Readable Stream
+ */
 proto.CTRUServiceClient.prototype.addKeys =
     function(request, metadata, callback) {
-        return this.client_.rpcCall(this.hostname_ +
-            '/CTRUService/addKeys',
-            request,
-            metadata || {},
-            methodDescriptor_CTRUService_addKeys,
-            callback);
-    };
+  return this.client_.rpcCall(this.hostname_ +
+      '/CTRUService/addKeys',
+      request,
+      metadata || {},
+      methodDescriptor_CTRUService_addKeys,
+      callback);
+};
 
 
 /**
@@ -1045,129 +1070,140 @@ proto.CTRUServiceClient.prototype.addKeys =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.CTRUKeys>}
+ * @return {!Promise<!proto.CTRUKey>}
  *     Promise that resolves to the response
  */
 proto.CTRUServicePromiseClient.prototype.addKeys =
     function(request, metadata) {
-        return this.client_.unaryCall(this.hostname_ +
-            '/CTRUService/addKeys',
-            request,
-            metadata || {},
-            methodDescriptor_CTRUService_addKeys);
-    };
+  return this.client_.unaryCall(this.hostname_ +
+      '/CTRUService/addKeys',
+      request,
+      metadata || {},
+      methodDescriptor_CTRUService_addKeys);
+};
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.CTRUExecution,
- *   !proto.Entry>}
+ *   !proto.Entries>}
  */
 const methodDescriptor_CTRUService_runEncaps = new grpc.web.MethodDescriptor(
-    '/CTRUService/runEncaps',
-    grpc.web.MethodType.SERVER_STREAMING,
-    proto.CTRUExecution,
-    proto.Entry,
-    /**
-     * @param {!proto.CTRUExecution} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.Entry.deserializeBinary
+  '/CTRUService/runEncaps',
+  grpc.web.MethodType.UNARY,
+  proto.CTRUExecution,
+  proto.Entries,
+  /**
+   * @param {!proto.CTRUExecution} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.Entries.deserializeBinary
 );
 
 
 /**
- * @param {!proto.CTRUExecution} request The request proto
- * @param {?Object<string, string>=} metadata User defined
+ * @param {!proto.CTRUExecution} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.Entry>}
+ * @param {function(?grpc.web.RpcError, ?proto.Entries)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.Entries>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.CTRUServiceClient.prototype.runEncaps =
-    function(request, metadata) {
-        return this.client_.serverStreaming(this.hostname_ +
-            '/CTRUService/runEncaps',
-            request,
-            metadata || {},
-            methodDescriptor_CTRUService_runEncaps);
-    };
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/CTRUService/runEncaps',
+      request,
+      metadata || {},
+      methodDescriptor_CTRUService_runEncaps,
+      callback);
+};
 
 
 /**
- * @param {!proto.CTRUExecution} request The request proto
+ * @param {!proto.CTRUExecution} request The
+ *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.Entry>}
- *     The XHR Node Readable Stream
+ * @return {!Promise<!proto.Entries>}
+ *     Promise that resolves to the response
  */
 proto.CTRUServicePromiseClient.prototype.runEncaps =
     function(request, metadata) {
-        return this.client_.serverStreaming(this.hostname_ +
-            '/CTRUService/runEncaps',
-            request,
-            metadata || {},
-            methodDescriptor_CTRUService_runEncaps);
-    };
+  return this.client_.unaryCall(this.hostname_ +
+      '/CTRUService/runEncaps',
+      request,
+      metadata || {},
+      methodDescriptor_CTRUService_runEncaps);
+};
 
 
 /**
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.CTRUExecution,
- *   !proto.Entry>}
+ *   !proto.Entries>}
  */
 const methodDescriptor_CTRUService_runDecaps = new grpc.web.MethodDescriptor(
-    '/CTRUService/runDecaps',
-    grpc.web.MethodType.SERVER_STREAMING,
-    proto.CTRUExecution,
-    proto.Entry,
-    /**
-     * @param {!proto.CTRUExecution} request
-     * @return {!Uint8Array}
-     */
-    function(request) {
-        return request.serializeBinary();
-    },
-    proto.Entry.deserializeBinary
+  '/CTRUService/runDecaps',
+  grpc.web.MethodType.UNARY,
+  proto.CTRUExecution,
+  proto.Entries,
+  /**
+   * @param {!proto.CTRUExecution} request
+   * @return {!Uint8Array}
+   */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.Entries.deserializeBinary
 );
 
 
 /**
- * @param {!proto.CTRUExecution} request The request proto
- * @param {?Object<string, string>=} metadata User defined
+ * @param {!proto.CTRUExecution} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.Entry>}
+ * @param {function(?grpc.web.RpcError, ?proto.Entries)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.Entries>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.CTRUServiceClient.prototype.runDecaps =
-    function(request, metadata) {
-        return this.client_.serverStreaming(this.hostname_ +
-            '/CTRUService/runDecaps',
-            request,
-            metadata || {},
-            methodDescriptor_CTRUService_runDecaps);
-    };
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/CTRUService/runDecaps',
+      request,
+      metadata || {},
+      methodDescriptor_CTRUService_runDecaps,
+      callback);
+};
 
 
 /**
- * @param {!proto.CTRUExecution} request The request proto
+ * @param {!proto.CTRUExecution} request The
+ *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!grpc.web.ClientReadableStream<!proto.Entry>}
- *     The XHR Node Readable Stream
+ * @return {!Promise<!proto.Entries>}
+ *     Promise that resolves to the response
  */
 proto.CTRUServicePromiseClient.prototype.runDecaps =
     function(request, metadata) {
-        return this.client_.serverStreaming(this.hostname_ +
-            '/CTRUService/runDecaps',
-            request,
-            metadata || {},
-            methodDescriptor_CTRUService_runDecaps);
-    };
+  return this.client_.unaryCall(this.hostname_ +
+      '/CTRUService/runDecaps',
+      request,
+      metadata || {},
+      methodDescriptor_CTRUService_runDecaps);
+};
 
 
 module.exports = proto;
+

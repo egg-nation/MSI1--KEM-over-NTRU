@@ -32,12 +32,12 @@ def test_kyber():
 
 		assert keygen_result.keys.keyId != ""
 		assert keygen_result.entry.id != ""
-		assert keygen_result.keys.keyId in [ key.keyId for key in stub.getKeys(token)]
+		assert keygen_result.keys.keyId in [ key.keyId for key in stub.getKeys(token).keys]
 		entries = list(stub.runEncaps(controllers.v1_pb2.KYBERExecution(
 				keys = keygen_result.keys,
 				token = token,
 				iterations = 3
-			)))
+			)).entries)
 		assert len(entries) > 0
 
 		for entry in entries:
@@ -46,7 +46,7 @@ def test_kyber():
 				token = token,
 				iterations = 3,
 				data = entry.output
-			))))
+			)).entries))
 
 	with grpc.insecure_channel("127.0.0.1:5000") as channel:
 		stub = controllers.v1_pb2_grpc.EntryServiceStub(channel)
@@ -56,7 +56,7 @@ def test_kyber():
 					entryId = entry.id
 				))
 
-		for entry in list(stub.getEntryHistory(token)):
+		for entry in list(stub.getEntryHistory(token).entries):
 			assert entry.id == stub.deleteEntry(controllers.v1_pb2.EntryID(
 					token = token,
 					entryId = entry.id
