@@ -1,3 +1,45 @@
+22:42:06,254 Error catcher ERROR Unknown except raised 127.0.0.1:27017: [Errno 111] Connection refused, Timeout: 30s, Topology Description: <TopologyDescription id: 6398fe2e75e4b365efc3cc76, topology_type: Unknown, servers: [<ServerDescription ('127.0.0.1', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('127.0.0.1:27017: [Errno 111] Connection refused')>]>
+22:42:06,267 grpc._common ERROR Exception serializing message!
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/grpc/_common.py", line 86, in _transform
+    return transformer(message)
+           ^^^^^^^^^^^^^^^^^^^^
+google.protobuf.message.EncodeError: Message User is missing required fields: username,emailAddress,userId
+22:42:22,294 Error catcher ERROR Unknown except raised 127.0.0.1:27017: [Errno 111] Connection refused, Timeout: 30s, Topology Description: <TopologyDescription id: 6398fe2e75e4b365efc3cc76, topology_type: Unknown, servers: [<ServerDescription ('127.0.0.1', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('127.0.0.1:27017: [Errno 111] Connection refused')>]>
+22:42:22,301 grpc._common ERROR Exception serializing message!
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/grpc/_common.py", line 86, in _transform
+    return transformer(message)
+           ^^^^^^^^^^^^^^^^^^^^
+google.protobuf.message.EncodeError: Message User is missing required fields: username,emailAddress,userId
+22:43:22,902 Error catcher ERROR Unknown except raised 127.0.0.1:27017: [Errno 111] Connection refused, Timeout: 30s, Topology Description: <TopologyDescription id: 6398fe2e75e4b365efc3cc76, topology_type: Unknown, servers: [<ServerDescription ('127.0.0.1', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('127.0.0.1:27017: [Errno 111] Connection refused')>]>
+22:43:22,905 grpc._common ERROR Exception serializing message!
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/grpc/_common.py", line 86, in _transform
+    return transformer(message)
+           ^^^^^^^^^^^^^^^^^^^^
+google.protobuf.message.EncodeError: Message User is missing required fields: username,emailAddress,userId
+22:43:42,921 Error catcher ERROR Unknown except raised 127.0.0.1:27017: [Errno 111] Connection refused, Timeout: 30s, Topology Description: <TopologyDescription id: 6398fe2e75e4b365efc3cc76, topology_type: Unknown, servers: [<ServerDescription ('127.0.0.1', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('127.0.0.1:27017: [Errno 111] Connection refused')>]>
+22:43:42,941 grpc._common ERROR Exception serializing message!
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/grpc/_common.py", line 86, in _transform
+    return transformer(message)
+           ^^^^^^^^^^^^^^^^^^^^
+google.protobuf.message.EncodeError: Message User is missing required fields: username,emailAddress,userId
+22:43:52,949 Error catcher ERROR Unknown except raised 127.0.0.1:27017: [Errno 111] Connection refused, Timeout: 30s, Topology Description: <TopologyDescription id: 6398fe2e75e4b365efc3cc76, topology_type: Unknown, servers: [<ServerDescription ('127.0.0.1', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('127.0.0.1:27017: [Errno 111] Connection refused')>]>
+22:43:52,950 grpc._common ERROR Exception serializing message!
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/grpc/_common.py", line 86, in _transform
+    return transformer(message)
+           ^^^^^^^^^^^^^^^^^^^^
+google.protobuf.message.EncodeError: Message User is missing required fields: username,emailAddress,userId
+22:44:37,538 Error catcher ERROR Unknown except raised 127.0.0.1:27017: [Errno 111] Connection refused, Timeout: 30s, Topology Description: <TopologyDescription id: 6398fe2e75e4b365efc3cc76, topology_type: Unknown, servers: [<ServerDescription ('127.0.0.1', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('127.0.0.1:27017: [Errno 111] Connection refused')>]>
+22:44:37,540 grpc._common ERROR Exception serializing message!
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/grpc/_common.py", line 86, in _transform
+    return transformer(message)
+           ^^^^^^^^^^^^^^^^^^^^
+google.protobuf.message.EncodeError: Message User is missing required fields: username,emailAddress,userId
 17:44:04,948 Error catcher ERROR Unknown except raised 1 validation error for Entry
 output
   field required (type=value_error.missing)
@@ -372,3 +414,17 @@ Traceback (most recent call last):
   File "D:\personal\master\MSI1\aset\proiect\MS1--KEM-over-NTRU\source\backend\controllers\kyber_service.py", line 166, in runDecaps
     "c": request.output
 AttributeError: output
+21:02:15,433 Error catcher ERROR Unknown except raised 127.0.0.1:27017: [Errno 111] Connection refused, Timeout: 30s, Topology Description: <TopologyDescription id: 63a22245840d429e897a0d25, topology_type: Unknown, servers: [<ServerDescription ('127.0.0.1', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('127.0.0.1:27017: [Errno 111] Connection refused')>]>
+21:02:15,436 grpc._common ERROR Exception serializing message!
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/grpc/_common.py", line 90, in _transform
+    return transformer(message)
+           ^^^^^^^^^^^^^^^^^^^^
+google.protobuf.message.EncodeError: Message User is missing required fields: username,emailAddress,userId
+21:02:29,964 Error catcher ERROR Unknown except raised 127.0.0.1:27017: [Errno 111] Connection refused, Timeout: 30s, Topology Description: <TopologyDescription id: 63a22245840d429e897a0d25, topology_type: Unknown, servers: [<ServerDescription ('127.0.0.1', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('127.0.0.1:27017: [Errno 111] Connection refused')>]>
+21:02:29,966 grpc._common ERROR Exception serializing message!
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/grpc/_common.py", line 90, in _transform
+    return transformer(message)
+           ^^^^^^^^^^^^^^^^^^^^
+google.protobuf.message.EncodeError: Message User is missing required fields: username,emailAddress,userId

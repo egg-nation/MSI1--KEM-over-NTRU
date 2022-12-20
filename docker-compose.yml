@@ -26,15 +26,15 @@ services:
     ports:
       - 27018:27017
 
-  frontend-server:
-    image: kem-webapp:latest
-    ports:
-      - 3000:3000
-    depends_on:
-      - "backend-server"
-# for dev purposes; to be deactivated on NTFS systems
-    volumes:
-      - ./source/webapp:/work
+#  frontend-server:
+#    image: kem-webapp:latest
+#    ports:
+#      - 3000:3000
+#    depends_on:
+#      - "backend-server"
+## for dev purposes; to be deactivated on NTFS systems
+#    volumes:
+#      - ./source/webapp:/work
 
 volumes:
   kem-backend-db:

@@ -9,7 +9,7 @@ from os import urandom
 
 def test_ctru():
 	token = None
-	with grpc.insecure_channel("127.0.0.1:5000") as channel:
+	with grpc.insecure_channel("127.0.0.1:5001") as channel:
 		user_stub = controllers.v1_pb2_grpc.UserServiceStub(channel)
 		password = urandom(10).hex()
 		register_creds = controllers.v1_pb2.RegisterCredentials(username = "kegen_tester", emailAddress = "kegen_tester@test.com", password = password)
@@ -17,7 +17,7 @@ def test_ctru():
 		token = user_stub.register(register_creds).token
 
 	entries = None
-	with grpc.insecure_channel("127.0.0.1:5000") as channel:
+	with grpc.insecure_channel("127.0.0.1:5001") as channel:
 		stub = controllers.v1_pb2_grpc.CTRUServiceStub(channel)
 		params = controllers.v1_pb2.CTRUParameters(
 			n = 32,
