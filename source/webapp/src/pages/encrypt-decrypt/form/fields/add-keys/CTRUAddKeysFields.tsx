@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import {Button, Col, Row} from "react-bootstrap";
 import RegularInputField from "../../../../../components/form/RegularInputField";
-import {AuthToken} from "../../../../../apidocs/v1_pb";
 
 type Props = {
-    authToken: AuthToken;
+    authToken: any;
 }
 
 const CTRUAddKeysFields = ({authToken}: Props) => {
@@ -15,10 +14,12 @@ const CTRUAddKeysFields = ({authToken}: Props) => {
     const [eta, setEta] = useState<string>();
     const [pk, setPk] = useState<string>();
     const [sk, setSk] = useState<string>();
+    const [message, setMessage] = useState<string>();
 
     const handleCTRUAddKeys = () => {
 
-        console.log("ctru add keys");
+        setMessage("n: " + n + ", q: " + q + ", q2: " + q2 + ", eta: " + eta +
+            ", public key: " + pk + ", secret key: " + sk);
     }
 
     return (
@@ -29,24 +30,24 @@ const CTRUAddKeysFields = ({authToken}: Props) => {
                 </Col>
                 <Row>
                     <Col className="d-flex gap-4 no-padding-left mb-3" xs={{span: 12}}>
-                        <RegularInputField fieldName={"n"} fieldValue={"n"}
+                        <RegularInputField fieldName={"n"} fieldValue={""}
                                            setFieldValue={setN}
                                            fieldAreaLabel={"n"}/>
-                        <RegularInputField fieldName={"q"} fieldValue={"q"}
+                        <RegularInputField fieldName={"q"} fieldValue={""}
                                            setFieldValue={setQ}
                                            fieldAreaLabel={"q"}/>
-                        <RegularInputField fieldName={"q2"} fieldValue={"q2"}
+                        <RegularInputField fieldName={"q2"} fieldValue={""}
                                            setFieldValue={setQ2}
                                            fieldAreaLabel={"q2"}/>
-                        <RegularInputField fieldName={"eta"} fieldValue={"eta"}
+                        <RegularInputField fieldName={"eta"} fieldValue={""}
                                            setFieldValue={setEta}
                                            fieldAreaLabel={"eta"}/>
                     </Col>
                     <Col className="d-flex gap-4 no-padding-left mb-3" xs={{span: 12}}>
-                        <RegularInputField fieldName={"Public key"} fieldValue={"pk"}
+                        <RegularInputField fieldName={"Public key"} fieldValue={""}
                                            setFieldValue={setPk}
                                            fieldAreaLabel={"pk"}/>
-                        <RegularInputField fieldName={"Secret key"} fieldValue={"sk"}
+                        <RegularInputField fieldName={"Secret key"} fieldValue={""}
                                            setFieldValue={setSk}
                                            fieldAreaLabel={"sk"}/>
                     </Col>
@@ -59,6 +60,21 @@ const CTRUAddKeysFields = ({authToken}: Props) => {
                             onClick={() => handleCTRUAddKeys()}>
                             Add keys
                         </Button>
+                    </Col>
+                </Row>
+                <Row className="no-padding-left">
+                    <Col className="no-padding-left no-padding-right">
+                        {
+                            message && (
+                                <div className="form-group">
+                                    <div
+                                        className="alert alert-success d-flex justify-content-center"
+                                        role="alert">
+                                        {message}
+                                    </div>
+                                </div>
+                            )
+                        }
                     </Col>
                 </Row>
             </div>

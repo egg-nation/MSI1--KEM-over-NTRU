@@ -46,13 +46,23 @@ const Login = () => {
         UserServiceApiClient.login(loginCredentials, {},
             (err: grpcWeb.RpcError, response: User) => {
 
-                response != null ?
-                    setCurrentUser({
-                        username: response.getUsername(),
-                        email: response.getEmailaddress(),
-                        authToken: response.getToken()
-                    }) :
+                if (response != null) {
+
+                    const authToken = response.getToken();
+                    const authTokenObject = authToken?.toObject();
+
+                    if (authTokenObject != undefined) {
+
+                        setCurrentUser({
+                            username: response.getUsername(),
+                            email: response.getEmailaddress(),
+                            authToken: authTokenObject
+                        })
+                    }
+                } else {
+
                     setMessage(err.message);
+                }
 
                 setIsLoading(false);
             });

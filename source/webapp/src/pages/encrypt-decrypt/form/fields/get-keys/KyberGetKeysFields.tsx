@@ -1,9 +1,8 @@
 import React, {useState} from "react";
 import {Button, Col, Row} from "react-bootstrap";
-import {AuthToken} from "../../../../../apidocs/v1_pb";
 
 type Props = {
-    authToken: AuthToken;
+    authToken: any;
 }
 
 const KyberGetKeysFields = ({authToken}: Props) => {

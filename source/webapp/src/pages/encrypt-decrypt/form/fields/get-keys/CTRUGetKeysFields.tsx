@@ -1,26 +1,37 @@
 import React, {useState} from "react";
 import {Button, Col, Row} from "react-bootstrap";
-import {AuthToken, CTRUKeys} from "../../../../../apidocs/v1_pb";
+import {AuthToken, CTRUKey, CTRUKeys} from "../../../../../apidocs/v1_pb";
 import grpcWeb from "grpc-web";
 import {CTRUServiceApiClient} from "../../../../../services/api/CTRUServiceApiClient";
 
 type Props = {
-    authToken: AuthToken;
+    authToken: any;
 }
 
 const CTRUGetKeysFields = ({authToken}: Props) => {
 
+    const [message, setMessage] = useState<string>();
+    const [ctruKeys, setCtruKeys] = useState<Array<CTRUKey> | undefined>();
+
     const handleCTRUGetKeys = () => {
 
-        console.log("ctru get keys")
-        // console.log("0")
-        // const stream = CTRUServiceApiClient.getKeys(authToken, {});
-        // console.log("1")
-        // stream.on('data', function(response) {
-        //     console.log("here")
-        //     console.log(response.getPk());
-        // });
-        // stream.cancel();
+        console.log(authToken)
+
+        let newAuthToken = new AuthToken();
+        newAuthToken.setUserid(authToken.userid);
+        newAuthToken.setGeneratedat(authToken.generatedat);
+        newAuthToken.setExpiresat(authToken.expiresat);
+        newAuthToken.setSignature(authToken.signature);
+
+        console.log(newAuthToken)
+
+        CTRUServiceApiClient.getKeys(newAuthToken, {},
+            (err: grpcWeb.RpcError, response: CTRUKeys) => {
+
+                response != null ?
+                    console.log(response.getKeysList.toString()) :
+                    setMessage(err.message);
+            });
     }
 
     return (
@@ -32,6 +43,44 @@ const CTRUGetKeysFields = ({authToken}: Props) => {
                     onClick={() => handleCTRUGetKeys()}>
                     Get keys
                 </Button>
+                {
+                    message && (
+                        <div className="form-group">
+                            <div
+                                className="alert alert-danger d-flex justify-content-center"
+                                role="alert">
+                                {message}
+                            </div>
+                        </div>
+                    )
+                }
+                {
+                    ctruKeys && (
+                        <div className="form-group">
+                            <div
+                                className="alert alert-danger d-flex justify-content-center"
+                                role="alert">
+                                {
+                                    ctruKeys?.map((ctruKey) => {
+
+                                        return (
+                                            <div>
+                                                <div>Parameters</div>
+                                                <div><strong>n: </strong>{ctruKey.getParameters()?.getN()}</div>
+                                                <div><strong>q: </strong>{ctruKey.getParameters()?.getQ()}</div>
+                                                <div><strong>q2: </strong>{ctruKey.getParameters()?.getQ2()}</div>
+                                                <div><strong>eta: </strong>{ctruKey.getParameters()?.getEta()}</div>
+                                                <div><strong>id: </strong>{ctruKey.getKeyid()}</div>
+                                                <div><strong>public key: </strong>{ctruKey.getPk()}</div>
+                                                <div><strong>secret key: </strong>{ctruKey.getSk()}</div>
+                                            </div>
+                                        );
+                                    })
+                                }
+                            </div>
+                        </div>
+                    )
+                }
             </Col>
         </Row>
     );

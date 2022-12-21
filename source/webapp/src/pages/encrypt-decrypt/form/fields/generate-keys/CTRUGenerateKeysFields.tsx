@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import {Button, Col, Row} from "react-bootstrap";
 import RegularInputField from "../../../../../components/form/RegularInputField";
-import {AuthToken} from "../../../../../apidocs/v1_pb";
 
 type Props = {
-    authToken: AuthToken;
+    authToken: any;
 }
 
 const CTRUGenerateKeysFields = ({authToken}: Props) => {
@@ -13,10 +12,11 @@ const CTRUGenerateKeysFields = ({authToken}: Props) => {
     const [q, setQ] = useState<string>();
     const [q2, setQ2] = useState<string>();
     const [eta, setEta] = useState<string>();
+    const [message, setMessage] = useState<string>();
 
     const handleCTRUGenerateKeys = () => {
 
-        console.log("ctru generate keys");
+        setMessage("n: " + n + ", q: " + q + ", q2: " + q2 + ", eta: " + eta);
     }
 
     return (
@@ -27,16 +27,16 @@ const CTRUGenerateKeysFields = ({authToken}: Props) => {
                 </Col>
                 <Row>
                     <Col className="d-flex gap-4 no-padding-left mb-3" xs={{span: 12}}>
-                        <RegularInputField fieldName={"n"} fieldValue={"n"}
+                        <RegularInputField fieldName={"n"} fieldValue={""}
                                            setFieldValue={setN}
                                            fieldAreaLabel={"n"}/>
-                        <RegularInputField fieldName={"q"} fieldValue={"q"}
+                        <RegularInputField fieldName={"q"} fieldValue={""}
                                            setFieldValue={setQ}
                                            fieldAreaLabel={"q"}/>
-                        <RegularInputField fieldName={"q2"} fieldValue={"q2"}
+                        <RegularInputField fieldName={"q2"} fieldValue={""}
                                            setFieldValue={setQ2}
                                            fieldAreaLabel={"q2"}/>
-                        <RegularInputField fieldName={"eta"} fieldValue={"eta"}
+                        <RegularInputField fieldName={"eta"} fieldValue={""}
                                            setFieldValue={setEta}
                                            fieldAreaLabel={"eta"}/>
                     </Col>
@@ -49,6 +49,21 @@ const CTRUGenerateKeysFields = ({authToken}: Props) => {
                             onClick={() => handleCTRUGenerateKeys()}>
                             Generate keys
                         </Button>
+                    </Col>
+                </Row>
+                <Row className="no-padding-left">
+                    <Col className="no-padding-left no-padding-right">
+                        {
+                            message && (
+                                <div className="form-group">
+                                    <div
+                                        className="alert alert-success d-flex justify-content-center"
+                                        role="alert">
+                                        {message}
+                                    </div>
+                                </div>
+                            )
+                        }
                     </Col>
                 </Row>
             </div>

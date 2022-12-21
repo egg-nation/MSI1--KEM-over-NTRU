@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import {Button, Col, Row} from "react-bootstrap";
 import RegularInputField from "../../../../../components/form/RegularInputField";
-import {AuthToken} from "../../../../../apidocs/v1_pb";
 
 type Props = {
-    authToken: AuthToken;
+    authToken: any;
 }
 
 const KyberGenerateKeysFields = ({authToken}: Props) => {
@@ -15,12 +14,12 @@ const KyberGenerateKeysFields = ({authToken}: Props) => {
     const [k, setK] = useState<string>();
     const [du, setDu] = useState<string>();
     const [dv, setDv] = useState<string>();
+    const [message, setMessage] = useState<string>();
 
     const handleKyberGenerateKeys = () => {
 
-        console.log("kyber generate keys");
+        setMessage("n: " + n + ", q: " + q + ", eta: " + eta + ", k: " + k + ", du: " + du + ", dv: " + dv);
     }
-
 
     return (
         <Row>
@@ -30,24 +29,24 @@ const KyberGenerateKeysFields = ({authToken}: Props) => {
                 </Col>
                 <Row>
                     <Col className="d-flex gap-4 no-padding-left mb-3" xs={{span: 12}}>
-                        <RegularInputField fieldName={"n"} fieldValue={"n"}
+                        <RegularInputField fieldName={"n"} fieldValue={""}
                                            setFieldValue={setN}
                                            fieldAreaLabel={"n"}/>
-                        <RegularInputField fieldName={"q"} fieldValue={"q"}
+                        <RegularInputField fieldName={"q"} fieldValue={""}
                                            setFieldValue={setQ}
                                            fieldAreaLabel={"q"}/>
-                        <RegularInputField fieldName={"eta"} fieldValue={"eta"}
+                        <RegularInputField fieldName={"eta"} fieldValue={""}
                                            setFieldValue={setEta}
                                            fieldAreaLabel={"eta"}/>
                     </Col>
                     <Col className="d-flex gap-4 no-padding-left mb-3" xs={{span: 12}}>
-                        <RegularInputField fieldName={"k"} fieldValue={"k"}
+                        <RegularInputField fieldName={"k"} fieldValue={""}
                                            setFieldValue={setK}
                                            fieldAreaLabel={"k"}/>
-                        <RegularInputField fieldName={"du"} fieldValue={"du"}
+                        <RegularInputField fieldName={"du"} fieldValue={""}
                                            setFieldValue={setDu}
                                            fieldAreaLabel={"du"}/>
-                        <RegularInputField fieldName={"dv"} fieldValue={"dv"}
+                        <RegularInputField fieldName={"dv"} fieldValue={""}
                                            setFieldValue={setDv}
                                            fieldAreaLabel={"dv"}/>
                     </Col>
@@ -60,6 +59,21 @@ const KyberGenerateKeysFields = ({authToken}: Props) => {
                             onClick={() => handleKyberGenerateKeys()}>
                             Generate keys
                         </Button>
+                    </Col>
+                </Row>
+                <Row className="no-padding-left">
+                    <Col className="no-padding-left no-padding-right">
+                        {
+                            message && (
+                                <div className="form-group">
+                                    <div
+                                        className="alert alert-success d-flex justify-content-center"
+                                        role="alert">
+                                        {message}
+                                    </div>
+                                </div>
+                            )
+                        }
                     </Col>
                 </Row>
             </div>

@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import {Col, Row} from "react-bootstrap";
-import {AuthToken} from "../../../apidocs/v1_pb";
 import RadioInputField from "../../../components/form/RadioInputField";
 import CTRUGenerateKeysFields from "./fields/generate-keys/CTRUGenerateKeysFields";
 import KyberGenerateKeysFields from "./fields/generate-keys/KyberGenerateKeysFields";
 import CTRUGetKeysFields from "./fields/get-keys/CTRUGetKeysFields";
 import KyberGetKeysFields from "./fields/get-keys/KyberGetKeysFields";
 import CTRUAddKeysFields from "./fields/add-keys/CTRUAddKeysFields";
+import KyberAddKeysFields from "./fields/add-keys/KyberAddKeysFields";
 import CTRUEncapsulateFields from "./fields/encapsulate/CTRUEncapsulateFields";
 import KyberEncapsulateFields from "./fields/encapsulate/KyberEncapsulateFields";
 import CTRUDecapsulateFields from "./fields/decapsulate/CTRUDecapsulateFields";
@@ -14,7 +14,7 @@ import KyberDecapsulateFields from "./fields/decapsulate/KyberDecapsulateFields"
 import "../../../utils/css/forms.css";
 
 type Props = {
-    authToken: AuthToken;
+    authToken: any;
 }
 
 const Form = ({authToken}: Props) => {
@@ -90,10 +90,10 @@ const Form = ({authToken}: Props) => {
                 (algorithmName == "CTRU" && functionName === "Add keys") &&
                 <CTRUAddKeysFields authToken={authToken}/>
             }
-            {/*{*/}
-            {/*    (algorithmName == "Kyber" && functionName === "Add keys") &&*/}
-            {/*    <KyberAddKeysFields/>*/}
-            {/*}*/}
+            {
+                (algorithmName == "Kyber" && functionName === "Add keys") &&
+                <KyberAddKeysFields authToken={authToken}/>
+            }
             {
                 (algorithmName == "CTRU" && functionName === "Encapsulate") &&
                 <CTRUEncapsulateFields authToken={authToken}/>
