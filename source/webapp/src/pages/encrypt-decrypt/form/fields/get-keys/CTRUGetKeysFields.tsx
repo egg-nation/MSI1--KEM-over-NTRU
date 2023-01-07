@@ -23,6 +23,8 @@ const CTRUGetKeysFields = ({authToken}: Props) => {
         newAuthToken.setUserid(authToken.userid);
         newAuthToken.setGeneratedat(authToken.generatedat);
         newAuthToken.setExpiresat(authToken.expiresat);
+        newAuthToken.setSignature(authToken.signature);
+
 
         CTRUServiceApiClient.getKeys(newAuthToken, {},
             (err: grpcWeb.RpcError, response: CTRUKeys) => {
