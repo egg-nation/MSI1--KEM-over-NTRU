@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import {Button, Col, Row} from "react-bootstrap";
 import RegularInputField from "../../../../../components/form/RegularInputField";
+import {AuthToken, KYBERKeygenParameters, KYBERKeygenResult, KYBERParameters} from "../../../../../apidocs/v1_pb";
+import grpcWeb from "grpc-web";
+import {KyberServiceApiClient} from "../../../../../services/api/KyberServiceApiClient";
 
 type Props = {
     authToken: any;
@@ -18,7 +21,41 @@ const KyberGenerateKeysFields = ({authToken}: Props) => {
 
     const handleKyberGenerateKeys = () => {
 
-        setMessage("n: " + n + ", q: " + q + ", eta: " + eta + ", k: " + k + ", du: " + du + ", dv: " + dv);
+        let newAuthToken = new AuthToken();
+        newAuthToken.setUserid(authToken.userid);
+        newAuthToken.setGeneratedat(authToken.generatedat);
+        newAuthToken.setExpiresat(authToken.expiresat);
+        newAuthToken.setSignature(authToken.signature);
+
+        let kyberKeygenParameters = new KYBERKeygenParameters();
+        kyberKeygenParameters.setToken(newAuthToken);
+
+        let kyberParameters = new KYBERParameters();
+        kyberParameters.setN(Number(n));
+        kyberParameters.setQ(Number(q));
+        kyberParameters.setEta(Number(eta));
+        kyberParameters.setK(Number(k));
+        kyberParameters.setDu(Number(du));
+        kyberParameters.setDv(Number(dv));
+
+        kyberKeygenParameters.setParameters(kyberParameters);
+
+        KyberServiceApiClient.keygen(kyberKeygenParameters, {},
+            (err: grpcWeb.RpcError, response: KYBERKeygenResult) => {
+
+                if (response != null) {
+
+                    const generatedKeys = "Key id: " + response.getKeys()?.getKeyid() +
+                        ", public key: " + response.getKeys()?.getPk() +
+                        ", secret key: " + response.getKeys()?.getSk();
+
+                    setMessage(generatedKeys);
+
+                } else {
+
+                    setMessage(err.message);
+                }
+            });
     }
 
     return (

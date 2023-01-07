@@ -1,6 +1,10 @@
 import React, {useState} from "react";
 import {Button, Col, Row} from "react-bootstrap";
-import {AuthToken, CTRUKey, CTRUKeys} from "../../../../../apidocs/v1_pb";
+import {
+    AuthToken,
+    CTRUKey,
+    CTRUKeys
+} from "../../../../../apidocs/v1_pb";
 import grpcWeb from "grpc-web";
 import {CTRUServiceApiClient} from "../../../../../services/api/CTRUServiceApiClient";
 
@@ -15,22 +19,23 @@ const CTRUGetKeysFields = ({authToken}: Props) => {
 
     const handleCTRUGetKeys = () => {
 
-        console.log(authToken)
-
         let newAuthToken = new AuthToken();
         newAuthToken.setUserid(authToken.userid);
         newAuthToken.setGeneratedat(authToken.generatedat);
         newAuthToken.setExpiresat(authToken.expiresat);
-        newAuthToken.setSignature(authToken.signature);
-
-        console.log(newAuthToken)
 
         CTRUServiceApiClient.getKeys(newAuthToken, {},
             (err: grpcWeb.RpcError, response: CTRUKeys) => {
 
-                response != null ?
-                    console.log(response.getKeysList.toString()) :
+                if (response != null) {
+
+                    console.log(response)
+                    console.log(response.getKeysList())
+
+                } else {
+
                     setMessage(err.message);
+                }
             });
     }
 

@@ -1,1 +1,9 @@
-01:01:44,844 Error catcher ERROR Unknown except raised list index out of range
+21:12:26,504 grpc._server ERROR Exception calling application: name 'obj' is not defined
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/grpc/_server.py", line 444, in _call_behavior
+    response_or_iterator = behavior(argument, context)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/work/controllers/utils.py", line 25, in wrapper
+    logger.info("Invalid token used for user "+obj.userId)
+                                               ^^^
+NameError: name 'obj' is not defined

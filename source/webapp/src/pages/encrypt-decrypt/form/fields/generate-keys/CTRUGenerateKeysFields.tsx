@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import {Button, Col, Row} from "react-bootstrap";
 import RegularInputField from "../../../../../components/form/RegularInputField";
+import {AuthToken, CTRUKeygenParameters, CTRUKeygenResult, CTRUParameters} from "../../../../../apidocs/v1_pb";
+import {CTRUServiceApiClient} from "../../../../../services/api/CTRUServiceApiClient";
+import grpcWeb from "grpc-web";
 
 type Props = {
     authToken: any;
@@ -16,7 +19,39 @@ const CTRUGenerateKeysFields = ({authToken}: Props) => {
 
     const handleCTRUGenerateKeys = () => {
 
-        setMessage("n: " + n + ", q: " + q + ", q2: " + q2 + ", eta: " + eta);
+        let newAuthToken = new AuthToken();
+        newAuthToken.setUserid(authToken.userid);
+        newAuthToken.setGeneratedat(authToken.generatedat);
+        newAuthToken.setExpiresat(authToken.expiresat);
+        newAuthToken.setSignature(authToken.signature);
+
+        let ctruKeygenParameters = new CTRUKeygenParameters();
+        ctruKeygenParameters.setToken(newAuthToken);
+
+        let ctruParameters = new CTRUParameters();
+        ctruParameters.setN(Number(n));
+        ctruParameters.setQ(Number(q));
+        ctruParameters.setQ2(Number(q2));
+        ctruParameters.setEta(Number(eta));
+
+        ctruKeygenParameters.setParameters(ctruParameters);
+
+        CTRUServiceApiClient.keygen(ctruKeygenParameters, {},
+            (err: grpcWeb.RpcError, response: CTRUKeygenResult) => {
+
+                if (response != null) {
+
+                    const generatedKeys = "Key id: " + response.getKeys()?.getKeyid() +
+                        ", public key: " + response.getKeys()?.getPk() +
+                        ", secret key: " + response.getKeys()?.getSk();
+
+                    setMessage(generatedKeys);
+
+                } else {
+
+                    setMessage(err.message);
+                }
+            });
     }
 
     return (
