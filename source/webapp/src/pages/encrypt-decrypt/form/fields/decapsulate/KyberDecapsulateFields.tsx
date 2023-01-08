@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import {Button, Col, Row} from "react-bootstrap";
 import RegularInputField from "../../../../../components/form/RegularInputField";
+import {AuthToken, Entries, Entry, KYBERExecution, KYBERKey, KYBERParameters} from "../../../../../apidocs/v1_pb";
+import {KyberServiceApiClient} from "../../../../../services/api/KyberServiceApiClient";
+import grpcWeb from "grpc-web";
 
 type Props = {
     authToken: any;
@@ -18,12 +21,55 @@ const KyberDecapsulateFields = ({authToken}: Props) => {
     const [pk, setPk] = useState<string>();
     const [sk, setSk] = useState<string>();
     const [iterations, setIterations] = useState<string>();
+    const [data, setData] = useState<string>();
     const [message, setMessage] = useState<string>();
+    const [entriesList, setEntriesList] = useState<Array<Entry> | undefined>();
+    const [displayEntriesList, setDisplayEntriesList] = useState(false);
 
     const handleKyberDecapsulate = () => {
 
-        setMessage("n: " + n + ", q: " + q + ", eta: " + eta + ", k: " + k + ", du: " + du + ", dv: " + dv + ", keyId: " + keyId +
-            ", public key: " + pk + ", secret key: " + sk + ", iterations: " + iterations);
+        setDisplayEntriesList(false);
+
+        let newAuthToken = new AuthToken();
+        newAuthToken.setUserid(authToken.userid);
+        newAuthToken.setGeneratedat(authToken.generatedat);
+        newAuthToken.setExpiresat(authToken.expiresat);
+        newAuthToken.setSignature(authToken.signature);
+
+        let kyberParameters = new KYBERParameters();
+        kyberParameters.setN(Number(n));
+        kyberParameters.setQ(Number(q));
+        kyberParameters.setEta(Number(eta));
+        kyberParameters.setK(Number(k));
+        kyberParameters.setDu(Number(du));
+        kyberParameters.setDv(Number(dv));
+
+        let kyberKey = new KYBERKey();
+        kyberKey.setKeyid(keyId!);
+        kyberKey.setPk(pk!);
+        kyberKey.setSk(sk!);
+        kyberKey.setParameters(kyberParameters);
+
+        let kyberExecution = new KYBERExecution();
+        kyberExecution.setToken(newAuthToken);
+        kyberExecution.setIterations(Number(iterations));
+        kyberExecution.setKeys(kyberKey);
+        kyberExecution.setData(data!);
+
+        KyberServiceApiClient.runDecaps(kyberExecution, {},
+            (err: grpcWeb.RpcError, response: Entries) => {
+
+                if (response != null) {
+
+                    const encapsulatedEntriesList = response.getEntriesList();
+                    setEntriesList(encapsulatedEntriesList);
+                    setDisplayEntriesList(true);
+
+                } else {
+
+                    setMessage(err.message);
+                }
+            });
     }
 
     return (
@@ -66,10 +112,15 @@ const KyberDecapsulateFields = ({authToken}: Props) => {
                                            setFieldValue={setSk}
                                            fieldAreaLabel={"du"}/>
                     </Col>
+                    <Col className="d-flex gap-4 no-padding-left mb-3" xs={{span: 12}}>
+                        <RegularInputField fieldName={"Data"} fieldValue={""}
+                                           setFieldValue={setData}
+                                           fieldAreaLabel={"data"}/>
+                    </Col>
                     <Col className="d-flex gap-4 no-padding-left mb-3" xs={{span: 2}}>
                         <RegularInputField fieldName={"Iterations"} fieldValue={""}
                                            setFieldValue={setIterations}
-                                           fieldAreaLabel={"interations"}/>
+                                           fieldAreaLabel={"iterations"}/>
                     </Col>
                 </Row>
                 <Row>
@@ -97,6 +148,26 @@ const KyberDecapsulateFields = ({authToken}: Props) => {
                         }
                     </Col>
                 </Row>
+                <Col className="break-text" xs={12}>
+                    {
+                        displayEntriesList && entriesList && entriesList[0] && (
+                            entriesList?.map((entry, index) => {
+
+                                return (
+                                    <div className={"list-entry"}>
+                                        <div className={"mb-3 mt-3"}><h6 className={"skin-color"}>
+                                            <strong>Entry {index}</strong>
+                                        </h6></div>
+                                        <div className={"mb-2"}><strong>Execution
+                                            time:</strong> {entry.getExecutiontime()} ms
+                                        </div>
+                                        <div className={"mb-2"}><strong>Output:</strong> {entry.getOutput()}</div>
+                                    </div>
+                                );
+                            })
+                        )
+                    }
+                </Col>
             </div>
         </Row>
     );

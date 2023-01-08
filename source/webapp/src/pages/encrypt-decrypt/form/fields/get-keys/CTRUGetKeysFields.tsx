@@ -16,8 +16,11 @@ const CTRUGetKeysFields = ({authToken}: Props) => {
 
     const [message, setMessage] = useState<string>();
     const [ctruKeys, setCtruKeys] = useState<Array<CTRUKey> | undefined>();
+    const [displayCtruKeys, setDisplayCtruKeys] = useState(false);
 
     const handleCTRUGetKeys = () => {
+
+        setDisplayCtruKeys(false);
 
         let newAuthToken = new AuthToken();
         newAuthToken.setUserid(authToken.userid);
@@ -25,14 +28,14 @@ const CTRUGetKeysFields = ({authToken}: Props) => {
         newAuthToken.setExpiresat(authToken.expiresat);
         newAuthToken.setSignature(authToken.signature);
 
-
         CTRUServiceApiClient.getKeys(newAuthToken, {},
             (err: grpcWeb.RpcError, response: CTRUKeys) => {
 
                 if (response != null) {
 
-                    console.log(response)
-                    console.log(response.getKeysList())
+                    const ctruKeysList = response.getKeysList();
+                    setCtruKeys(ctruKeysList);
+                    setDisplayCtruKeys(true);
 
                 } else {
 
@@ -43,13 +46,15 @@ const CTRUGetKeysFields = ({authToken}: Props) => {
 
     return (
         <Row>
-            <Col className="no-padding-left content-align-end">
+            <Col className="no-padding-left content-align-end" xs={12}>
                 <Button
                     className="button"
                     variant="primary"
                     onClick={() => handleCTRUGetKeys()}>
                     Get keys
                 </Button>
+            </Col>
+            <Col xs={12}>
                 {
                     message && (
                         <div className="form-group">
@@ -61,31 +66,28 @@ const CTRUGetKeysFields = ({authToken}: Props) => {
                         </div>
                     )
                 }
+            </Col>
+            <Col className="break-text" xs={12}>
                 {
-                    ctruKeys && (
-                        <div className="form-group">
-                            <div
-                                className="alert alert-danger d-flex justify-content-center"
-                                role="alert">
-                                {
-                                    ctruKeys?.map((ctruKey) => {
+                    displayCtruKeys && ctruKeys && ctruKeys[0].getParameters() && (
+                        ctruKeys?.map((ctruKey, index) => {
 
-                                        return (
-                                            <div>
-                                                <div>Parameters</div>
-                                                <div><strong>n: </strong>{ctruKey.getParameters()?.getN()}</div>
-                                                <div><strong>q: </strong>{ctruKey.getParameters()?.getQ()}</div>
-                                                <div><strong>q2: </strong>{ctruKey.getParameters()?.getQ2()}</div>
-                                                <div><strong>eta: </strong>{ctruKey.getParameters()?.getEta()}</div>
-                                                <div><strong>id: </strong>{ctruKey.getKeyid()}</div>
-                                                <div><strong>public key: </strong>{ctruKey.getPk()}</div>
-                                                <div><strong>secret key: </strong>{ctruKey.getSk()}</div>
-                                            </div>
-                                        );
-                                    })
-                                }
-                            </div>
-                        </div>
+                            return (
+                                <div className={"list-entry"}>
+                                    <div className={"mb-3 mt-3"}><h6 className={"skin-color"}><strong>CTRU
+                                        key {index}</strong>
+                                    </h6></div>
+                                    <div className={"mb-2"}><strong>Key id:</strong> {ctruKey.getKeyid()}</div>
+                                    <div className={"mb-2"}><strong>Public key:</strong> {ctruKey.getPk()}</div>
+                                    <div className={"mb-2"}><strong>Secret key:</strong> {ctruKey.getSk()}</div>
+                                    <div className={"mb-1"}><strong>CTRU parameters:</strong></div>
+                                    <div className={"mb-2"}>n: {ctruKey.getParameters()?.getN()};
+                                        q: {ctruKey.getParameters()?.getQ()};
+                                        q2: {ctruKey.getParameters()?.getQ2()};
+                                        eta: {ctruKey.getParameters()?.getEta()}</div>
+                                </div>
+                            );
+                        })
                     )
                 }
             </Col>

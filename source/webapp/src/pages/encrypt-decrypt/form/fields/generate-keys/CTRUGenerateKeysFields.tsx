@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Button, Col, Row} from "react-bootstrap";
 import RegularInputField from "../../../../../components/form/RegularInputField";
-import {AuthToken, CTRUKeygenParameters, CTRUKeygenResult, CTRUParameters} from "../../../../../apidocs/v1_pb";
+import {AuthToken, CTRUKey, CTRUKeygenParameters, CTRUKeygenResult, CTRUParameters} from "../../../../../apidocs/v1_pb";
 import {CTRUServiceApiClient} from "../../../../../services/api/CTRUServiceApiClient";
 import grpcWeb from "grpc-web";
 
@@ -16,8 +16,12 @@ const CTRUGenerateKeysFields = ({authToken}: Props) => {
     const [q2, setQ2] = useState<string>();
     const [eta, setEta] = useState<string>();
     const [message, setMessage] = useState<string>();
+    const [ctruKey, setCtruKey] = useState<CTRUKey | undefined>();
+    const [displayCtruKey, setDisplayCtruKey] = useState(false);
 
     const handleCTRUGenerateKeys = () => {
+
+        setDisplayCtruKey(false);
 
         let newAuthToken = new AuthToken();
         newAuthToken.setUserid(authToken.userid);
@@ -25,15 +29,14 @@ const CTRUGenerateKeysFields = ({authToken}: Props) => {
         newAuthToken.setExpiresat(authToken.expiresat);
         newAuthToken.setSignature(authToken.signature);
 
-        let ctruKeygenParameters = new CTRUKeygenParameters();
-        ctruKeygenParameters.setToken(newAuthToken);
-
         let ctruParameters = new CTRUParameters();
         ctruParameters.setN(Number(n));
         ctruParameters.setQ(Number(q));
         ctruParameters.setQ2(Number(q2));
         ctruParameters.setEta(Number(eta));
 
+        let ctruKeygenParameters = new CTRUKeygenParameters();
+        ctruKeygenParameters.setToken(newAuthToken);
         ctruKeygenParameters.setParameters(ctruParameters);
 
         CTRUServiceApiClient.keygen(ctruKeygenParameters, {},
@@ -41,11 +44,9 @@ const CTRUGenerateKeysFields = ({authToken}: Props) => {
 
                 if (response != null) {
 
-                    const generatedKeys = "Key id: " + response.getKeys()?.getKeyid() +
-                        ", public key: " + response.getKeys()?.getPk() +
-                        ", secret key: " + response.getKeys()?.getSk();
-
-                    setMessage(generatedKeys);
+                    const generatedCtruKey = response.getKeys();
+                    setCtruKey(generatedCtruKey);
+                    setDisplayCtruKey(true);
 
                 } else {
 
@@ -100,6 +101,25 @@ const CTRUGenerateKeysFields = ({authToken}: Props) => {
                             )
                         }
                     </Col>
+                </Row>
+                <Row className="no-padding-left">
+                    {
+                        displayCtruKey && ctruKey && ctruKey.getParameters() &&
+                        <Col className="break-text no-padding-left" xs={12}>
+                            <div className={"list-entry"}>
+                                <div className={"mb-3 mt-3"}><h6 className={"skin-color"}><strong>CTRU key</strong>
+                                </h6></div>
+                                <div className={"mb-2"}><strong>Key id:</strong> {ctruKey?.getKeyid()}</div>
+                                <div className={"mb-2"}><strong>Public key:</strong> {ctruKey?.getPk()}</div>
+                                <div className={"mb-2"}><strong>Secret key:</strong> {ctruKey?.getSk()}</div>
+                                <div className={"mb-1"}><strong>CTRU parameters:</strong></div>
+                                <div className={"mb-2"}>n: {ctruKey?.getParameters()?.getN()};
+                                    q: {ctruKey?.getParameters()?.getQ()};
+                                    q2: {ctruKey?.getParameters()?.getQ2()};
+                                    eta: {ctruKey?.getParameters()?.getEta()}</div>
+                            </div>
+                        </Col>
+                    }
                 </Row>
             </div>
         </Row>

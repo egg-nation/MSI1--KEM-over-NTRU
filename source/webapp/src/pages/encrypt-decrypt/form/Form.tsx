@@ -5,8 +5,6 @@ import CTRUGenerateKeysFields from "./fields/generate-keys/CTRUGenerateKeysField
 import KyberGenerateKeysFields from "./fields/generate-keys/KyberGenerateKeysFields";
 import CTRUGetKeysFields from "./fields/get-keys/CTRUGetKeysFields";
 import KyberGetKeysFields from "./fields/get-keys/KyberGetKeysFields";
-import CTRUAddKeysFields from "./fields/add-keys/CTRUAddKeysFields";
-import KyberAddKeysFields from "./fields/add-keys/KyberAddKeysFields";
 import CTRUEncapsulateFields from "./fields/encapsulate/CTRUEncapsulateFields";
 import KyberEncapsulateFields from "./fields/encapsulate/KyberEncapsulateFields";
 import CTRUDecapsulateFields from "./fields/decapsulate/CTRUDecapsulateFields";
@@ -55,10 +53,6 @@ const Form = ({authToken}: Props) => {
                                          fieldValue={"Get keys"}
                                          checkedValue={functionName}
                                          setCheckedValue={setFunctionName}/>
-                        <RadioInputField fieldName={"functionName"} fieldId={"addKeys"}
-                                         fieldValue={"Add keys"}
-                                         checkedValue={functionName}
-                                         setCheckedValue={setFunctionName}/>
                         <RadioInputField fieldName={"functionName"} fieldId={"encaps"}
                                          fieldValue={"Encapsulate"}
                                          checkedValue={functionName}
@@ -85,14 +79,6 @@ const Form = ({authToken}: Props) => {
             {
                 (algorithmName == "Kyber" && functionName === "Get keys") &&
                 <KyberGetKeysFields authToken={authToken}/>
-            }
-            {
-                (algorithmName == "CTRU" && functionName === "Add keys") &&
-                <CTRUAddKeysFields authToken={authToken}/>
-            }
-            {
-                (algorithmName == "Kyber" && functionName === "Add keys") &&
-                <KyberAddKeysFields authToken={authToken}/>
             }
             {
                 (algorithmName == "CTRU" && functionName === "Encapsulate") &&

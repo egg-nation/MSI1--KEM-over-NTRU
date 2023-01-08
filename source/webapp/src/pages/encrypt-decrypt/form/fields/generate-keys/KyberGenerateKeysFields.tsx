@@ -1,7 +1,13 @@
 import React, {useState} from "react";
 import {Button, Col, Row} from "react-bootstrap";
 import RegularInputField from "../../../../../components/form/RegularInputField";
-import {AuthToken, KYBERKeygenParameters, KYBERKeygenResult, KYBERParameters} from "../../../../../apidocs/v1_pb";
+import {
+    AuthToken,
+    KYBERKey,
+    KYBERKeygenParameters,
+    KYBERKeygenResult,
+    KYBERParameters
+} from "../../../../../apidocs/v1_pb";
 import grpcWeb from "grpc-web";
 import {KyberServiceApiClient} from "../../../../../services/api/KyberServiceApiClient";
 
@@ -18,6 +24,8 @@ const KyberGenerateKeysFields = ({authToken}: Props) => {
     const [du, setDu] = useState<string>();
     const [dv, setDv] = useState<string>();
     const [message, setMessage] = useState<string>();
+    const [kyberKey, setKyberKey] = useState<KYBERKey | undefined>();
+    const [displayKyberKey, setDisplayKyberKey] = useState(false);
 
     const handleKyberGenerateKeys = () => {
 
@@ -27,9 +35,6 @@ const KyberGenerateKeysFields = ({authToken}: Props) => {
         newAuthToken.setExpiresat(authToken.expiresat);
         newAuthToken.setSignature(authToken.signature);
 
-        let kyberKeygenParameters = new KYBERKeygenParameters();
-        kyberKeygenParameters.setToken(newAuthToken);
-
         let kyberParameters = new KYBERParameters();
         kyberParameters.setN(Number(n));
         kyberParameters.setQ(Number(q));
@@ -38,6 +43,8 @@ const KyberGenerateKeysFields = ({authToken}: Props) => {
         kyberParameters.setDu(Number(du));
         kyberParameters.setDv(Number(dv));
 
+        let kyberKeygenParameters = new KYBERKeygenParameters();
+        kyberKeygenParameters.setToken(newAuthToken);
         kyberKeygenParameters.setParameters(kyberParameters);
 
         KyberServiceApiClient.keygen(kyberKeygenParameters, {},
@@ -45,11 +52,9 @@ const KyberGenerateKeysFields = ({authToken}: Props) => {
 
                 if (response != null) {
 
-                    const generatedKeys = "Key id: " + response.getKeys()?.getKeyid() +
-                        ", public key: " + response.getKeys()?.getPk() +
-                        ", secret key: " + response.getKeys()?.getSk();
-
-                    setMessage(generatedKeys);
+                    const generatedKyberKey = response.getKeys();
+                    setKyberKey(generatedKyberKey);
+                    setDisplayKyberKey(true);
 
                 } else {
 
@@ -112,6 +117,28 @@ const KyberGenerateKeysFields = ({authToken}: Props) => {
                             )
                         }
                     </Col>
+                </Row>
+                <Row className="no-padding-left">
+                    {
+                        displayKyberKey && kyberKey && kyberKey.getParameters() &&
+                        <Col className="break-text no-padding-left" xs={12}>
+                            <div className={"list-entry"}>
+                                <div className={"mb-3 mt-3"}><h6 className={"skin-color"}><strong>Kyber key</strong>
+                                </h6></div>
+                                <div className={"mb-2"}><strong>Public key:</strong> {kyberKey?.getKeyid()}</div>
+                                <div className={"mb-2"}><strong>Public key:</strong> {kyberKey?.getPk()}</div>
+                                <div className={"mb-2"}><strong>Secret key:</strong> {kyberKey?.getSk()}</div>
+                                <div className={"mb-1"}><strong>Kyber parameters:</strong></div>
+                                <div className={"mb-2"}>n: {kyberKey?.getParameters()?.getN()};
+                                    q: {kyberKey?.getParameters()?.getQ()};
+                                    eta: {kyberKey.getParameters()?.getEta()};
+                                    k: {kyberKey.getParameters()?.getK()};
+                                    du: {kyberKey.getParameters()?.getDu()};
+                                    dv: {kyberKey.getParameters()?.getDv()}
+                                </div>
+                            </div>
+                        </Col>
+                    }
                 </Row>
             </div>
         </Row>
