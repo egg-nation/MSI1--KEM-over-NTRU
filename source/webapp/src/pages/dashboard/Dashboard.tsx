@@ -10,6 +10,7 @@ import CTAButton from "../../components/cta/CTAButton";
 import WikiIcon from "../../utils/resources/icons/menu/WikiIcon";
 import EncryptDecryptIcon from "../../utils/resources/icons/menu/EncryptDecryptIcon";
 import EntriesVisualizationIcon from "../../utils/resources/icons/menu/EntriesVisualizationIcon";
+import TechnicalReportIcon from "../../utils/resources/icons/menu/TechnicalReportIcon";
 
 const Dashboard = () => {
 
@@ -50,6 +51,10 @@ const Dashboard = () => {
                                             <Col className={"no-padding-left mt-3"} md={6} xs={12}>
                                                 <CTAButton title={"Wiki"} text={"Some description to be added"}
                                                            icon={<WikiIcon/>} path={"/wiki"}/>
+                                            </Col>
+                                            <Col className={"no-padding-left mt-3"} md={6} xs={12}>
+                                                <CTAButton title={"Technical report"} text={"Some description to be added"}
+                                                           icon={<TechnicalReportIcon/>} path={"/technical-report"}/>
                                             </Col>
                                         </Row>
                                     </Col>

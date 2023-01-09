@@ -2,6 +2,11 @@
     overflow-wrap: break-word;
 }
 
+hr {
+    color: rgba(255, 255, 255, 0.5);
+    margin: 20px 0;
+}
+
 @media only screen and (max-width: 600px) {
 
     a {

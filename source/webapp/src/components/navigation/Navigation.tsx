@@ -11,6 +11,7 @@ import {useAtom} from "jotai";
 import {userAtom} from "../../services/UserAtom";
 import LogoutIcon from "../../utils/resources/icons/menu/LogoutIcon";
 import UserInfo from "./UserInfo";
+import TechnicalReportIcon from "../../utils/resources/icons/menu/TechnicalReportIcon";
 
 type Props = {
     currentPage: string
@@ -47,16 +48,23 @@ const Navigation = ({currentPage}: Props) => {
                 </SidebarMenu.Header>
                 <SidebarMenu.Body>
                     <SidebarMenu.Nav>
-                        <NavItem icon={<DashboardIcon/>} text="Dashboard" url="/" target="_self" isActive={currentPage == "/"}/>
+                        <NavItem icon={<DashboardIcon/>} text="Dashboard" url="/" target="_self"
+                                 isActive={currentPage == "/"}/>
                         <NavItem icon={<EncryptDecryptIcon/>} text="Encrypt / Decrypt" url="/encrypt-decrypt"
                                  target="_self" isActive={currentPage == "/encrypt-decrypt"}/>
                         <NavItem icon={<EntriesVisualizationIcon/>} text="Entries visualization"
-                                 url="/entries-visualization" target="_self" isActive={currentPage == "/entries-visualization"}/>
-                        <NavItem icon={<WikiIcon/>} text="Wiki" url="/wiki" target="_self" isActive={currentPage == "/wiki"}/>
+                                 url="/entries-visualization" target="_self"
+                                 isActive={currentPage == "/entries-visualization"}/>
+                        <NavItem icon={<WikiIcon/>} text="Wiki" url="/wiki" target="_self"
+                                 isActive={currentPage == "/wiki"}/>
+                        <NavItem icon={<TechnicalReportIcon/>} text="Technical report" url="/technical-report" target="_self"
+                                 isActive={currentPage == "/report"}/>
 
                         <div className="navigation-bottom">
                             <UserInfo username={currentUser?.username} email={currentUser?.email}/>
-                            <NavItem icon={<LogoutIcon/>} onClick={() => {handleLogout()}} className="nav-item-with-bg" text="Logout"/>
+                            <NavItem icon={<LogoutIcon/>} onClick={() => {
+                                handleLogout()
+                            }} className="nav-item-with-bg" text="Logout"/>
                         </div>
                     </SidebarMenu.Nav>
                 </SidebarMenu.Body>

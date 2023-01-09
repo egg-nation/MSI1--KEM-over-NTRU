@@ -95,7 +95,6 @@ const EntriesTable = ({entriesList}: Props) => {
                                     <td className={"table-body-cell"}>{entry.getId()}</td>
                                     <td className={"table-body-cell"}>{entry.getAlgorithmname()}</td>
                                     <td className={"table-body-cell"}>{entry.getFunctionname()}</td>
-                                    <td className={"table-body-cell skin-color"}>TODO -- get length</td>
                                     <td className={"table-body-cell"}>{entry.getExecutiontime()} ms</td>
                                     <td className={"table-body-cell"}>{deleteEntryById(entry.getId())}</td>
                                 </tr>
