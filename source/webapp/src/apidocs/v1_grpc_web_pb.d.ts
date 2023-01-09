@@ -5,6 +5,7 @@ import * as v1_pb from './v1_pb';
 /* eslint-disable */
 // @ts-nocheck
 
+
 export class UserServiceClient {
   constructor (hostname: string,
                credentials?: null | { [index: string]: string; },
@@ -47,8 +48,10 @@ export class EntryServiceClient {
 
   getEntryHistory(
     request: v1_pb.AuthToken,
-    metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<v1_pb.Entry>;
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: v1_pb.Entries) => void
+  ): grpcWeb.ClientReadableStream<v1_pb.Entries>;
 
   deleteEntry(
     request: v1_pb.EntryID,
@@ -73,25 +76,31 @@ export class KYBERServiceClient {
 
   getKeys(
     request: v1_pb.AuthToken,
-    metadata?: grpcWeb.Metadata
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: v1_pb.KYBERKeys) => void
   ): grpcWeb.ClientReadableStream<v1_pb.KYBERKeys>;
 
   addKeys(
     request: v1_pb.KYBERKeyImport,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: v1_pb.KYBERKeys) => void
-  ): grpcWeb.ClientReadableStream<v1_pb.KYBERKeys>;
+               response: v1_pb.KYBERKey) => void
+  ): grpcWeb.ClientReadableStream<v1_pb.KYBERKey>;
 
   runEncaps(
     request: v1_pb.KYBERExecution,
-    metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<v1_pb.Entry>;
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: v1_pb.Entries) => void
+  ): grpcWeb.ClientReadableStream<v1_pb.Entries>;
 
   runDecaps(
     request: v1_pb.KYBERExecution,
-    metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<v1_pb.Entry>;
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: v1_pb.Entries) => void
+  ): grpcWeb.ClientReadableStream<v1_pb.Entries>;
 
 }
 
@@ -109,25 +118,31 @@ export class CTRUServiceClient {
 
   getKeys(
     request: v1_pb.AuthToken,
-    metadata?: grpcWeb.Metadata
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: v1_pb.CTRUKeys) => void
   ): grpcWeb.ClientReadableStream<v1_pb.CTRUKeys>;
 
   addKeys(
     request: v1_pb.CTRUKeyImport,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.RpcError,
-               response: v1_pb.CTRUKeys) => void
-  ): grpcWeb.ClientReadableStream<v1_pb.CTRUKeys>;
+               response: v1_pb.CTRUKey) => void
+  ): grpcWeb.ClientReadableStream<v1_pb.CTRUKey>;
 
   runEncaps(
     request: v1_pb.CTRUExecution,
-    metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<v1_pb.Entry>;
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: v1_pb.Entries) => void
+  ): grpcWeb.ClientReadableStream<v1_pb.Entries>;
 
   runDecaps(
     request: v1_pb.CTRUExecution,
-    metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<v1_pb.Entry>;
+    metadata: grpcWeb.Metadata | undefined,
+    callback: (err: grpcWeb.RpcError,
+               response: v1_pb.Entries) => void
+  ): grpcWeb.ClientReadableStream<v1_pb.Entries>;
 
 }
 
@@ -166,7 +181,7 @@ export class EntryServicePromiseClient {
   getEntryHistory(
     request: v1_pb.AuthToken,
     metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<v1_pb.Entry>;
+  ): Promise<v1_pb.Entries>;
 
   deleteEntry(
     request: v1_pb.EntryID,
@@ -188,22 +203,22 @@ export class KYBERServicePromiseClient {
   getKeys(
     request: v1_pb.AuthToken,
     metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<v1_pb.KYBERKeys>;
+  ): Promise<v1_pb.KYBERKeys>;
 
   addKeys(
     request: v1_pb.KYBERKeyImport,
     metadata?: grpcWeb.Metadata
-  ): Promise<v1_pb.KYBERKeys>;
+  ): Promise<v1_pb.KYBERKey>;
 
   runEncaps(
     request: v1_pb.KYBERExecution,
     metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<v1_pb.Entry>;
+  ): Promise<v1_pb.Entries>;
 
   runDecaps(
     request: v1_pb.KYBERExecution,
     metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<v1_pb.Entry>;
+  ): Promise<v1_pb.Entries>;
 
 }
 
@@ -220,22 +235,22 @@ export class CTRUServicePromiseClient {
   getKeys(
     request: v1_pb.AuthToken,
     metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<v1_pb.CTRUKeys>;
+  ): Promise<v1_pb.CTRUKeys>;
 
   addKeys(
     request: v1_pb.CTRUKeyImport,
     metadata?: grpcWeb.Metadata
-  ): Promise<v1_pb.CTRUKeys>;
+  ): Promise<v1_pb.CTRUKey>;
 
   runEncaps(
     request: v1_pb.CTRUExecution,
     metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<v1_pb.Entry>;
+  ): Promise<v1_pb.Entries>;
 
   runDecaps(
     request: v1_pb.CTRUExecution,
     metadata?: grpcWeb.Metadata
-  ): grpcWeb.ClientReadableStream<v1_pb.Entry>;
+  ): Promise<v1_pb.Entries>;
 
 }
 

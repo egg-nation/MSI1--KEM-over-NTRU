@@ -1,0 +1,17 @@
+.cta-box {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 6px;
+    padding: 20px 20px 0 20px;
+}
+
+.cta-box:hover {
+    border-color: #7B3DFF;
+}
+
+.icon > svg > path {
+    fill: #7B3DFF;
+}
+
+.cta-box-icon {
+    margin-bottom: 10px;
+}

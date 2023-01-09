@@ -5,7 +5,7 @@ from lib.utils import BytestoPolynom, PolynomtoBytes, Poly, x
 from lib.kyber import Kyber
 from lib.timer import gather
 from config import MONGODB_URL
-from v1_pb2 import KYBERKeygenResult, KYBERKeys, Entry, KYBERParameters
+from v1_pb2 import KYBERKeygenResult, KYBERKeys, KYBERKey, Entry, KYBERParameters, Entries
 from v1_pb2_grpc import KYBERServiceServicer
 from pymongo import MongoClient
 from models.user import AuthToken
@@ -84,7 +84,7 @@ class KYBERService(KYBERServiceServicer):
 		entry.id = str(entries_DB.insert_one(entry.toMongo()).inserted_id)
 
 		return KYBERKeygenResult(
-			keys = KYBERKeys(
+			keys = KYBERKey(
 					keyId = key_id,
 					parameters = KYBERParameters(**key["parameters"]),
 					pk = key["pk"],
@@ -98,16 +98,18 @@ class KYBERService(KYBERServiceServicer):
 	@catch_error(KYBERKeys)
 	def getKeys(self, request, context):
 		token = AuthToken.fromProto(request)
-		for key in keys_DB.find({"userId":token.userId}):
-			yield KYBERKeys(
+		return KYBERKeys(keys = [
+				KYBERKey(
 					keyId = str(key["_id"]),
 					parameters = KYBERParameters(**key["parameters"]),
 					pk = key["pk"],
 					sk = key["sk"]
 				)
+				for key in keys_DB.find({"userId":token.userId})
+			])
 
-	@require_auth(KYBERKeys)
-	@catch_error(KYBERKeys)
+	@require_auth(KYBERKey)
+	@catch_error(KYBERKey)
 	def addKeys(self, request, context):
 		token = AuthToken.fromProto(request.token)
 		key = {
@@ -124,20 +126,21 @@ class KYBERService(KYBERServiceServicer):
 		}
 
 		key_id = str(keys_DB.insert_one(key).inserted_id)
-		return KYBERKeys(
+		return KYBERKey(
 					keyId = key_id,
 					parameters = KYBERParameters(**key["parameters"]),
 					pk = key["pk"],
 					sk = key["sk"]
 				)
 
-	@require_auth(Entry)
-	@catch_error(Entry)
+	@require_auth(Entries)
+	@catch_error(Entries)
 	def runEncaps(self, request, context):
 		token = AuthToken.fromProto(request.token)
 		alg = Kyber(request.keys.parameters.n, request.keys.parameters.q, request.keys.parameters.eta, request.keys.parameters.k, request.keys.parameters.du, request.keys.parameters.dv)
 		import_key(alg, request.keys)
 
+		entries = []
 		for i in range(request.iterations):
 			c, _ = alg.Encapsulate()
 			u, v = c
@@ -146,10 +149,11 @@ class KYBERService(KYBERServiceServicer):
 
 			entry.output = export_poly_array(u)+";"+b64encode(DerSequence(v.item().all_coeffs()).encode()).decode('utf-8')
 			entry.id = str(entries_DB.insert_one(entry.toMongo()).inserted_id)
-			yield entry.toProto()
+			entries.append(entry.toProto())
+		return Entries(entries = entries)
 
-	@require_auth(Entry)
-	@catch_error(Entry)
+	@require_auth(Entries)
+	@catch_error(Entries)
 	def runDecaps(self, request, context):
 		token = AuthToken.fromProto(request.token)
 		alg = Kyber(request.keys.parameters.n, request.keys.parameters.q, request.keys.parameters.eta, request.keys.parameters.k, request.keys.parameters.du, request.keys.parameters.dv)
@@ -158,6 +162,7 @@ class KYBERService(KYBERServiceServicer):
 		u = import_poly_array(request.data.split(";")[:-1])
 		v = np.array(Poly(DerSequence().decode(b64decode(request.data.split(";")[-1])), x))
 		
+		entries = []
 		for i in range(request.iterations):
 			alg.Decapsulate((u, v))
 			entry_info = list(gather())[0]
@@ -166,4 +171,5 @@ class KYBERService(KYBERServiceServicer):
 				"c": request.data
 			}
 			entry.id = str(entries_DB.insert_one(entry.toMongo()).inserted_id)
-			yield entry.toProto()
+			entries.append(entry.toProto())
+		return Entries(entries = entries)

@@ -1,6 +1,6 @@
 import grpc
 from config import MONGODB_URL
-from v1_pb2 import Entry as ProtoEntry, EntryID
+from v1_pb2 import Entry as ProtoEntry, EntryID, Entries
 from v1_pb2_grpc import EntryServiceServicer
 from pymongo import MongoClient
 from models.user import AuthToken
@@ -29,16 +29,16 @@ class EntryService(EntryServiceServicer):
 
 		return entry.toProto()
 
-	@require_auth(ProtoEntry)
-	@catch_error(ProtoEntry)
+	@require_auth(Entries)
+	@catch_error(Entries)
 	def getEntryHistory(self, request, context):
-		token = AuthToken.fromProto(request) 
-		for mongo_entry in DB.find({"userId": token.userId}):
-			yield Entry.from_mongo(mongo_entry).toProto()
+		token = AuthToken.fromProto(request)
+		entries = [Entry.from_mongo(mongo_entry).toProto() for mongo_entry in DB.find({"userId": token.userId})]
+		return Entries(entries = entries)
 
 	@require_auth(EntryID)
 	@catch_error(EntryID)
 	def deleteEntry(self, request, context):
 		token = AuthToken.fromProto(request.token) 
-		DB.delete_one({"_id":request.entryId, "userId":token.userId})
+		DB.delete_one({"_id":ObjectId(request.entryId), "userId":token.userId})
 		return request

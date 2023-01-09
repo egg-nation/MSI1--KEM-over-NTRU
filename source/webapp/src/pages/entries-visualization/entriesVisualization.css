@@ -2,3 +2,40 @@
     display: flex;
     justify-content: end;
 }
+
+.icon-sort {
+    margin-left: 0.5rem;
+    pointer-events: none;
+}
+
+.inverted {
+    transform: rotate(180deg);
+}
+
+.btn-sort {
+    padding: 0 !important;
+}
+
+.btn-link {
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.btn-link:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.btn-link:focus {
+    box-shadow: none;
+}
+
+.icon-delete > svg > path {
+    fill: #736c88;
+}
+
+.icon-delete:hover > svg > path {
+    fill: #FF1741;
+}

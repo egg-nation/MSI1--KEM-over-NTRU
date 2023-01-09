@@ -104,61 +104,29 @@ const Wiki = () => {
                                                 is
                                                 strengthened by (45, 40) bits for classical and quantum security
                                                 respectively.</p>
-                                            <p> When compared to the NIST Round 3 finalist Kyber that is based on the
-                                                Module-LWE
-                                                (MLWE) assumption, CTRU has both smaller bandwidth and lower error
+                                            <p> When compared to Kyber, CTRU has both smaller bandwidth and lower error
                                                 probabilities
                                                 at about the same security level.</p>
-                                            <p> Another strong proposed method is BAT – an IND-CCA secure key
-                                                encapsulation
-                                                mechanism (KEM) that is based on NTRU but follows an
-                                                encryption/decryption
-                                                paradigm distinct from classical NTRU KEMs and is covered extensively
-                                                in <a
-                                                    href={"https://eprint.iacr.org/2022/031.pdf"} target={"_blank"}
-                                                    rel={"noreferrer"}><em>BAT:
-                                                    Small and Fast KEM over NTRU Lattices</em></a>, by Pierre-Alain
-                                                Fouque,
-                                                Paul
-                                                Kirchner,
-                                                Thomas Pornin and Yang Yu.</p>
-                                            <p> It demonstrates a new approach of decrypting NTRU ciphertext since its
-                                                introduction 25 years ago. Instead of introducing an artificial masking
-                                                parameter p to decrypt the ciphertext, the algorithm use 2 linear
-                                                equations
-                                                in 2
-                                                unknowns to recover the message and the error. The encryption process is
-                                                therefore close to the GGH scheme.</p>
-                                            <p> However, since the secret key is now a short basis (not a vector), the
-                                                algorithm
-                                                poses the necessity to modify the decryption algorithm and to come with
-                                                a
-                                                new
-                                                NTRU decoder. Thanks to the improved decoder, the scheme works with a
-                                                smaller
-                                                modulus and yields shorter ciphertexts, smaller than RSA-4096 for
-                                                128-bit
-                                                classical security with comparable public-key size and much faster than
-                                                RSA
-                                                or
-                                                even ECC. Meanwhile, the encryption and decryption are still simple and
-                                                fast
-                                                in
-                                                spite of the complicated key generation.</p>
-                                            <p> Overall, this KEM has more compact parameters than all current
-                                                lattice-based
-                                                schemes and a practical efficiency. Moreover, due to the similar key
-                                                pair
-                                                structure, BAT can be of special interest in some applications using
-                                                Falcon
-                                                signature that is also the most compact signature in the round 3 of the
-                                                NIST
-                                                post-quantum cryptography standardization. And, differently from Falcon,
-                                                this
-                                                KEM does not rely on floating-point arithmetic and can be fully
-                                                implemented
-                                                over
-                                                the integers.
+                                            <p> In the NIST competition the only PKE algorithm chosen was Kyber, an IND-CCA2
+                                                secure KEM based on the LWE (learning with errors) problem over module lattices,
+                                                multiple variations of the paper, as well as the submission packages for NIST,
+                                                alongside test vectors and implementations and a "brother" signature algorithm
+                                                called Dilithium can be found at <a
+                                                    href={"https://pq-crystals.org/index.shtml"} target={"_blank"}
+                                                    rel={"noreferrer"}><em>CRYSTALS Cryptographic Suite for Algebraic Lattices
+                                                </em></a>.</p>
+                                            <p> The roots of the algorithm are in the first ever scheme PKE proposed
+                                                by Regev, incorporating improvements proposed in this field, such as
+                                                using polynomials instead of integers by integrating Ring-LWE and 
+                                                Module-LWE, simmilar to NTRU.</p>
+                                            <p> Three variations of the algorithm have been proposed and are undergoing
+                                                the standardization process: Kyber-512, Kyber-768 and Kyber-1024, which aim to
+                                                have the same security as AES-126, AES-192 and AES-256 respectively. The performance
+                                                of the algorithm is much better than other NIST competitors.</p>
+                                            <p> Kyber has already been integrated into libraries and systems used in the industry,
+                                                making it one of the few viable PQC algorithms. The adopters of it include: 
+                                                Cloudflare in their PQC library named CIRCL, Amazon in AWS's Key Management Service 
+                                                and IBM for storing archival data on tape drives.
                                             </p>
                                             <br/>
                                             <h5>Concepts and technologies</h5>
@@ -170,10 +138,10 @@ const Wiki = () => {
                                             <br/>
                                             <h5>Related articles</h5>
                                             <ul>
-                                                <li><em>BAT: Small and Fast KEM over NTRU Lattices</em>, by Pierre-Alain
-                                                    Fouque,
-                                                    Paul
-                                                    Kirchner, Thomas Pornin, Yang Yu
+                                                <li><em>CRYSTALS-Kyber</em>, by Roberto Avanzi, 
+                                                    Joppe Bos, Léo Ducas, Eike Kiltz, Tancrède Lepoint,
+                                                    Vadim Lyubashevsky, John M. Schanck, Peter Schwabe, 
+                                                    Gregor Seiler, Damien Stehlé
                                                 </li>
                                                 <li><em>Compact and Efficient NTRU-based KEM with Scalable Ciphertext
                                                     Compression</em>,

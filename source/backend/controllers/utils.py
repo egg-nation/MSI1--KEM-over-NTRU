@@ -19,10 +19,11 @@ def require_auth(error_response):
 		def wrapper(service, request, context):
 			logger = logging.getLogger("Auth Error")
 			token = request if isinstance(request, ProtoAuthToken) else request.token
+			print(token)
 			if not AuthToken.fromProto(token).isValid():
 				context.set_code(grpc.StatusCode.PERMISSION_DENIED)
 				context.set_details("You need to be authenticated first!")
-				logger.info("Invalid token used for user "+obj.userId)
+				logger.info("Invalid token used for user "+token.userId)
 				return error_response()
 
 			return function(service, request, context)

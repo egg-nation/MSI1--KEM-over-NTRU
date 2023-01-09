@@ -1,76 +1,52 @@
 import {Col, Container, Row} from "react-bootstrap";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useAtom} from "jotai";
 import {userAtom} from "../../services/UserAtom";
 import Header from "../../components/header/Header";
 import Navigation from "../../components/navigation/Navigation";
 import EntriesVisualizationIcon from "../../utils/resources/icons/menu/EntriesVisualizationIcon";
-import DeleteIcon from "../../utils/resources/icons/utils/DeleteIcon";
 import Loader from "../../components/loader/Loader";
 import "../../utils/css/table.css";
 import "./entriesVisualization.css";
+import {EntryServiceApiClient} from "../../services/api/EntryServiceApiClient";
+import {AuthToken, Entries, Entry} from "../../apidocs/v1_pb";
+import grpcWeb from "grpc-web";
+import EntriesTable from "./table/EntriesTable";
 
 const EntriesVisualization = () => {
 
     const [currentUser,] = useAtom(userAtom);
     currentUser === undefined && window.open("/login", "_self");
 
-    const deleteEntryById = (entryId: string) => {
+    const [entriesList, setEntriesList] = useState<Array<Entry> | undefined>();
+    const [displayEntriesList, setDisplayEntriesList] = useState(false);
 
-        return (
-            <div className={"delete-entry-button"}>
-                <DeleteIcon/>
-            </div>
-        );
-    }
+    useEffect(() => {
 
-    const displayTable = () => {
+        const authToken = currentUser?.authToken;
 
-        return (
-            <table className={"table"}>
-                <thead>
-                <tr className={"table-header"}>
-                    <th className={"table-header-cell th-dimension"}>Id</th>
-                    <th className={"table-header-cell th-dimension"}>Algorithm</th>
-                    <th className={"table-header-cell th-dimension"}>Function</th>
-                    <th className={"table-header-cell th-dimension"}>Input length</th>
-                    <th className={"table-header-cell th-dimension"}>Iterations</th>
-                    <th className={"table-header-cell th-dimension"}>Avg. execution time</th>
-                    <th className={"table-header-cell th-dimension"}></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr className={"table-row"}>
-                    <td className={"table-body-cell"}>1</td>
-                    <td className={"table-body-cell"}>CTRU</td>
-                    <td className={"table-body-cell"}>Decapsulate</td>
-                    <td className={"table-body-cell"}>450087</td>
-                    <td className={"table-body-cell"}>1000</td>
-                    <td className={"table-body-cell"}>1400s</td>
-                    <td className={"table-body-cell"}>{deleteEntryById("1")}</td>
-                </tr>
-                <tr className={"table-row"}>
-                    <td className={"table-body-cell"}>2</td>
-                    <td className={"table-body-cell"}>CTRU</td>
-                    <td className={"table-body-cell"}>Encapsulate</td>
-                    <td className={"table-body-cell"}>450087</td>
-                    <td className={"table-body-cell"}>1</td>
-                    <td className={"table-body-cell"}>1400s</td>
-                    <td className={"table-body-cell"}>{deleteEntryById("1")}</td>
-                </tr>
-                <tr className={"table-row"}>
-                    <td className={"table-body-cell"}>3</td>
-                    <td className={"table-body-cell"}>CTRU</td>
-                    <td className={"table-body-cell"}>Decapsulate</td>
-                    <td className={"table-body-cell"}>450087</td>
-                    <td className={"table-body-cell"}>100</td>
-                    <td className={"table-body-cell"}>1400s</td>
-                    <td className={"table-body-cell"}>{deleteEntryById("1")}</td>
-                </tr>
-                </tbody>
-            </table>
-        );
-    }
+        let newAuthToken = new AuthToken();
+        newAuthToken.setUserid(authToken.userid);
+        newAuthToken.setGeneratedat(authToken.generatedat);
+        newAuthToken.setExpiresat(authToken.expiresat);
+        newAuthToken.setSignature(authToken.signature);
+
+        EntryServiceApiClient.getEntryHistory(newAuthToken, {},
+            (err: grpcWeb.RpcError, response: Entries) => {
+
+                if (response != null) {
+
+                    const entriesHistoryList = response.getEntriesList();
+                    setEntriesList(entriesHistoryList);
+                    setDisplayEntriesList(true);
+
+                } else {
+
+                    console.log(err.message);
+                }
+            });
+
+    }, []);
 
     if (currentUser === undefined) {
 
@@ -93,7 +69,7 @@ const EntriesVisualization = () => {
                                 <Row>
                                     <div className="content-padding content">
                                         {
-                                            displayTable()
+                                            displayEntriesList && <EntriesTable entriesList={entriesList!}/>
                                         }
                                     </div>
                                 </Row>

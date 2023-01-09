@@ -57,13 +57,23 @@ const Register = () => {
         UserServiceApiClient.register(registerCredentials, {},
             (err: grpcWeb.RpcError, response: User) => {
 
-                response != null ?
-                    setCurrentUser({
-                        username: response.getUsername(),
-                        email: response.getEmailaddress(),
-                        authToken: response.getToken()
-                    }) :
+                if (response != null) {
+
+                    const authToken = response.getToken();
+                    const authTokenInBinary = authToken?.serializeBinary();
+
+                    if (authTokenInBinary != undefined) {
+
+                        setCurrentUser({
+                            username: response.getUsername(),
+                            email: response.getEmailaddress(),
+                            authToken: authTokenInBinary
+                        })
+                    }
+                } else {
+
                     setMessage(err.message);
+                }
 
                 setIsLoading(false);
             });
