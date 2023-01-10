@@ -42,7 +42,7 @@ const Wiki = () => {
                                                     comparison between 2 implementations of (key encapsulation
                                                     mechanisms) KEM over NTRU which allows
                                                     its users to run the keygen, encapsulate and decapsulate functions
-                                                    of the implemented algorithms (BAT and CTRU) with their input of
+                                                    of the implemented algorithms (CTRU and Kyber) with their input of
                                                     choice, and allows them to better understand why are they useful in
                                                     cryptography and which one is more efficient in a certain case by
                                                     comparing their execution time.</p>
