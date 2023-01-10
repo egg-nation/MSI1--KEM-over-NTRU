@@ -33,8 +33,8 @@ const TechnicalReport = () => {
                                 <Row>
                                     <div className="content-padding content">
                                         <Col xl={{span: 8, offset: 2}} lg={{span: 6, offset: 3}}>
-                                            <div className={"mb-3"}>
-                                                <h5 className={"padding-top-smaller"}><span
+                                            <div className={"mb-3 padding-top-smaller"}>
+                                                <h5><span
                                                     className={"skin-color"}>1</span> - Problem presentation</h5>
                                                 <p>Our Advanced Techniques in Software Engineering project covers a
                                                     topic of
@@ -175,7 +175,7 @@ const TechnicalReport = () => {
                                                     choice, and allows them to better understand why are they useful in
                                                     cryptography and which one is more efficient in a certain case.</p>
                                                 <p>To better visualize how the algorithms are performing data
-                                                    visualization will be added through tables with sorting and
+                                                    visualization is added through tables with sorting and
                                                     filtering which show the differences in performance for each run
                                                     that was performed by a user for the selected functions that are
                                                     relevant to compare.

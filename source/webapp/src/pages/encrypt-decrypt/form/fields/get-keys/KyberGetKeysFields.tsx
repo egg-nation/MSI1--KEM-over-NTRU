@@ -84,6 +84,7 @@ const KyberGetKeysFields = ({authToken}: Props) => {
                                     <div className={"mb-2"}>
                                         n: {getButtonToCopyTextToClipboard(kyberKey.getParameters()?.getN().toString())};
                                         q: {getButtonToCopyTextToClipboard(kyberKey.getParameters()?.getQ().toString())};
+                                        k: {getButtonToCopyTextToClipboard(kyberKey.getParameters()?.getK().toString())};
                                         eta: {getButtonToCopyTextToClipboard(kyberKey.getParameters()?.getEta().toString())};
                                         du: {getButtonToCopyTextToClipboard(kyberKey.getParameters()?.getDu().toString())};
                                         dv: {getButtonToCopyTextToClipboard(kyberKey.getParameters()?.getDv().toString())}

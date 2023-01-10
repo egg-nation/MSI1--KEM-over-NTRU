@@ -39,21 +39,24 @@ const Dashboard = () => {
                                     <Col xl={{span: 8, offset: 2}} lg={{span: 6, offset: 3}}>
                                         <Row className={"padding-top-smaller"}>
                                             <Col className={"no-padding-left mt-3"} xl={6} xs={12}>
-                                                <CTAButton title={"Encrypt / Decrypt"} text={"Some description to be added"}
+                                                <CTAButton title={"Encrypt / Decrypt"}
+                                                           text={"Run key generation, encapsulation and decapsulation functions for the CTRU and Kyber algorithms"}
                                                            path={"/encrypt-decrypt"}
                                                            icon={<EncryptDecryptIcon/>}/>
                                             </Col>
                                             <Col className={"no-padding-left mt-3"} xl={6} xs={12}>
-                                                <CTAButton title={"Entries visualization"} text={"Some description to be added"}
+                                                <CTAButton title={"Entries visualization"}
+                                                           text={"Visualize your past runs' entry history and stats over it based on execution time and filters"}
                                                            path={"/entries-visualization"}
                                                            icon={<EntriesVisualizationIcon/>}/>
                                             </Col>
                                             <Col className={"no-padding-left mt-3"} xl={6} xs={12}>
-                                                <CTAButton title={"Wiki"} text={"Some description to be added"}
+                                                <CTAButton title={"Wiki"} text={"What does KON do? What are CTRU and Kyber about? How do I use the platform?"}
                                                            icon={<WikiIcon/>} path={"/wiki"}/>
                                             </Col>
                                             <Col className={"no-padding-left mt-3"} xl={6} xs={12}>
-                                                <CTAButton title={"Technical report"} text={"Some description to be added"}
+                                                <CTAButton title={"Technical report"}
+                                                           text={"Problem presentation. SotA. Our solution. Results, evaluation. Comparison. Future work, etc."}
                                                            icon={<TechnicalReportIcon/>} path={"/technical-report"}/>
                                             </Col>
                                         </Row>

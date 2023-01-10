@@ -26,7 +26,6 @@ const KyberEncapsulateFields = ({authToken}: Props) => {
     const [pk, setPk] = useState<string>();
     const [sk, setSk] = useState<string>();
     const [iterations, setIterations] = useState<string>();
-    const [data, setData] = useState<string>();
     const [message, setMessage] = useState<string>();
     const [entriesList, setEntriesList] = useState<Array<Entry> | undefined>();
     const [displayEntriesList, setDisplayEntriesList] = useState(false);
@@ -59,7 +58,6 @@ const KyberEncapsulateFields = ({authToken}: Props) => {
         kyberExecution.setToken(newAuthToken);
         kyberExecution.setIterations(Number(iterations));
         kyberExecution.setKeys(kyberKey);
-        kyberExecution.setData(data!);
 
         KyberServiceApiClient.runEncaps(kyberExecution, {},
             (err: grpcWeb.RpcError, response: Entries) => {
@@ -117,11 +115,6 @@ const KyberEncapsulateFields = ({authToken}: Props) => {
                                            setFieldValue={setSk}
                                            fieldAreaLabel={"du"}/>
                     </Col>
-                    <Col className="d-flex gap-4 no-padding-left mb-3" xs={{span: 12}}>
-                        <RegularInputField fieldName={"Data"} fieldValue={""}
-                                           setFieldValue={setData}
-                                           fieldAreaLabel={"data"}/>
-                    </Col>
                     <Col className="d-flex gap-4 no-padding-left mb-3" xs={{span: 2}}>
                         <RegularInputField fieldName={"Iterations"} fieldValue={""}
                                            setFieldValue={setIterations}
@@ -153,7 +146,7 @@ const KyberEncapsulateFields = ({authToken}: Props) => {
                         }
                     </Col>
                 </Row>
-                <Col className="break-text" xs={12}>
+                <Col className="no-padding-left break-text" xs={12}>
                     {
                         displayEntriesList && entriesList && entriesList[0] && (
                             entriesList?.map((entry, index) => {

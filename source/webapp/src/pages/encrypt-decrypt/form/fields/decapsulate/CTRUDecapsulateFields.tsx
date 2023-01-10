@@ -4,7 +4,6 @@ import RegularInputField from "../../../../../components/form/RegularInputField"
 import {AuthToken, CTRUExecution, CTRUKey, CTRUParameters, Entries, Entry} from "../../../../../apidocs/v1_pb";
 import {CTRUServiceApiClient} from "../../../../../services/api/CTRUServiceApiClient";
 import grpcWeb from "grpc-web";
-import {getButtonToCopyTextToClipboard} from "../../../../../utils/helpers/GeneralHelpers";
 
 type Props = {
     authToken: any;
@@ -136,7 +135,7 @@ const CTRUDecapsulateFields = ({authToken}: Props) => {
                             }
                         </Col>
                     </Row>
-                    <Col className="break-text" xs={12}>
+                    <Col className="no-padding-left break-text" xs={12}>
                         {
                             displayEntriesList && entriesList && entriesList[0] && (
                                 entriesList?.map((entry, index) => {
@@ -148,9 +147,6 @@ const CTRUDecapsulateFields = ({authToken}: Props) => {
                                             </h6></div>
                                             <div className={"mb-2"}><strong>Execution
                                                 time:</strong> {entry.getExecutiontime()} ms
-                                            </div>
-                                            <div className={"mb-2"}>
-                                                <strong>Otput:</strong> {getButtonToCopyTextToClipboard(entry.getOutput())}
                                             </div>
                                         </div>
                                     );
