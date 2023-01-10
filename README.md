@@ -19,7 +19,7 @@ Ferucio-Laurentiu Tiplea
 
 # Run guide
 
-1. Clone the repository locally: ```git clone git@github.com:egg-nation/MS1--KEM-over-NTRU.git```
+1. Clone the repository locally: ```git clone git@github.com:egg-nation/MSI1--KEM-over-NTRU.git```
 2. To start the server run: ```docker-compose up```
 3. After the server was successfully started, to start the webapp client, go to source/webapp: ```cd source/webapp```
 4. Start the webapp client: ```npm start```
