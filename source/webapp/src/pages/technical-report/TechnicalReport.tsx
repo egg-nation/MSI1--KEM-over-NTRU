@@ -36,13 +36,23 @@ const TechnicalReport = () => {
                                             <div className={"mb-3 padding-top-smaller"}>
                                                 <h5><span
                                                     className={"skin-color"}>1</span> - Problem presentation</h5>
-                                                <p>Our Advanced Techniques in Software Engineering project covers a
-                                                    topic of
-                                                    actuality in today’s post-quantum cryptography (PQC) based on
-                                                    lattices:
-                                                    the
-                                                    NTRU
-                                                    algorithm combined with the key encapsulation mechanisms (KEM).</p>
+                                                <p>Currently, with the imminent use of quantum computers and constant
+                                                    growth of security threats and, security researchers are trying to
+                                                    find ways to encrypt and decrypt data efficiently and insusceptible
+                                                    to attacks and a great candidate for that is post-quantum
+                                                    cryptography based on lattices.</p>
+                                                <p>Several concepts have been introduced or reanalyzed and implemented,
+                                                    among which key encapsulation mechanisms.</p>
+                                                <p>Given the actuality and prevalence of this issue in today's security,
+                                                    we have deemed the implementation of 2 KEM over NTRU algorithms to
+                                                    be both a good implementation exercise and a practical base for
+                                                    execution time performances.</p>
+                                                <p>After careful consideration, we have chosen implement CTRU and Kyber.
+                                                    To complement the backend functionality, we have opted to go with a
+                                                    friendly UI too to facilitate running the algorithms functions,
+                                                    visualize the relevant results for past runs and have all the
+                                                    theoretical data organized neatly in one place, all of which led us
+                                                    to build KON.</p>
                                                 <hr/>
                                             </div>
                                             <div className={"mb-3"}>
@@ -55,7 +65,7 @@ const TechnicalReport = () => {
                                                     NTRU
                                                     algorithm combined with the key encapsulation mechanisms (KEM).</p>
                                                 <p>The NTRU lattice is a promising candidate to construct practical
-                                                    cryptosystems resistant to quantum computing attacks, and
+                                                    crypto-systems resistant to quantum computing attacks, and
                                                     particularly
                                                     plays a leading role in the ongoing NIST post-quantum cryptography
                                                     standardization. On one hand, it has benefited from a strong
@@ -316,7 +326,7 @@ const TechnicalReport = () => {
                                                     time the encapsulation function is called, therefore sacrificing
                                                     some
                                                     performance to greatly improve the memory cost. On the other hand,
-                                                    CTRU uses adjustable cyphertext compression, which helps reduce the
+                                                    CTRU uses adjustable ciphertext compression, which helps reduce the
                                                     length of the output.
                                                 </p>
                                                 <hr/>
@@ -324,14 +334,75 @@ const TechnicalReport = () => {
                                             <div className={"mb-3"}>
                                                 <h5><span className={"skin-color"}>5</span> - Comparison with other
                                                     solutions</h5>
+                                                <p>Given that KEM over lattices are relatively newly proposed, there
+                                                    aren't any other platforms which compare the 2 implementations' (CTRU
+                                                    and Kyber)
+                                                    performance wise available, at least for the general public, but
+                                                    security researchers are working constantly to find new
+                                                    implementations and possible vulnerabilities for the already
+                                                    implemented ones.</p>
                                                 <hr/>
                                             </div>
                                             <div className={"mb-3"}>
                                                 <h5><span className={"skin-color"}>6</span> - Future work</h5>
+                                                <p>As future plans for expanding the KON platform, we have the following
+                                                    points in mind:</p>
+                                                <ul>
+                                                    <li>
+                                                        Adding other data visualization views, such as charts, to better
+                                                        underline
+                                                        the performance differences better and to get a clearer view on
+                                                        how th algorithm functions perform execution time wise given
+                                                        increasing input lengths.
+                                                    </li>
+                                                    <li>
+                                                        Adding other KEM over NTRU algorithms' implementations to get an
+                                                        even broader view on which is the faster given certain input
+                                                        values which differ in length.<br/>
+                                                        A good candidate for the new KEM
+                                                        over NTRU algorithm to implement would be BAT – an IND-CCA
+                                                        secure key encapsulation mechanism (KEM) that is based on NTRU
+                                                        but follows an encryption/decryption paradigm distinct from
+                                                        classical NTRU KEMs and is covered extensively in <a
+                                                        href={"https://eprint.iacr.org/2022/031.pdf"} target={"_blank"}
+                                                        rel={"noreferrer"}><em>BAT: Small and
+                                                        Fast KEM over NTRU Lattices
+                                                    </em></a>, by Pierre-Alain Fouque, Paul
+                                                        Kirchner, Thomas Pornin and Yang Yu.<br/>
+                                                        It demonstrates a new approach of decrypting NTRU ciphertext
+                                                        since its introduction 25 years ago. Instead of introducing an
+                                                        artificial masking parameter p to decrypt the ciphertext, the
+                                                        algorithm use 2 linear equations in 2 unknowns to recover the
+                                                        message and the error. The encryption process is therefore close
+                                                        to the GGH scheme.
+                                                    </li>
+                                                </ul>
                                                 <hr/>
                                             </div>
                                             <div className={"mb-3"}>
                                                 <h5><span className={"skin-color"}>7</span> - Conclusions</h5>
+                                                <p>
+                                                    At this particular moment, Kyber performs better time complexity
+                                                    wise on longer input and is safer to use (no attacks on it have been
+                                                    successful so far) and it shows more maturity in its implementation.
+                                                    Given that is in the process of being
+                                                    standardized by NIST it will also be largely used for several
+                                                    practical applications.
+                                                </p>
+                                                <p>
+                                                    On the other hand, CTRU is also showing promising experimental
+                                                    results given the output length (asymmetrical algorithms generally
+                                                    have significantly bigger output length compared to the input data),
+                                                    but, for now, it is not mature enough to be eligible for wide
+                                                    practical use.
+                                                </p>
+                                                <p>Generally speaking, it is important to compare solutions performance
+                                                    wise and to have tools available which do just that as they
+                                                    significantly decrease the amount of work and time needed to test
+                                                    how they perform for different types on input. Also, data
+                                                    visualization methods are a helpful tool in giving a clear image of
+                                                    which is better in which case and should be used to get reliable and
+                                                    easy to understand data statistics.</p>
                                                 <hr/>
                                             </div>
                                             <div className={"mb-3"}>
