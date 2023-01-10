@@ -54,7 +54,6 @@ const EntriesTableHeader = ({
             <th className={"table-header-cell th-dimension"}>Id</th>
             <th className={"table-header-cell th-dimension"}>Algorithm</th>
             <th className={"table-header-cell th-dimension"}>Function</th>
-            <th className={"table-header-cell th-dimension"}>Input length</th>
             <th className={"table-header-cell th-dimension"}>
                 <Button
                     id="sort-by-execution-time"

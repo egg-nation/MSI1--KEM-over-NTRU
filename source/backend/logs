@@ -35,3 +35,29 @@ Traceback (most recent call last):
     return transformer(message)
            ^^^^^^^^^^^^^^^^^^^^
 google.protobuf.message.EncodeError: Message EntryID is missing required fields: token,entryId
+17:21:48,834 Error catcher ERROR Unknown except raised '' is not a valid ObjectId, it must be a 12-byte input or a 24-character hex string
+17:21:48,839 grpc._common ERROR Exception serializing message!
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/grpc/_common.py", line 90, in _transform
+    return transformer(message)
+           ^^^^^^^^^^^^^^^^^^^^
+google.protobuf.message.EncodeError: Message EntryID is missing required fields: token,entryId
+16:10:29,263 Error catcher ERROR Unknown except raised Unexpected DER tag
+17:09:34,148 grpc._common ERROR Exception serializing message!
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/grpc/_common.py", line 90, in _transform
+    return transformer(message)
+           ^^^^^^^^^^^^^^^^^^^^
+google.protobuf.message.EncodeError: Message User is missing required fields: username,emailAddress,userId
+17:09:43,121 grpc._common ERROR Exception serializing message!
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/grpc/_common.py", line 90, in _transform
+    return transformer(message)
+           ^^^^^^^^^^^^^^^^^^^^
+google.protobuf.message.EncodeError: Message User is missing required fields: username,emailAddress,userId
+17:09:45,396 grpc._common ERROR Exception serializing message!
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/grpc/_common.py", line 90, in _transform
+    return transformer(message)
+           ^^^^^^^^^^^^^^^^^^^^
+google.protobuf.message.EncodeError: Message User is missing required fields: username,emailAddress,userId

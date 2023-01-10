@@ -3,6 +3,7 @@ import {Button, Col, Row} from "react-bootstrap";
 import {AuthToken, KYBERKey, KYBERKeys} from "../../../../../apidocs/v1_pb";
 import grpcWeb from "grpc-web";
 import {KyberServiceApiClient} from "../../../../../services/api/KyberServiceApiClient";
+import {getButtonToCopyTextToClipboard} from "../../../../../utils/helpers/GeneralHelpers";
 
 type Props = {
     authToken: any;
@@ -73,16 +74,20 @@ const KyberGetKeysFields = ({authToken}: Props) => {
                                     <div className={"mb-3 mt-3"}><h6 className={"skin-color"}><strong>Kyber
                                         key {index}</strong>
                                     </h6></div>
-                                    <div className={"mb-2"}><strong>Key id:</strong> {kyberKey.getKeyid()}</div>
-                                    <div className={"mb-2"}><strong>Public key:</strong> {kyberKey.getPk()}</div>
-                                    <div className={"mb-2"}><strong>Secret key:</strong> {kyberKey.getSk()}</div>
+                                    <div className={"mb-2"}><strong>Key
+                                        id:</strong> {getButtonToCopyTextToClipboard(kyberKey.getKeyid())}</div>
+                                    <div className={"mb-2"}><strong>Public
+                                        key:</strong> {getButtonToCopyTextToClipboard(kyberKey.getPk())}</div>
+                                    <div className={"mb-2"}><strong>Secret
+                                        key:</strong> {getButtonToCopyTextToClipboard(kyberKey.getSk())}</div>
                                     <div className={"mb-1"}><strong>Kyber parameters:</strong></div>
-                                    <div className={"mb-2"}>n: {kyberKey.getParameters()?.getN()};
-                                        q: {kyberKey.getParameters()?.getQ()};
-                                        eta: {kyberKey.getParameters()?.getEta()};
-                                        k: {kyberKey.getParameters()?.getK()};
-                                        du: {kyberKey.getParameters()?.getDu()};
-                                        dv: {kyberKey.getParameters()?.getDv()}
+                                    <div className={"mb-2"}>
+                                        n: {getButtonToCopyTextToClipboard(kyberKey.getParameters()?.getN().toString())};
+                                        q: {getButtonToCopyTextToClipboard(kyberKey.getParameters()?.getQ().toString())};
+                                        k: {getButtonToCopyTextToClipboard(kyberKey.getParameters()?.getK().toString())};
+                                        eta: {getButtonToCopyTextToClipboard(kyberKey.getParameters()?.getEta().toString())};
+                                        du: {getButtonToCopyTextToClipboard(kyberKey.getParameters()?.getDu().toString())};
+                                        dv: {getButtonToCopyTextToClipboard(kyberKey.getParameters()?.getDv().toString())}
                                     </div>
                                 </div>
                             );

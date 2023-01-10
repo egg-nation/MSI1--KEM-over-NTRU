@@ -8,6 +8,7 @@ import {useAtom} from "jotai";
 import {userAtom} from "../../../services/UserAtom";
 import {Button} from "react-bootstrap";
 import FilteringBar from "./filtering/FilteringBar";
+import {getButtonToCopyTextToClipboard} from "../../../utils/helpers/GeneralHelpers";
 
 type Props = {
     entriesList: Array<Entry>
@@ -92,10 +93,9 @@ const EntriesTable = ({entriesList}: Props) => {
 
                             return (
                                 <tr className={"table-row"}>
-                                    <td className={"table-body-cell"}>{entry.getId()}</td>
+                                    <td className={"table-body-cell"}>{getButtonToCopyTextToClipboard(entry.getId())}</td>
                                     <td className={"table-body-cell"}>{entry.getAlgorithmname()}</td>
                                     <td className={"table-body-cell"}>{entry.getFunctionname()}</td>
-                                    <td className={"table-body-cell skin-color"}>TODO -- get length</td>
                                     <td className={"table-body-cell"}>{entry.getExecutiontime()} ms</td>
                                     <td className={"table-body-cell"}>{deleteEntryById(entry.getId())}</td>
                                 </tr>

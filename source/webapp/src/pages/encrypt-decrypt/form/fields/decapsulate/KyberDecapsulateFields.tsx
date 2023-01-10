@@ -148,7 +148,7 @@ const KyberDecapsulateFields = ({authToken}: Props) => {
                         }
                     </Col>
                 </Row>
-                <Col className="break-text" xs={12}>
+                <Col className="no-padding-left break-text" xs={12}>
                     {
                         displayEntriesList && entriesList && entriesList[0] && (
                             entriesList?.map((entry, index) => {
@@ -161,7 +161,6 @@ const KyberDecapsulateFields = ({authToken}: Props) => {
                                         <div className={"mb-2"}><strong>Execution
                                             time:</strong> {entry.getExecutiontime()} ms
                                         </div>
-                                        <div className={"mb-2"}><strong>Output:</strong> {entry.getOutput()}</div>
                                     </div>
                                 );
                             })
