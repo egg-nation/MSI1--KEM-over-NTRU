@@ -4,6 +4,7 @@ import RegularInputField from "../../../../../components/form/RegularInputField"
 import {AuthToken, Entries, Entry, KYBERExecution, KYBERKey, KYBERParameters} from "../../../../../apidocs/v1_pb";
 import {KyberServiceApiClient} from "../../../../../services/api/KyberServiceApiClient";
 import grpcWeb from "grpc-web";
+import {getButtonToCopyTextToClipboard} from "../../../../../utils/helpers/GeneralHelpers";
 
 type Props = {
     authToken: any;
@@ -161,7 +162,9 @@ const KyberDecapsulateFields = ({authToken}: Props) => {
                                         <div className={"mb-2"}><strong>Execution
                                             time:</strong> {entry.getExecutiontime()} ms
                                         </div>
-                                        <div className={"mb-2"}><strong>Output:</strong> {entry.getOutput()}</div>
+                                        <div className={"mb-2"}>
+                                            <strong>Output:</strong> {getButtonToCopyTextToClipboard(entry.getOutput())}
+                                        </div>
                                     </div>
                                 );
                             })

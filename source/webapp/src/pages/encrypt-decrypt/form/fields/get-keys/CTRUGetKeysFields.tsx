@@ -7,6 +7,7 @@ import {
 } from "../../../../../apidocs/v1_pb";
 import grpcWeb from "grpc-web";
 import {CTRUServiceApiClient} from "../../../../../services/api/CTRUServiceApiClient";
+import {getButtonToCopyTextToClipboard} from "../../../../../utils/helpers/GeneralHelpers";
 
 type Props = {
     authToken: any;
@@ -77,14 +78,19 @@ const CTRUGetKeysFields = ({authToken}: Props) => {
                                     <div className={"mb-3 mt-3"}><h6 className={"skin-color"}><strong>CTRU
                                         key {index}</strong>
                                     </h6></div>
-                                    <div className={"mb-2"}><strong>Key id:</strong> {ctruKey.getKeyid()}</div>
-                                    <div className={"mb-2"}><strong>Public key:</strong> {ctruKey.getPk()}</div>
-                                    <div className={"mb-2"}><strong>Secret key:</strong> {ctruKey.getSk()}</div>
+                                    <div className={"mb-2"}><strong>Key
+                                        id:</strong> {getButtonToCopyTextToClipboard(ctruKey.getKeyid())}</div>
+                                    <div className={"mb-2"}><strong>Public
+                                        key:</strong> {getButtonToCopyTextToClipboard(ctruKey.getPk())}</div>
+                                    <div className={"mb-2"}><strong>Secret
+                                        key:</strong> {getButtonToCopyTextToClipboard(ctruKey.getSk())}</div>
                                     <div className={"mb-1"}><strong>CTRU parameters:</strong></div>
-                                    <div className={"mb-2"}>n: {ctruKey.getParameters()?.getN()};
-                                        q: {ctruKey.getParameters()?.getQ()};
-                                        q2: {ctruKey.getParameters()?.getQ2()};
-                                        eta: {ctruKey.getParameters()?.getEta()}</div>
+                                    <div className={"mb-2"}>
+                                        n: {getButtonToCopyTextToClipboard(ctruKey.getParameters()?.getN().toString())};
+                                        q: {getButtonToCopyTextToClipboard(ctruKey.getParameters()?.getQ().toString())};
+                                        q2: {getButtonToCopyTextToClipboard(ctruKey.getParameters()?.getQ2().toString())};
+                                        eta: {getButtonToCopyTextToClipboard(ctruKey.getParameters()?.getEta().toString())}
+                                    </div>
                                 </div>
                             );
                         })

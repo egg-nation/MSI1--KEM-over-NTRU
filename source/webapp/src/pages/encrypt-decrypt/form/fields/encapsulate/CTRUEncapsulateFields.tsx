@@ -9,6 +9,7 @@ import {
 } from "../../../../../apidocs/v1_pb";
 import grpcWeb from "grpc-web";
 import {CTRUServiceApiClient} from "../../../../../services/api/CTRUServiceApiClient";
+import {getButtonToCopyTextToClipboard} from "../../../../../utils/helpers/GeneralHelpers";
 
 type Props = {
     authToken: any;
@@ -153,7 +154,9 @@ const CTRUEncapsulateFields = ({authToken}: Props) => {
                                             <div className={"mb-2"}><strong>Execution
                                                 time:</strong> {entry.getExecutiontime()} ms
                                             </div>
-                                            <div className={"mb-2"}><strong>Output:</strong> {entry.getOutput()}</div>
+                                            <div className={"mb-2"}>
+                                                <strong>Output:</strong> {getButtonToCopyTextToClipboard(entry.getOutput())}
+                                            </div>
                                         </div>
                                     );
                                 })
