@@ -38,11 +38,13 @@ const Wiki = () => {
                                                     className={"skin-color"}>1</span> - What does KON do?</h5>
                                                 <p><strong className={"skin-color"}>KEM over NTRU (KON)</strong> is an
                                                     educative platform for time complexity
-                                                    comparison between 2 implementations of KEM over NTRU which allows
+                                                    comparison between 2 implementations of (key encapsulation
+                                                    mechanisms) KEM over NTRU which allows
                                                     its users to run the keygen, encapsulate and decapsulate functions
                                                     of the implemented algorithms (BAT and CTRU) with their input of
                                                     choice, and allows them to better understand why are they useful in
-                                                    cryptography and which one is more efficient in a certain case.</p>
+                                                    cryptography and which one is more efficient in a certain case by
+                                                    comparing their execution time.</p>
                                                 <p>To better visualize how the algorithms are performing data
                                                     visualization is added through tables with sorting and
                                                     filtering which show the differences in performance for each run

@@ -169,11 +169,13 @@ const TechnicalReport = () => {
                                                 <h5><span className={"skin-color"}>3</span> - Our solution</h5>
                                                 <p><strong className={"skin-color"}>KEM over NTRU (KON)</strong> is an
                                                     educative platform for time complexity
-                                                    comparison between 2 implementations of KEM over NTRU which allows
+                                                    comparison between 2 implementations of (key encapsulation
+                                                    mechanisms) KEM over NTRU which allows
                                                     its users to run the keygen, encapsulate and decapsulate functions
                                                     of the implemented algorithms (BAT and CTRU) with their input of
                                                     choice, and allows them to better understand why are they useful in
-                                                    cryptography and which one is more efficient in a certain case.</p>
+                                                    cryptography and which one is more efficient in a certain case by
+                                                    comparing their execution time.</p>
                                                 <p>To better visualize how the algorithms are performing data
                                                     visualization is added through tables with sorting and
                                                     filtering which show the differences in performance for each run
@@ -184,43 +186,69 @@ const TechnicalReport = () => {
                                                     the platform users can easily check past runs.
                                                 </p>
                                                 <p><span
-                                                    className={"skin-color mt-3 mb-3"}><strong>What does KON contain?</strong></span></p>
+                                                    className={"skin-color mt-3 mb-3"}><strong>What does KON contain?</strong></span>
+                                                </p>
                                                 <ul>
                                                     <li>Client side (webapp)</li>
                                                     <ul>
-                                                        <li>Login page: username / e-mail address field, password field, login,
-                                                            error messages, and switch to registration</li>
-                                                        <li>Register page: username field, e-mail address field, password field,
-                                                            login, error messages and switch to sign in</li>
+                                                        <li>Login page: username / e-mail address field, password field,
+                                                            login,
+                                                            error messages, and switch to registration
+                                                        </li>
+                                                        <li>Register page: username field, e-mail address field,
+                                                            password field,
+                                                            login, error messages and switch to sign in
+                                                        </li>
                                                         <li>Dashboard page: 3 sections with CTA buttons for each of them
                                                             run encrypt or decrypt,
                                                             wiki/help,
-                                                            entries visualization</li>
-                                                        <li>Encrypt / Decrypt page: Run algorithm function with given input page</li>
-                                                        <li>Entries visualization page: table with relevant info for each entry
-                                                            that a respective user did - [OPTIONAL] with filtering over it +
-                                                            sorting over the relevant columns</li>
-                                                        <li>Wiki page: theoretical explanations + description of the utility of
-                                                            the platform and how to use it + related articles / useful info</li>
+                                                            entries visualization
+                                                        </li>
+                                                        <li>Encrypt / Decrypt page: Run algorithm function with given
+                                                            input page
+                                                        </li>
+                                                        <li>Entries visualization page: table with relevant info for
+                                                            each entry
+                                                            that a respective user did - [OPTIONAL] with filtering over
+                                                            it +
+                                                            sorting over the relevant columns
+                                                        </li>
+                                                        <li>Wiki page: theoretical explanations + description of the
+                                                            utility of
+                                                            the platform and how to use it + related articles / useful
+                                                            info
+                                                        </li>
                                                     </ul>
                                                     <li>Server side</li>
                                                     <ul>
                                                         <li>Models</li>
                                                         <ul>
-                                                            <li>User: id, username, e-mail address, password hash, authentication token</li>
-                                                            <li>Entry: algorithm name, function name - keygen / encapsulate /
-                                                                decapsulate, execution time, relevant input information - input
-                                                                length, user id</li>
+                                                            <li>User: id, username, e-mail address, password hash,
+                                                                authentication token
+                                                            </li>
+                                                            <li>Entry: algorithm name, function name - keygen /
+                                                                encapsulate /
+                                                                decapsulate, execution time, relevant input information
+                                                                - input
+                                                                length, user id
+                                                            </li>
                                                         </ul>
                                                         <li>Services</li>
                                                         <ul>
-                                                            <li>User service: create a new user, login into an existent user account
-                                                                or delete an existent user account</li>
-                                                            <li>Entry history service: add new entry for a run, search entry
-                                                                history, get entry history for an existent user account, delete an entry or delete
-                                                                the history for an existent user account</li>
-                                                            <li>CTRU service: encapsulate, decapsulate, generate keys</li>
-                                                            <li>Kyber service: encapsulate, decapsulate, generate keys</li>
+                                                            <li>User service: create a new user, login into an existent
+                                                                user account
+                                                                or delete an existent user account
+                                                            </li>
+                                                            <li>Entry history service: add new entry for a run, search
+                                                                entry
+                                                                history, get entry history for an existent user account,
+                                                                delete an entry or delete
+                                                                the history for an existent user account
+                                                            </li>
+                                                            <li>CTRU service: encapsulate, decapsulate, generate keys
+                                                            </li>
+                                                            <li>Kyber service: encapsulate, decapsulate, generate keys
+                                                            </li>
                                                         </ul>
                                                         <li>Repositories</li>
                                                         <ul>
@@ -233,13 +261,21 @@ const TechnicalReport = () => {
                                                         <ul>
                                                             <li>Algorithms</li>
                                                             <ul>
-                                                                <li>CTRU: encapsulate, decapsulate, generate keys utils</li>
-                                                                <li>Kyber: encapsulate, decapsulate, generate keys utils</li>
+                                                                <li>CTRU: encapsulate, decapsulate, generate keys
+                                                                    utils
+                                                                </li>
+                                                                <li>Kyber: encapsulate, decapsulate, generate keys
+                                                                    utils
+                                                                </li>
                                                             </ul>
-                                                            <li>Timer: times the execution of a given function and gathers relevant
-                                                                information regarding the entry run (AOP)</li>
-                                                            <li>Task scheduler: used for running tasks on the available slots and
-                                                                for keeping a waiting queue with the tasks remaining</li>
+                                                            <li>Timer: times the execution of a given function and
+                                                                gathers relevant
+                                                                information regarding the entry run (AOP)
+                                                            </li>
+                                                            <li>Task scheduler: used for running tasks on the available
+                                                                slots and
+                                                                for keeping a waiting queue with the tasks remaining
+                                                            </li>
                                                         </ul>
                                                     </ul>
                                                     <li>Unit testing (both frontend and backend)</li>
@@ -249,6 +285,40 @@ const TechnicalReport = () => {
                                             </div>
                                             <div className={"mb-3"}>
                                                 <h5><span className={"skin-color"}>4</span> - Results, Evaluation</h5>
+                                                <p>With the help of the platform we have implemented to compare the 2
+                                                    KEM over NTRU algorithms' execution time in certain conditions -
+                                                    CTRU and Kyber - and during the implementation and analysis of the
+                                                    previously mentioned algorithms, we have come up with the following
+                                                    results and conclusions.</p>
+                                                <p>First of all, after searching for implementation details and the
+                                                    current
+                                                    research status on CTRU, we found out that for a different CTRU
+                                                    implementation there have been some successful attacks performed,
+                                                    which leads us to believe that this particular implementation might
+                                                    not
+                                                    be bulletproof either as it is based on a similar logic. On the
+                                                    other
+                                                    hand, so far, Kyber has proven to be unsusceptible to attacks and
+                                                    was selected by NIST to be standardized.</p>
+                                                <p>Kyber is a considerably more mature protocol with a more solid
+                                                    documentation and it has a theoretical explanation which is easier
+                                                    to
+                                                    implement.</p>
+                                                <p>CTRU's execution time for key generation, encapsulation and
+                                                    decapsulation
+                                                    is worse than Kyber's, which has impressively fast execution time
+                                                    for all of them. Despite the execution time differences, the
+                                                    parameters
+                                                    provided for both the algorithms offer the same level of
+                                                    security.</p>
+                                                <p>The key used for Kyber is longer and it uses a tradeoff for its
+                                                    length: some values that could be cached are instead generated every
+                                                    time the encapsulation function is called, therefore sacrificing
+                                                    some
+                                                    performance to greatly improve the memory cost. On the other hand,
+                                                    CTRU uses adjustable cyphertext compression, which helps reduce the
+                                                    length of the output.
+                                                </p>
                                                 <hr/>
                                             </div>
                                             <div className={"mb-3"}>
@@ -325,7 +395,8 @@ const TechnicalReport = () => {
                     </Container>
                 </section>
             </>
-        );
+        )
+            ;
     }
 }
 
