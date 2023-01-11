@@ -85,7 +85,7 @@ The runs are stored in a database for each particular user so that the platform 
 
 - Client side (webapp)
   - Login page: username / e-mail address field, password field, login, error messages, and switch to registration
-  - Register page: username field, e-mail address field, password field, login, error messages and switch to sign in
+  - Register page: username field, e-mail address field, password field, register, error messages and switch to sign in
   - Dashboard page: 3 sections with CTA buttons for each of them run encrypt or decrypt, wiki/help, entries visualization
   - Encrypt / Decrypt page: Run algorithm function with given input page
   - Entries visualization page: table with relevant info for each entry that a respective user did - [OPTIONAL] with filtering over it + sorting over the relevant columns
