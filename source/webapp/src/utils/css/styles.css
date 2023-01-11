@@ -24,6 +24,10 @@ section {
     padding-left: 4px;
 }
 
+.content::-webkit-scrollbar{
+    display: none;
+}
+
 .content-align-end {
     display: flex;
     justify-content: end;
