@@ -117,6 +117,28 @@ The runs are stored in a database for each particular user so that the platform 
 
 With the help of the platform we have implemented to compare the 2 KEM over NTRU algorithms' execution time in certain conditions - CTRU and Kyber - and during the implementation and analysis of the previously mentioned algorithms, we have come up with the following results and conclusions.
 
+<sub>For smaller input value parameters</sub>
+
+| Run | Average execution time (in milliseconds) |
+| --- | --- |
+| CTRU Keygen | ~245ms |
+| Kyber Keygen | ~458ms |
+| CTRU Encapsulation | ~112ms |
+| Kyber Encapsulation | ~1082ms |
+| CTRU Decapsulation | ~458ms |
+| Kyber Decapsulation | ~2713ms |
+
+<sub>For bigger input value parameters</sub>
+
+| Run | Average execution time (in milliseconds) |
+| --- | --- |
+| CTRU Keygen | ~5167ms |
+| Kyber Keygen | ~9908ms |
+| CTRU Encapsulation | ~13452ms |
+| Kyber Encapsulation | ~7901ms |
+| CTRU Decapsulation | ~10021ms |
+| Kyber Decapsulation | ~8063ms |
+
 First of all, after searching for implementation details and the current research status on CTRU, we found out that for a different CTRU implementation there have been some successful attacks performed, which leads us to believe that this particular implementation might not be bulletproof either as it is based on a similar logic. On the other hand, so far, Kyber has proven to be unsusceptible to attacks and was selected by NIST to be standardized.
 
 Kyber is a considerably more mature protocol with a more solid documentation and it has a theoretical explanation which is easier to implement.
