@@ -15,7 +15,7 @@ The runs are stored in a database for each particular user so that the platform 
 4. Tudorica Radu
 
 ### Coordinator
-Ferucio-Laurentiu Tiplea
+Prof. Dr. Ferucio-Laurentiu Tiplea
 
 # Run guide
 
